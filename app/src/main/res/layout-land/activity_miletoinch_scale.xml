@@ -1,0 +1,252 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="horizontal"
+    android:padding="@dimen/activity_margin"
+    tools:context=".activity.scale.InchtomileScaleActivity">
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+        <TextView
+            android:id="@+id/title_activity_miletoinch"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/indent_very_small"
+            android:layout_marginBottom="@dimen/indent_very_small"
+            android:text="@string/title_activity_intomile"
+            android:textAppearance="@style/TextAppearance.AppCompat.Large" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <EditText
+                android:id="@+id/miletoinch_number"
+                android:imeOptions="flagNoFullscreen"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="@dimen/indent_very_small"
+                android:hint="@string/intomile_hint"
+                android:inputType="numberDecimal"
+                android:focusedByDefault="true"
+                android:selectAllOnFocus="true"
+                android:textAppearance="@style/TextAppearance.AppCompat.Medium" />
+        </LinearLayout>
+
+        <Button
+            android:id="@+id/btn_convert"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:height="65sp"
+            android:layout_marginBottom="@dimen/indent_very_small"
+            android:text="@string/convert"
+            android:textColor="@color/colorPrimaryText"
+            android:backgroundTint="@color/colorPrimary"
+            android:background="@drawable/button_rounded"/>
+
+        <Button
+            android:id="@+id/btn_clear"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:height="65sp"
+            android:layout_marginBottom="@dimen/indent_very_small"
+            android:text="@string/clear"
+            android:textColor="@color/colorPrimaryText"
+            android:backgroundTint="@color/colorPrimary"
+            android:background="@drawable/button_rounded"/>
+
+    </LinearLayout>
+
+
+    <ScrollView
+        android:id="@+id/scales"
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent"
+        android:gravity="top"
+        android:layout_marginTop="@dimen/indent_small"
+        android:layout_marginLeft="@dimen/indent_large"
+        android:orientation="vertical"
+        android:visibility="invisible">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+
+                <TextView
+                    android:id="@+id/title_fractional"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/indent_very_small"
+                    android:text="@string/title_converted_fractional"
+                    android:textAppearance="@style/TextAppearance.AppCompat.Small" />
+
+                <TextView
+                    android:id="@+id/converted_fractional"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="@dimen/indent_huge"
+                    android:hint="@string/value"
+                    android:textAppearance="@style/TextAppearance.AppCompat.Medium" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+
+                <TextView
+                    android:id="@+id/title_imperial1"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/indent_very_small"
+                    android:text="@string/title_converted_imperial"
+                    android:textAppearance="@style/TextAppearance.AppCompat.Small" />
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:id="@+id/converted_in_to_mile"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="@dimen/indent_huge"
+                        android:layout_marginRight="@dimen/indent_very_small"
+                        android:hint="@string/value"
+                        android:textAppearance="@style/TextAppearance.AppCompat.Medium" />
+
+                    <TextView
+                        android:id="@+id/in_to_mile_decription"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/in_to_mile"
+                        android:textAppearance="@style/TextAppearance.AppCompat.Small" />
+                </LinearLayout>
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+
+                <TextView
+                    android:id="@+id/title_imperial2"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/indent_very_small"
+                    android:text="@string/title_converted_imperial"
+                    android:textAppearance="@style/TextAppearance.AppCompat.Small" />
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:id="@+id/converted_mile_to_in"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="@dimen/indent_huge"
+                        android:layout_marginRight="@dimen/indent_very_small"
+                        android:hint="@string/value"
+                        android:textAppearance="@style/TextAppearance.AppCompat.Medium" />
+
+                    <TextView
+                        android:id="@+id/mile_to_in_description"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/mile_to_in"
+                        android:textAppearance="@style/TextAppearance.AppCompat.Small" />
+                </LinearLayout>
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+
+                <TextView
+                    android:id="@+id/title_metric1"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/indent_very_small"
+                    android:text="@string/title_converted_metric"
+                    android:textAppearance="@style/TextAppearance.AppCompat.Small" />
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:id="@+id/converted_cm_to_km"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="@dimen/indent_huge"
+                        android:layout_marginRight="@dimen/indent_very_small"
+                        android:hint="@string/value"
+                        android:textAppearance="@style/TextAppearance.AppCompat.Medium" />
+
+                    <TextView
+                        android:id="@+id/cm_to_km_description"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/cm_to_km"
+                        android:textAppearance="@style/TextAppearance.AppCompat.Small" />
+                </LinearLayout>
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+
+                <TextView
+                    android:id="@+id/title_metric2"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/indent_very_small"
+                    android:text="@string/title_converted_metric"
+                    android:textAppearance="@style/TextAppearance.AppCompat.Small" />
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:id="@+id/converted_km_to_cm"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="@dimen/indent_huge"
+                        android:layout_marginRight="@dimen/indent_very_small"
+                        android:hint="@string/value"
+                        android:textAppearance="@style/TextAppearance.AppCompat.Medium" />
+
+                    <TextView
+                        android:id="@+id/km_to_cm_description"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/km_to_cm"
+                        android:textAppearance="@style/TextAppearance.AppCompat.Small" />
+                </LinearLayout>
+            </LinearLayout>
+        </LinearLayout>
+    </ScrollView>
+
+
+</LinearLayout>

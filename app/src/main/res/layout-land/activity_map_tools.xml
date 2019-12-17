@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:tools="http://schemas.android.com/tools"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical"
+    android:padding="@dimen/activity_margin"
+    tools:context=".activity.MapToolsActivity">
+
+    <Button
+        android:id="@+id/btn_scale"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:text="@string/scale_converter"
+        android:textAllCaps="false"
+        android:textSize="28sp"
+        android:typeface="monospace"
+        tools:layout_editor_absoluteX="151dp"
+        tools:layout_editor_absoluteY="74dp"
+        android:layout_marginBottom="@dimen/indent_very_small"
+        android:textColor="@color/colorButtonText"
+        android:backgroundTint="@color/colorPrimary"
+        android:background="@drawable/button_rounded" />
+
+    <Button
+        android:id="@+id/btn_distance"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:text="@string/disctance_calculator_land"
+        android:textAllCaps="false"
+        android:textSize="28sp"
+        android:typeface="monospace"
+        android:textColor="@color/btn_inactive_text"
+        tools:layout_editor_absoluteX="151dp"
+        tools:layout_editor_absoluteY="74dp"
+        android:layout_marginBottom="@dimen/indent_very_small"
+        android:backgroundTint="@color/colorPrimaryLight"
+        android:background="@drawable/button_rounded"/>
+
+    <Button
+        android:id="@+id/btn_coords"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:text="@string/coordinates_converter_land"
+        android:textAllCaps="false"
+        android:textSize="28sp"
+        android:typeface="monospace"
+        android:textColor="@color/btn_inactive_text"
+        tools:layout_editor_absoluteX="151dp"
+        tools:layout_editor_absoluteY="74dp"
+        android:layout_marginBottom="@dimen/indent_very_small"
+        android:backgroundTint="@color/colorPrimaryLight"
+        android:background="@drawable/button_rounded"/>
+
+    <Button
+        android:id="@+id/btn_area"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:text="@string/area_calculator_land"
+        android:textAllCaps="false"
+        android:textSize="28sp"
+        android:typeface="monospace"
+        android:textColor="@color/btn_inactive_text"
+        tools:layout_editor_absoluteX="151dp"
+        tools:layout_editor_absoluteY="74dp"
+        android:layout_marginBottom="@dimen/indent_very_small"
+        android:backgroundTint="@color/colorPrimaryLight"
+        android:background="@drawable/button_rounded"/>
+
+
+</LinearLayout>

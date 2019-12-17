@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "1076358531993",
+    "firebase_url": "https://maptools-5c56c.firebaseio.com",
+    "project_id": "maptools-5c56c",
+    "storage_bucket": "maptools-5c56c.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:1076358531993:android:b1f3f7a60f7ac09512a108",
+        "android_client_info": {
+          "package_name": "com.latidude99.maptools"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "1076358531993-prntrc75v6o94t3dft9fs9kld70dniq9.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAKSJVoREu69svuwhJSRVh_g9zz0KcjdGk"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "1076358531993-prntrc75v6o94t3dft9fs9kld70dniq9.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

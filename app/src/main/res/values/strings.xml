@@ -1,0 +1,79 @@
+<resources>
+    <string name="app_name">MapTools</string>
+
+    <!-- MapToolsActivity layout buttons -->
+    <string name="scale_converter">Scale Converter</string>
+    <string name="disctance_calculator">Disctance Calculator\n (PRO)</string>
+    <string name="coordinates_converter">Coordinates Converter\n (PRO)</string>
+    <string name="area_calculator">Area Calculator\n (PRO)</string>
+    <string name="disctance_calculator_land">Disctance Calculator (PRO)</string>
+    <string name="coordinates_converter_land">Coordinates Converter (PRO)</string>
+    <string name="area_calculator_land">Area Calculator (PRO)</string>
+
+    <!-- MapToolsActivity Toast message -->
+    <string name="pro">Available in PRO Version</string>
+
+    <!-- ScaleActivity layout buttons -->
+    <string name="scale_fractional">Fractional \n (e.g. 1:25,000)</string>
+    <string name="scale_in_to_mile">Inches to the Mile</string>
+    <string name="scale_mile_to_in">Miles to an Inch</string>
+    <string name="scale_cm_to_km">Centimetres to \n a Kilometre</string>
+    <string name="scale_km_to_cm">Kilometres to \n a Centimetre</string>
+    <string name="scale_fractional_land">Fractional (e.g. 1:25,000)</string>
+    <string name="scale_cm_to_km_land">Centimetres to a Kilometre</string>
+    <string name="scale_km_to_cm_land">Kilometres to a Centimetre</string>
+
+    <!-- scale converting activities error messages -->
+    <string name="error_input_int">Only digits allowed!</string>
+    <string name="error_input_empty">Please enter a value.</string>"
+    <string name="error_input_zero">Enter value larger than zero.</string>"
+    <string name="error_input_one">Enter value equal or larger than one.</string>"
+    <string name="error_input_too_big">The number entered is too big</string>
+    <string name="error_converting_scale">Error occurred during scale calculations</string>
+
+    <!-- all scales activities layout common buttons -->
+    <string name="convert">Convert</string>
+    <string name="clear">Clear</string>
+
+    <!-- converted scales layout result -->
+    <string name="title_converted_fractional">Fractional:</string>
+    <string name="title_converted_imperial">Imperial:</string>
+    <string name="title_converted_metric">Metric:</string>
+    <string name="value">value </string>
+    <string name="in_to_mile">inch(es) to the Mile</string>
+    <string name="mile_to_in">mile(s) to an inch</string>
+    <string name="cm_to_km">cm to a km</string>
+    <string name="km_to_cm">km to a cm</string>
+    <string name="m_to_cm">metres to a cm</string>
+    <string name="in_to_mile_less_message">less than 0.1 inch to the mile</string>
+    <string name="mile_to_in_less_message">less than 0.01 mile to an inch</string>
+    <string name="cm_to_km_less_message">less than 0.1 cm to a kilometre</string>
+
+    <!-- Fractional scale layout -->
+    <string name="toolbar_activity_fractional">Fractional</string>
+    <string name="title_activity_fractional">Fractional scale  (e.g. 1:10,000)</string>
+    <string name="fractional_hint">enter scale denominator, for example 5000</string>
+    <string name="fractional_1">1: </string>
+
+    <!-- Inches to Mile scale layout -->
+    <string name="toolbar_activity_intomile"> Imperial: inches to the mile</string>
+    <string name="title_activity_intomile">inches to the mile  </string>
+    <string name="intomile_hint">enter number of inches</string>
+
+    <!-- Miles to Inches scale layout -->
+    <string name="toolbar_activity_miletoinch">Imperial: miles to an inch</string>
+    <string name="title_activity_miletoinch">miles to an inch  </string>
+    <string name="miletoinch_hint">enter number of miles</string>
+
+    <!-- Cm to Km scale layout -->
+    <string name="toolbar_activity_cmtokm">Metric: cm to a km</string>
+    <string name="title_activity_cmtokm">centimetres to a kilometre</string>
+    <string name="cmtokm_hint">enter number of centimetres</string>
+
+    <!-- Km to Cm scale layout -->
+    <string name="toolbar_activity_kmtocm">Metric: km to a cm</string>
+    <string name="title_activity_kmtocm">kilometres to a centimetre</string>
+    <string name="kmtocm_hint">enter number of kilometres</string>
+
+
+</resources>
