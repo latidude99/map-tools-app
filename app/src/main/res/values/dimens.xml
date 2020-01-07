@@ -3,6 +3,7 @@
     <dimen name="activity_margin">16dp</dimen>
     <dimen name="activity_horizontal_margin">16dp</dimen>
     <dimen name="activity_vertical_margin">16dp</dimen>:
+    <dimen name="indent_tiny">5dp</dimen>
     <dimen name="indent_very_small">10dp</dimen>
     <dimen name="indent_small">20dp</dimen>
     <dimen name="indent_small_medium">30dp</dimen>
@@ -15,5 +16,20 @@
     <dimen name="linear_scales_converted_indent_portrait">20dp</dimen>
     <dimen name="text_scale_converted_portrait">22sp</dimen>
     <dimen name="indent_scale_description">10dp</dimen>
+
+    <dimen name="btn_distance_paddingLeft">60dp</dimen>
+    <dimen name="btn_distance_paddingLeft_land">30dp</dimen>
+    <dimen name="btn_distance_text">20sp</dimen>
+
+    <dimen name="distance_paddingTop">10dp</dimen>
+    <dimen name="distance_paddingLeft">10dp</dimen>
+    <dimen name="distance_text_size">17sp</dimen>
+    <dimen name="distance_subtext_size">13sp</dimen>
+
+    <dimen name="distance_result_bottom">10dp</dimen>
+    <dimen name="distance_radio_margin_bottom">10dp</dimen>
+    <dimen name="distance_mapdistance_margin_bottom">10dp</dimen>
+    <dimen name="result_distance_text_size">14sp</dimen>
+    <dimen name="radio_distance_text_size">10sp</dimen>
 
 </resources>

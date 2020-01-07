@@ -4,12 +4,11 @@
 
     <application
         android:allowBackup="true"
-        android:icon="@mipmap/ic_launcher"
+        android:icon="@mipmap/maptools_launcher_foreground"
         android:label="@string/app_name"
-        android:roundIcon="@mipmap/ic_launcher_round"
+        android:roundIcon="@mipmap/maptools_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-
         <activity android:name=".activity.MapToolsActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -17,6 +16,7 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+
         <!-- Scale Converter -->
         <activity
             android:name=".activity.scale.ScaleActivity"
@@ -48,10 +48,14 @@
             android:parentActivityName=".activity.scale.ScaleActivity"
             android:windowSoftInputMode="stateVisible|adjustPan" />
 
-        <!-- Distance Calculator -->
-        <activity android:name=".activity.distance.DistanceActivity">
-
-        </activity>
+        <!-- MapEntry Calculator -->
+        <activity
+            android:name=".activity.distance.DistanceActivity"
+            android:label="Distance Calcuator"
+            android:parentActivityName=".activity.MapToolsActivity" />
+        <activity android:name=".activity.distance.DistanceMapScaleActivity"
+            android:label="Ground Distance Calculator"
+            android:parentActivityName=".activity.distance.DistanceMapScaleActivity" />
     </application>
 
 </manifest>

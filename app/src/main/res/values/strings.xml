@@ -3,17 +3,17 @@
 
     <!-- MapToolsActivity layout buttons -->
     <string name="scale_converter">Scale Converter</string>
-    <string name="disctance_calculator">Disctance Calculator\n (PRO)</string>
+    <string name="disctance_calculator">Distance/Scale Calculator</string>
     <string name="coordinates_converter">Coordinates Converter\n (PRO)</string>
     <string name="area_calculator">Area Calculator\n (PRO)</string>
-    <string name="disctance_calculator_land">Disctance Calculator (PRO)</string>
+    <string name="disctance_calculator_land">Distance/Scale Calculator</string>
     <string name="coordinates_converter_land">Coordinates Converter (PRO)</string>
     <string name="area_calculator_land">Area Calculator (PRO)</string>
 
     <!-- MapToolsActivity Toast message -->
     <string name="pro">Available in PRO Version</string>
 
-    <!-- ScaleActivity layout buttons -->
+    <!--                    Scale Converter                       -->
     <string name="scale_fractional">Fractional \n (e.g. 1:25,000)</string>
     <string name="scale_in_to_mile">Inches to the Mile</string>
     <string name="scale_mile_to_in">Miles to an Inch</string>
@@ -30,6 +30,7 @@
     <string name="error_input_one">Enter value equal or larger than one.</string>"
     <string name="error_input_too_big">The number entered is too big</string>
     <string name="error_converting_scale">Error occurred during scale calculations</string>
+    <string name="error_unit_conversion">Error may have occurred during unit conversion</string>
 
     <!-- all scales activities layout common buttons -->
     <string name="convert">Convert</string>
@@ -49,7 +50,7 @@
     <string name="mile_to_in_less_message">less than 0.01 mile to an inch</string>
     <string name="cm_to_km_less_message">less than 0.1 cm to a kilometre</string>
 
-    <!-- Fractional scale layout -->
+    <!-- Fractional scale layout -->                    -->
     <string name="toolbar_activity_fractional">Fractional</string>
     <string name="title_activity_fractional">Fractional scale  (e.g. 1:10,000)</string>
     <string name="fractional_hint">enter scale denominator, for example 5000</string>
@@ -75,5 +76,117 @@
     <string name="title_activity_kmtocm">kilometres to a centimetre</string>
     <string name="kmtocm_hint">enter number of kilometres</string>
 
+    <!--                       MapEntry Calculator           -->
+    <string name="toolbar_activity_distance">Distance Calculator</string>
+    <string name="title_activity_distance">map - scale - ground \n
+        distance calcultor(e.g. 1:10,000)</string>
+    <string name="btn_map_scale">
+        "INPUT:
+   - distance on map
+   - map scale
+
+RESULT:
+   - distance on ground"</string>
+
+    <string name="btn_ground_scale">
+        "INPUT:
+   - distance on ground
+   - map scale
+
+RESULT:
+   - distance on map"</string>
+
+    <string name="btn_map_ground">
+        "INPUT:
+   - distance on map
+   - distance on ground
+
+RESULT:
+   - map scale"</string>
+
+    <string name="btn_map_scale_land">
+        "INPUT:
+
+ - distance
+     on map
+ - map scale
+
+
+RESULT:
+
+ - distance
+   on ground"</string>
+
+    <string name="btn_ground_scale_land">
+        "INPUT:
+
+ - distance
+   on ground
+ - map scale
+
+
+RESULT:
+
+ - distance
+     on map"</string>
+
+    <string name="btn_map_ground_land">
+        "INPUT
+
+ - distance
+     on map
+ - distance
+   on ground
+
+
+RESULT:
+
+ - map scale"</string>
+
+    <!-- MapEntry Map Scale layout -->
+    <string name="title_activity_distance_map_scale">"Calculate distance on the ground"</string>
+    <string name="subtitle_activity_distance_map_scale">"(given measured distance on the map &amp; the map scale)"</string>
+    <string name="distance_map_hint">distance on the map</string>
+    <string name="distance_units_hint">choose the units</string>
+    <string name="distance_scale_hint">map scale</string>
+    <string name="distance_scaletype_hint">choose the scale type</string>
+    <string name="radio_mm">mm</string>
+    <string name="radio_cm">cm</string>
+    <string name="radio_inch">inch</string>
+    <string name="radio_km">km</string>
+    <string name="radio_mile">mile</string>
+    <string name="radio_nautical">nautical mile</string>
+    <string name="radio_fractional">fractional</string>
+    <string name="radio_intomile">in to the mile</string>
+    <string name="radio_miletoin">mile to an in</string>
+    <string name="radio_cmtokm">cm to a km</string>
+    <string name="radio_kmtocm">km to a cm</string>
+    <string name="btn_distance_calculate_ground">"CALCULATE  DISTANCE  on  the  GROUND"</string>
+
+    <string name="spinner_scale_fractional">fractional</string>
+    <string name="spinner_scale_intothemile">in to the mile</string>
+    <string name="spinner_scale_miletoanin">mile to an in</string>
+    <string name="spinner_scale_cmtoakm">cm to a km</string>
+    <string name="spinner_scale_kmtoacm">km to a cm</string>
+    <string-array name="distance_scale_type_values">
+        <item>fractional</item>
+        <item>in to the mile</item>
+        <item>mile to an in</item>
+        <item>cm to a km</item>
+        <item>km to a cm</item>
+    </string-array>
+
+    <string name="spinner_distance_mm">millimetres</string>
+    <string name="spinner_distance_cm">centimetres</string>
+    <string name="spinner_distance_in">inches</string>
+    <string-array name="distance_distance_unit_values">
+        <item>millimetre(s)</item>
+        <item>centimetre(s)</item>
+        <item>inch(es)</item>
+    </string-array>
+
+    <string name="result_map_distance_description">distance \non the map: </string>
+    <string name="result_ground_distance_description">distance \non the ground: </string>
+    <string name="result_map_scale_description">"map scale: </string>
 
 </resources>

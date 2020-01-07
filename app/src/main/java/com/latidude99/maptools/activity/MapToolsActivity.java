@@ -2,6 +2,7 @@ package com.latidude99.maptools.activity;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
@@ -11,6 +12,7 @@ import android.widget.Toast;
 
 import com.crashlytics.android.Crashlytics;
 import com.latidude99.maptools.R;
+import com.latidude99.maptools.activity.distance.DistanceActivity;
 import com.latidude99.maptools.activity.scale.ScaleActivity;
 
 public class MapToolsActivity extends AppCompatActivity {
@@ -31,10 +33,11 @@ public class MapToolsActivity extends AppCompatActivity {
         });
 
         Button btnDistance = findViewById(R.id.btn_distance);
+        final Intent distanceActivityIntent = new Intent(getApplicationContext(), DistanceActivity.class);
         btnDistance.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View view) {
-                Toast.makeText(getApplicationContext(), pro, Toast.LENGTH_SHORT).show();
+                startActivity(distanceActivityIntent);
             }
         });
 

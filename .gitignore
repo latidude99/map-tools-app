@@ -1,3 +1,6 @@
+_IGNORE
+tmp
+
 *.iml
 .gradle
 /local.properties

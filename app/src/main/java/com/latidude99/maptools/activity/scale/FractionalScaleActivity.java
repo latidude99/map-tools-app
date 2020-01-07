@@ -48,7 +48,7 @@ public class FractionalScaleActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_fractional_scale);
+        setContentView(R.layout.activity_scaleconverter_fractional_scale);
 
         ERROR_INPUT_INT = getString(R.string.error_input_int);
         ERROR_INPUT_EMPTY = getString(R.string.error_input_empty);
@@ -288,9 +288,6 @@ public class FractionalScaleActivity extends AppCompatActivity {
         showKeyboard(view);
     }
 
-    /*
-     * taken from StackOverflow
-     */
     private void hideKeyboard(View view) {
         // Check if no view has focus:
         if (view != null) {
