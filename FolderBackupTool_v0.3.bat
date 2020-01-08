@@ -20,4 +20,4 @@ rem can be added later if needed.
 
 
 
-java -jar FolderBackupTool_v0.3.jar .git release target images
+java -jar FolderBackupTool_v0.3.jar .git gradle release target images _IGNORE tmp build debug libs
