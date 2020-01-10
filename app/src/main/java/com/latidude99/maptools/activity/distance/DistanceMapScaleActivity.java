@@ -3,7 +3,9 @@ package com.latidude99.maptools.activity.distance;
 import android.content.Context;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.KeyEvent;
 import android.view.View;
+import android.view.inputmethod.EditorInfo;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.AdapterView;
 import android.widget.Button;
@@ -42,15 +44,21 @@ public class DistanceMapScaleActivity extends AppCompatActivity {
     private final int DISTANCE_MILE = 1;
     private final int DISTANCE_NAUTICAL = 2;
 
-    private boolean clearInput;
-    private boolean distanceGroundCalculated;
+    // used to store info/calculation when orientation changes
+    private boolean inputCleared;
+    private boolean computed;
+    private double storedDistanceMapMM;
+    private int storedScaleFractional;
+
 
     // holds all the calculations for single entry
     MapEntryAdvanced mapEntryAdvanced;
 
     private String ERROR_INPUT_INT;
     private String ERROR_INPUT_EMPTY;
+    private String ERROR_INPUT_EMPTY_ANY;
     private String ERROR_INPUT_0;
+    private String ERROR_INPUT_0_ANY;
     private String ERROR_INPUT_1;
     private String ERROR_INPUT_TOO_BIG;
     private String ERROR_UNIT_CONVERSION;
@@ -90,7 +98,9 @@ public class DistanceMapScaleActivity extends AppCompatActivity {
 
         ERROR_INPUT_INT = getString(R.string.error_input_int);
         ERROR_INPUT_EMPTY = getString(R.string.error_input_empty);
+        ERROR_INPUT_EMPTY_ANY = getString(R.string.error_input_empty_any);
         ERROR_INPUT_0 = getString(R.string.error_input_zero);
+        ERROR_INPUT_0_ANY = getString(R.string.error_input_zero_any);
         ERROR_INPUT_1 = getString(R.string.error_input_one);
         ERROR_INPUT_TOO_BIG = getString(R.string.error_input_too_big);
         ERROR_CONVERTING_SCALE = getString(R.string.error_converting_scale);
@@ -119,60 +129,27 @@ public class DistanceMapScaleActivity extends AppCompatActivity {
 
         spinnerResultScaleType = (Spinner) findViewById(R.id.distance_result_scale_type);
 
-        textInputDistanceMap.setOnFocusChangeListener(new View.OnFocusChangeListener() {
-            @Override
-            public void onFocusChange(View v, boolean hasFocus) {
-                if (hasFocus && distanceGroundCalculated == false) {
-                    showKeyboard(v);
-                }
-            }
-        });
-/*
+        // Deals with screen orientation changes
+        restoreCalculations(savedInstanceState);
+
+
         // calculates the ground distance when the 'done'/'ok' button on the soft keyboard pressed
-        // or moves focus to textInputDistanceScale if empty
         textInputDistanceMap.setOnEditorActionListener(new EditText.OnEditorActionListener() {
             @Override
             public boolean onEditorAction(TextView view, int actionId, KeyEvent event) {
                 if (actionId == EditorInfo.IME_ACTION_DONE) {
-                    stringInput = textInput.getText().toString().trim();
-                    convertScaleAndDisplay(view, stringInput);
+                    calculateDistanceGround(view);
                     return true;
                 }
                 return false;
             }
         });
-
-        // calculates the ground distance when the 'done'/'ok' button on the soft keyboard pressed
-        // or moves focus to textInputDistanceMap if empty
-        textInputDistanceScale.setOnEditorActionListener(new EditText.OnEditorActionListener() {
-            @Override
-            public boolean onEditorAction(TextView view, int actionId, KeyEvent event) {
-                if (actionId == EditorInfo.IME_ACTION_DONE) {
-                    stringInput = textInput.getText().toString().trim();
-                    convertScaleAndDisplay(view, stringInput);
-                    return true;
-                }
-                return false;
-            }
-        });
-*/
 
         Button btnCalculateDistanceGround = (Button) findViewById(R.id.btn_calculate);
         btnCalculateDistanceGround.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                String stringInputDistanceMap = textInputDistanceMap.getText().toString().trim();
-                String stringInputDistanceScale = textInputDistanceScale.getText().toString().trim();
-
-                int positionInputDistanceMapUnit = spinnerInputDistanceUnit.getSelectedItemPosition();
-                int positionInputScaleType = spinnerInputScaleType.getSelectedItemPosition();
-
-                calculateDistanceGroundAndDisplay(view,
-                                                    stringInputDistanceMap,
-                                                    stringInputDistanceScale,
-                                                    positionInputDistanceMapUnit,
-                                                    positionInputScaleType);
-                hideKeyboard(view);
+                calculateDistanceGround(view);
             }
         });
 
@@ -182,10 +159,15 @@ public class DistanceMapScaleActivity extends AppCompatActivity {
         btnClear.setOnClickListener(new View.OnClickListener() {;
             @Override
             public void onClick(View view) {
-                if(clearInput)
-                    textInputDistanceMap.setText("");
-                else
+                if(!inputCleared){
                     clearTextFields(view);
+                    textInputDistanceMap.setText("");
+                    textInputDistanceMap.requestFocus();
+                    showKeyboard(view);
+                }else{
+                    textInputDistanceScale.setText("");
+                    textInputDistanceScale.requestFocus();
+                }
             }
         });
 
@@ -219,33 +201,94 @@ public class DistanceMapScaleActivity extends AppCompatActivity {
             }
         });
 
+        textInputDistanceScale.requestFocus();
+
     }
 
-    //----------------------------  end of onCreate()  ---------------------------------------//
+    @Override
+    public void onSaveInstanceState(Bundle outState) {
+        super.onSaveInstanceState(outState);
+        if(computed == true){
+            outState.putBoolean("inputCleared", inputCleared);
+            outState.putBoolean("computed", computed);
+            outState.putDouble("storedDistanceMapMM", storedDistanceMapMM);
+            outState.putInt("storedScaleFractional", storedScaleFractional);
+        }
+    }
+
+    //----------------------------  end of onCreate() & other overriden methods  ---------------------------------------//
 
 
 
-    // calculates ground distance and sets values to the fields
-    // MapEntry stores mapDistance in mm, groundDistance in km, scale as fractional (denominator)
+    private void restoreCalculations(Bundle savedInstanceState) {
+        if(savedInstanceState != null){
+            computed = savedInstanceState.getBoolean("computed");
+            inputCleared = savedInstanceState.getBoolean("inputCleared");
+            if(computed && !inputCleared){
+                storedDistanceMapMM = savedInstanceState.getDouble("storedDistanceMapMM");
+                storedScaleFractional = savedInstanceState.getInt("storedScaleFractional");
+
+                calculateAndDisplay();
+            }
+        }
+    }
+
+    private void calculateDistanceGround(View view) {
+        String stringInputDistanceMap = textInputDistanceMap.getText().toString();
+        String stringInputDistanceScale = textInputDistanceScale.getText().toString();
+
+        if(!"".equals(stringInputDistanceScale) && !"".equals(stringInputDistanceMap)){
+            int positionInputDistanceMapUnit = spinnerInputDistanceUnit.getSelectedItemPosition();
+            int positionInputScaleType = spinnerInputScaleType.getSelectedItemPosition();
+
+            calculateDistanceGroundAndDisplay(view,
+                    stringInputDistanceMap,
+                    stringInputDistanceScale,
+                    positionInputDistanceMapUnit,
+                    positionInputScaleType);
+            hideKeyboard(view);
+            computed = true;
+            inputCleared = false;
+        }else{
+            Toast.makeText(this, ERROR_INPUT_EMPTY_ANY,Toast.LENGTH_SHORT);
+        }
+    }
+
+
+    /*
+     *  Calculates ground distance and sets values to the fields,
+     *  MapEntry stores mapDistance in mm, groundDistance in km, scale as fractional (denominator)
+     */
     private void calculateDistanceGroundAndDisplay(View view,
                                                    String inputMap,
                                                    String inputScale,
                                                    int mapUnit,
                                                    int scaleUnit){
+        // converts input to base units and stores them in class fields,
+        // (to put them into Bundle, used when screen orientation changes)
+        convertInputToBaseUnits(inputMap, inputScale, mapUnit, scaleUnit);
+
+        calculateAndDisplay();
+    }
+
+    private void calculateAndDisplay() {
+        // calculates and converts internally all map, ground and scale units
+        mapEntryAdvanced = new MapEntryAdvanced(storedDistanceMapMM, storedScaleFractional);
+
+        // reads input units and sets result units
+        readInputAndSetResultUnits(spinnerInputDistanceUnit, spinnerInputScaleType);
+
+        // sets and displays the result
+        setResultDistanceMap(mapEntryAdvanced,radioResultGroupDistanceMapUnit);
+        setResultDistanceGround(mapEntryAdvanced, radioResultGroupDistanceGroundUnit);
+        setResultMapScale(mapEntryAdvanced, spinnerResultScaleType);
+    }
+
+    // converts input values to base units - distance to mm / scale to fractional
+    private void convertInputToBaseUnits(String inputMap, String inputScale, int mapUnit, int scaleUnit){
         try {
-            double mapDistanceMM = convertMapDistanceToMM(inputMap, mapUnit);
-            int mapScaleFractional = convertMapScaleToFractional(inputScale, scaleUnit);
-
-            // calculates and converts internally all map, ground and scale units
-            mapEntryAdvanced = new MapEntryAdvanced(mapDistanceMM, mapScaleFractional);
-
-            // reads input units and sets result units
-            readInputAndSetResultUnits(spinnerInputDistanceUnit, spinnerInputScaleType);
-
-            // sets and displays the result
-            setResultDistanceMap(mapEntryAdvanced,radioResultGroupDistanceMapUnit);
-            setResultDistanceGround(mapEntryAdvanced, radioResultGroupDistanceGroundUnit);
-            setResultMapScale(mapEntryAdvanced, spinnerResultScaleType);
+            storedDistanceMapMM = convertMapDistanceToMM(inputMap, mapUnit);
+            storedScaleFractional = convertMapScaleToFractional(inputScale, scaleUnit);
         } catch (InsufficientParameterException e) {
             e.printStackTrace();
         }
@@ -544,7 +587,12 @@ public class DistanceMapScaleActivity extends AppCompatActivity {
 
 
     private void clearTextFields(View view){
-        // to to
+        textResultMap.setText("");
+        textResultGround.setText("");
+        textResultScale.setText("");
+        mapEntryAdvanced = null;
+        inputCleared = true;
+
     }
 
     private int convertStringToIntInput(String input){
@@ -597,10 +645,16 @@ public class DistanceMapScaleActivity extends AppCompatActivity {
     }
 
     private void showKeyboard(View view) {
-        // Check if no view has focus:
         if (view != null) {
             InputMethodManager imm = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
             imm.toggleSoftInput(InputMethodManager.SHOW_IMPLICIT,0);
+        }
+    }
+
+    private void showKeyboard2(View view) {
+        if (view != null) {
+            InputMethodManager imm = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
+            imm.showSoftInput(view, InputMethodManager.SHOW_IMPLICIT);
         }
     }
 }

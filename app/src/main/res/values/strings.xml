@@ -25,9 +25,11 @@
 
     <!-- scale converting activities error messages -->
     <string name="error_input_int">Only digits allowed!</string>
-    <string name="error_input_empty">Please enter a value.</string>"
-    <string name="error_input_zero">Enter value larger than zero.</string>"
-    <string name="error_input_one">Enter value equal or larger than one.</string>"
+    <string name="error_input_empty">Please enter a value.</string>
+    <string name="error_input_empty_any">Please enter all values.</string>
+    <string name="error_input_zero">Enter value larger than zero.</string>
+    <string name="error_input_zero_any">All values need to be larger than zero.</string>
+    <string name="error_input_one">Enter value equal or larger than one.</string>
     <string name="error_input_too_big">The number entered is too big</string>
     <string name="error_converting_scale">Error occurred during scale calculations</string>
     <string name="error_unit_conversion">Error may have occurred during unit conversion</string>

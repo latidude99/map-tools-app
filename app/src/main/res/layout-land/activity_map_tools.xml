@@ -33,11 +33,11 @@
         android:textAllCaps="false"
         android:textSize="28sp"
         android:typeface="monospace"
-        android:textColor="@color/btn_inactive_text"
         tools:layout_editor_absoluteX="151dp"
         tools:layout_editor_absoluteY="74dp"
         android:layout_marginBottom="@dimen/indent_very_small"
-        android:backgroundTint="@color/colorPrimaryLight"
+        android:textColor="@color/colorButtonText"
+        android:backgroundTint="@color/colorPrimary"
         android:background="@drawable/button_rounded"/>
 
     <Button
