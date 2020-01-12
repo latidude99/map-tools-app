@@ -129,6 +129,7 @@
                 android:layout_height="wrap_content"
                 android:layout_weight="3"
                 android:textSize="@dimen/result_distance_text_size"
+                android:textColor="@color/tab2_result"
                 android:layout_marginTop="@dimen/indent_tiny"
                 android:gravity="bottom|center_horizontal"/>
 
@@ -187,6 +188,7 @@
                 android:layout_height="wrap_content"
                 android:textSize="@dimen/result_distance_text_size"
                 android:layout_marginBottom="@dimen/distance_result_bottom"
+                android:textColor="@color/tab2_result"
                 android:layout_marginTop="@dimen/indent_tiny"
                 android:gravity="bottom|center_horizontal"/>
 
@@ -240,6 +242,7 @@
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="3"
+                android:textColor="@color/tab2_result"
                 android:textSize="@dimen/result_distance_text_size"
                 android:gravity="bottom|center_horizontal"/>
 

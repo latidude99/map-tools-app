@@ -14,5 +14,7 @@
     <color name="btn_inactive_text">#8c8c8c</color>
     <color name="btn_inactive_background">#e6e6e6</color>
 
+    <color name="tab2_result">#0000ff</color>
+
 
 </resources>

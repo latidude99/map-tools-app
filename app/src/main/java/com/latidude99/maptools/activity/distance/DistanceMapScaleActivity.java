@@ -25,6 +25,7 @@ import com.latidude99.maptools.model.distance.MapEntryAdvanced;
 import com.latidude99.maptools.model.scale.InsufficientParameterException;
 import com.latidude99.maptools.model.scale.Scale;
 
+import java.text.DecimalFormat;
 import java.util.Locale;
 
 public class DistanceMapScaleActivity extends AppCompatActivity {
@@ -58,11 +59,22 @@ public class DistanceMapScaleActivity extends AppCompatActivity {
     private String ERROR_INPUT_EMPTY;
     private String ERROR_INPUT_EMPTY_ANY;
     private String ERROR_INPUT_0;
-    private String ERROR_INPUT_0_ANY;
+    private String ERROR_INPUT_0_DISTANCE;
+    private String ERROR_INPUT_0_SCALE;
+    private String ERROR_INPUT_1_SCALE;
     private String ERROR_INPUT_1;
     private String ERROR_INPUT_TOO_BIG;
     private String ERROR_UNIT_CONVERSION;
     private String ERROR_CONVERTING_SCALE;
+
+    private String WARNING_LESS_THAN_0_001;
+    private String WARNING_LESS_THAN_0_01;
+    private String WARNING_LESS_THAN_0_1;
+    private String WARNING_MORE_THAN_1_000_000;
+    private String WARNING_MORE_THAN_63_360;
+    private String WARNING_MORE_THAN_63_360_IN;
+    private String WARNING_MORE_THAN_999_999;
+    private String WARNING_MORE_THAN_999_999_CM;
 
     private EditText textInputDistanceMap;
     private EditText textInputDistanceScale;
@@ -95,16 +107,26 @@ public class DistanceMapScaleActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_distancecalculator_map_scale);
 
-
         ERROR_INPUT_INT = getString(R.string.error_input_int);
         ERROR_INPUT_EMPTY = getString(R.string.error_input_empty);
         ERROR_INPUT_EMPTY_ANY = getString(R.string.error_input_empty_any);
         ERROR_INPUT_0 = getString(R.string.error_input_zero);
-        ERROR_INPUT_0_ANY = getString(R.string.error_input_zero_any);
+        ERROR_INPUT_0_DISTANCE = getString(R.string.error_input_zero_distance);
+        ERROR_INPUT_0_SCALE = getString(R.string.error_input_zero_scale);
+        ERROR_INPUT_1_SCALE = getString(R.string.error_input_one_scale);
         ERROR_INPUT_1 = getString(R.string.error_input_one);
         ERROR_INPUT_TOO_BIG = getString(R.string.error_input_too_big);
         ERROR_CONVERTING_SCALE = getString(R.string.error_converting_scale);
         ERROR_UNIT_CONVERSION = getString(R.string.error_unit_conversion);
+
+        WARNING_LESS_THAN_0_001 = getString(R.string.less_than_0_001);
+        WARNING_LESS_THAN_0_01 = getString(R.string.less_than_0_01);
+        WARNING_LESS_THAN_0_1 = getString(R.string.less_than_0_1);
+        WARNING_MORE_THAN_1_000_000 = getString(R.string.more_than_1_000_000);
+        WARNING_MORE_THAN_63_360 = getString(R.string.more_than_63_360);
+        WARNING_MORE_THAN_63_360_IN = getString(R.string.more_than_63_360_in);
+        WARNING_MORE_THAN_999_999 = getString(R.string.more_than_999_999);
+        WARNING_MORE_THAN_999_999 = getString(R.string.more_than_999_999_cm);
 
         textInputDistanceMap = (EditText) findViewById(R.id.distance_map);
         textInputDistanceScale = (EditText) findViewById(R.id.distance_scale);
@@ -129,32 +151,33 @@ public class DistanceMapScaleActivity extends AppCompatActivity {
 
         spinnerResultScaleType = (Spinner) findViewById(R.id.distance_result_scale_type);
 
-        // Deals with screen orientation changes
-        restoreCalculations(savedInstanceState);
 
+        // deals with screen orientation changes
+        restoreCalculations(savedInstanceState);
 
         // calculates the ground distance when the 'done'/'ok' button on the soft keyboard pressed
         textInputDistanceMap.setOnEditorActionListener(new EditText.OnEditorActionListener() {
             @Override
             public boolean onEditorAction(TextView view, int actionId, KeyEvent event) {
                 if (actionId == EditorInfo.IME_ACTION_DONE) {
-                    calculateDistanceGround(view);
+                    processInputAndCalculateDistanceGround(view);
                     return true;
                 }
                 return false;
             }
         });
 
+        // calcutates ground distance
         Button btnCalculateDistanceGround = (Button) findViewById(R.id.btn_calculate);
         btnCalculateDistanceGround.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                calculateDistanceGround(view);
+                processInputAndCalculateDistanceGround(view);
             }
         });
 
-        // 1st click clears calculated values
-        // 2nd click focuses on textInputDistanceMap and opens the keyboard
+        // 1st click clears map disctance value
+        // 2nd click clears map scale value
         Button btnClear = (Button) findViewById(R.id.btn_clear);
         btnClear.setOnClickListener(new View.OnClickListener() {;
             @Override
@@ -175,7 +198,7 @@ public class DistanceMapScaleActivity extends AppCompatActivity {
         radioResultGroupDistanceGroundUnit.setOnCheckedChangeListener(new OnCheckedChangeListener(){
             @Override
             public void onCheckedChanged(RadioGroup group, int checkedId) {
-                convertAndSetResultGroundDistance(mapEntryAdvanced, group);
+                setResultDistanceGround(mapEntryAdvanced, group);
             }
         });
 
@@ -183,7 +206,7 @@ public class DistanceMapScaleActivity extends AppCompatActivity {
         radioResultGroupDistanceMapUnit.setOnCheckedChangeListener(new OnCheckedChangeListener(){
             @Override
             public void onCheckedChanged(RadioGroup group, int checkedId) {
-                convertAndSetResultMapDistance(mapEntryAdvanced, group);
+                setResultDistanceMap(mapEntryAdvanced, group);
             }
         });
 
@@ -192,7 +215,7 @@ public class DistanceMapScaleActivity extends AppCompatActivity {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
                 int selectedPositionId = spinnerResultScaleType.getSelectedItemPosition();
-                convertAndSetResultMapScale(mapEntryAdvanced, selectedPositionId);
+                setResultMapScale(mapEntryAdvanced, spinnerResultScaleType);
                 Log.e("Selected item : ", "" + selectedPositionId);
             }
             @Override
@@ -216,7 +239,7 @@ public class DistanceMapScaleActivity extends AppCompatActivity {
         }
     }
 
-    //----------------------------  end of onCreate() & other overriden methods  ---------------------------------------//
+    //----------------------------  end of onCreate() & other inherited methods  ---------------------------------------//
 
 
 
@@ -233,7 +256,7 @@ public class DistanceMapScaleActivity extends AppCompatActivity {
         }
     }
 
-    private void calculateDistanceGround(View view) {
+    private void processInputAndCalculateDistanceGround(View view) {
         String stringInputDistanceMap = textInputDistanceMap.getText().toString();
         String stringInputDistanceScale = textInputDistanceScale.getText().toString();
 
@@ -241,50 +264,78 @@ public class DistanceMapScaleActivity extends AppCompatActivity {
             int positionInputDistanceMapUnit = spinnerInputDistanceUnit.getSelectedItemPosition();
             int positionInputScaleType = spinnerInputScaleType.getSelectedItemPosition();
 
-            calculateDistanceGroundAndDisplay(view,
-                    stringInputDistanceMap,
-                    stringInputDistanceScale,
-                    positionInputDistanceMapUnit,
-                    positionInputScaleType);
+            calculateDistanceGroundAndDisplay(
+                    stringInputDistanceMap, stringInputDistanceScale,
+                    positionInputDistanceMapUnit, positionInputScaleType);
             hideKeyboard(view);
             computed = true;
             inputCleared = false;
         }else{
-            Toast.makeText(this, ERROR_INPUT_EMPTY_ANY,Toast.LENGTH_SHORT);
+            Toast.makeText(this, ERROR_INPUT_EMPTY_ANY,Toast.LENGTH_SHORT).show();
         }
     }
 
-
     /*
      *  Calculates ground distance and sets values to the fields,
-     *  MapEntry stores mapDistance in mm, groundDistance in km, scale as fractional (denominator)
+     *  MapEntry accepts mapDistance in mm, groundDistance in km, scale as fractional (denominator)
      */
-    private void calculateDistanceGroundAndDisplay(View view,
-                                                   String inputMap,
-                                                   String inputScale,
-                                                   int mapUnit,
-                                                   int scaleUnit){
-        // converts input to base units and stores them in class fields,
-        // (to put them into Bundle, used when screen orientation changes)
-        convertInputToBaseUnits(inputMap, inputScale, mapUnit, scaleUnit);
+    private void calculateDistanceGroundAndDisplay(
+            String inputMap, String inputScale, int mapUnit, int scaleUnit){
 
-        calculateAndDisplay();
+        // validates and converts input to base units and stores them in class fields,
+        // (to put them into Bundle, used when screen orientation changes)
+        boolean distanceValidatedForZero = validateInputForZero(inputMap);
+        boolean scaleValidatedForZero = validateInputForZero(inputScale);
+        boolean scaleFractionalValidatedForOne = validateInputForOne(inputScale);
+
+        if(!distanceValidatedForZero) {
+            Toast.makeText(this, ERROR_INPUT_0_DISTANCE, Toast.LENGTH_SHORT).show();
+            textInputDistanceMap.requestFocus();
+            textInputDistanceMap.selectAll();
+        }else if (!scaleValidatedForZero) {
+            Toast.makeText(this, ERROR_INPUT_0_SCALE, Toast.LENGTH_SHORT).show();
+            textInputDistanceScale.requestFocus();
+            textInputDistanceScale.selectAll();
+        }else if(scaleUnit == 0 && !scaleFractionalValidatedForOne){
+            Toast.makeText(this, ERROR_INPUT_1_SCALE, Toast.LENGTH_SHORT).show();
+            textInputDistanceScale.requestFocus();
+            textInputDistanceScale.selectAll();
+        }else{
+            convertInputToBaseUnits(inputMap, inputScale, mapUnit, scaleUnit);
+            calculateAndDisplay();
+        }
     }
 
     private void calculateAndDisplay() {
         // calculates and converts internally all map, ground and scale units
         mapEntryAdvanced = new MapEntryAdvanced(storedDistanceMapMM, storedScaleFractional);
 
-        // reads input units and sets result units
+        // reads input units and sets result units according to the defined logic
         readInputAndSetResultUnits(spinnerInputDistanceUnit, spinnerInputScaleType);
 
-        // sets and displays the result
+        // sets and displays the result in units taken from the result radios/spinner
         setResultDistanceMap(mapEntryAdvanced,radioResultGroupDistanceMapUnit);
         setResultDistanceGround(mapEntryAdvanced, radioResultGroupDistanceGroundUnit);
         setResultMapScale(mapEntryAdvanced, spinnerResultScaleType);
     }
 
-    // converts input values to base units - distance to mm / scale to fractional
+    private boolean validateInputForZero(String input){
+        double distance = Double.parseDouble(input);
+        if(distance > 0)
+            return true;
+        return false;
+    }
+
+    private boolean validateInputForOne(String input){
+        int scale = (int) Double.parseDouble(input);
+        if(scale >=1)
+            return true;
+        return false;
+    }
+
+    /*
+     * Converts input values to base units - distance to mm / scale to fractional
+     */
     private void convertInputToBaseUnits(String inputMap, String inputScale, int mapUnit, int scaleUnit){
         try {
             storedDistanceMapMM = convertMapDistanceToMM(inputMap, mapUnit);
@@ -294,7 +345,9 @@ public class DistanceMapScaleActivity extends AppCompatActivity {
         }
     }
 
-    // reads input units and sets result units accordingly
+    /*
+     * Reads input units and sets result units accordingly to the defined logic
+     */
     private void readInputAndSetResultUnits(Spinner spinnerInputMapUnit, Spinner spinnerInputScaleType){
         // map unit
         int inputMapUnit = spinnerInputMapUnit.getSelectedItemPosition();
@@ -348,29 +401,76 @@ public class DistanceMapScaleActivity extends AppCompatActivity {
                 radioResultButtonKm.setChecked(true);
         }
     }
-    // sets and displays result
+
+    /*
+     * sets and displays result values
+     */
     private void setResultDistanceMap(MapEntryAdvanced entry, RadioGroup group){
         int radioId = group.getCheckedRadioButtonId();
         switch(radioId){
             case R.id.radio_mm:
-                textResultMap.setText(String.format(locale, "%.1f", entry.getMapDistanceMM()));
+                if(entry.getMapDistanceMM() < 0.1){
+                    textResultMap.setText(WARNING_LESS_THAN_0_1);
+                    Toast.makeText(this,
+                            "Seriously? \nMasured less than 0.1 MILLIMETRE on the map?",
+                            Toast.LENGTH_LONG).show();
+                } else if(entry.getMapDistanceMM() > 1_000_000){
+                    textResultMap.setText(WARNING_MORE_THAN_1_000_000);
+                    Toast.makeText(this,
+                            "Seriously? \nMeasured more than a KILOMETRE on the map??" +
+                                    "\nYour Nobel Price will be arriving shortly then",
+                            Toast.LENGTH_LONG).show();
+                } else {
+                    textResultMap.setText(new DecimalFormat("#,###.0").format(entry.getMapDistanceMM()));
+                 //   textResultMap.setText(String.format(locale, "%.1f", entry.getMapDistanceMM()));
+                }
                 break;
             case R.id.radio_cm:
-                textResultMap.setText(String.format(locale, "%.2f", entry.getMapDistanceCM()));
+                if(entry.getMapDistanceMM() < 0.1){
+                    textResultMap.setText(WARNING_LESS_THAN_0_1);
+                    Toast.makeText(this,
+                            "Seriously? \nMasured less than 0.1 MILLIMETRE on the map?",
+                            Toast.LENGTH_LONG).show();
+                } else if(entry.getMapDistanceMM() > 1_000_000){
+                    textResultMap.setText(WARNING_MORE_THAN_1_000_000);
+                    Toast.makeText(this,
+                            "Seriously? \nMeasured more than a KILOMETRE on the map??" +
+                                    "\nYour Nobel Price will be arriving shortly then",
+                            Toast.LENGTH_LONG).show();
+                }else {
+                    textResultMap.setText(new DecimalFormat("#,###.00").format(entry.getMapDistanceCM()));
+//                textResultMap.setText(String.format(locale, "%.2f", entry.getMapDistanceCM()));
+                }
                 break;
             case R.id.radio_in:
-                textResultMap.setText(String.format(locale, "%.2f", entry.getMapDistanceIN()));
+                if(entry.getMapDistanceIN() < 0.01){
+                    textResultMap.setText(WARNING_LESS_THAN_0_1);
+                    Toast.makeText(this,
+                            "Seriously? \nMeasure less than 0.01 INCH on the map?",
+                            Toast.LENGTH_LONG).show();
+                } else if(entry.getMapDistanceIN() > 63_360){
+                    textResultMap.setText(WARNING_MORE_THAN_63_360);
+                    Toast.makeText(this,
+                            "Seriously? \nMeasured more than a MILE on the map??" +
+                                    "\nYour Nobel Price will be arriving shortly then",
+                            Toast.LENGTH_LONG).show();
+                } else {
+                    textResultMap.setText(new DecimalFormat("#,###.00").format(entry.getMapDistanceIN()));
+                  //  textResultMap.setText(String.format(locale, "%.2f", entry.getMapDistanceIN()));
+                }
                 break;
             default:
                 textResultMap.setText("--");
-                Toast.makeText(this, ERROR_UNIT_CONVERSION, Toast.LENGTH_SHORT);
+                Toast.makeText(this, ERROR_UNIT_CONVERSION, Toast.LENGTH_SHORT).show();
         }
     }
 
-    // sets and displays result
+    /*
+     * sets and displays calculated ground distance result values
+     */
     private void setResultDistanceGround(MapEntryAdvanced entry, RadioGroup group){
         int radioId = group.getCheckedRadioButtonId();
-        switch(radioId){
+        switch(radioId) {
             // not implemented yet
 //            case R.id.radio_ft:
 //                textResultGround.setText(String.format(locale, "%.2f", entry.getGroundDistanceFT()));
@@ -379,43 +479,96 @@ public class DistanceMapScaleActivity extends AppCompatActivity {
 //                textResultGround.setText(String.format(locale, "%.2f", entry.getGroundDistanceMetre()));
 //                break;
             case R.id.radio_km:
-                textResultGround.setText(String.format(locale, "%.2f", entry.getGroundDistanceKM()));
+                if (entry.getGroundDistanceKM() < 0.001) {
+                    textResultGround.setText(WARNING_LESS_THAN_0_001);
+                } else if (entry.getGroundDistanceKM() > 999_999) {
+                    textResultGround.setText(WARNING_MORE_THAN_999_999);
+                } else {
+                    textResultGround.setText(new DecimalFormat("#,###.000").format(entry.getGroundDistanceKM()));
+                  //  textResultGround.setText(String.format(locale, "%.3f", entry.getGroundDistanceKM()));
+                }
                 break;
             case R.id.radio_mile:
-                textResultGround.setText(String.format(locale, "%.2f", entry.getGroundDistanceMile()));
+                if (entry.getGroundDistanceMile() < 0.001){
+                    textResultGround.setText(WARNING_LESS_THAN_0_001);
+                }else if(entry.getGroundDistanceMile() > 999_999){
+                    textResultGround.setText(WARNING_MORE_THAN_999_999);
+                }else {
+                    textResultGround.setText(new DecimalFormat("#,###.000").format(entry.getGroundDistanceMile()));
+                  //  textResultGround.setText(String.format(locale, "%.3f", entry.getGroundDistanceMile()));
+                }
                 break;
             case R.id.radio_nautical:
-                textResultGround.setText(String.format(locale, "%.2f", entry.getGroundDistanceNautical()));
+                if(entry.getGroundDistanceNautical() < 0.001) {
+                    textResultGround.setText(WARNING_LESS_THAN_0_001);
+                }else if(entry.getGroundDistanceNautical() > 999_999){
+                    textResultGround.setText(WARNING_MORE_THAN_999_999);
+                }else {
+                    textResultGround.setText(new DecimalFormat("#,###.000").format(entry.getGroundDistanceNautical()));
+                  //  textResultGround.setText(String.format(locale, "%.3f", entry.getGroundDistanceNautical()));
+                }
                 break;
             default:
                 textResultGround.setText("--");
-                Toast.makeText(this, ERROR_UNIT_CONVERSION, Toast.LENGTH_SHORT);
+                Toast.makeText(this, ERROR_UNIT_CONVERSION, Toast.LENGTH_SHORT).show();
         }
     }
 
-    private void setResultMapScale(MapEntryAdvanced entry, Spinner spinnerInputScaleType) {
-        int spinnerPosition = spinnerInputScaleType.getSelectedItemPosition();
-        switch(spinnerPosition) {
-            case SCALE_FRACTIONAL:
-                textResultScale.setText(entry.getMapScaleFractionalFormattedString());
-                break;
-            case SCALE_INTOMILE:
-                textResultScale.setText(String.format(locale, "%.1f", entry.getMapScaleIntomile()));
-                break;
-            case SCALE_MILETOIN:
-                textResultScale.setText(String.format(locale, "%.2f", entry.getMapScaleMiletoin()));
-                break;
-            case SCALE_CMTOKM:
-                textResultScale.setText(String.format(locale, "%.1f", entry.getMapScaleCmtokm()));
-                break;
-            case SCALE_KMTOCM:
-                textResultScale.setText(String.format(locale, "%.2f", entry.getMapScaleKmtocm()));
-                break;
-            default:
-                textResultGround.setText("--");
-                Toast.makeText(this, ERROR_UNIT_CONVERSION, Toast.LENGTH_SHORT);
+    /*
+     * sets and displays result values
+     */
+    private void setResultMapScale(MapEntryAdvanced entry, Spinner spinner) {
+        int spinnerPosition = spinner.getSelectedItemPosition();
+        if(entry != null){
+            switch(spinnerPosition) {
+                case SCALE_FRACTIONAL:
+                    textResultScale.setText(entry.getMapScaleFractionalFormattedString());
+                    break;
+                case SCALE_INTOMILE:
+                    if(entry.getMapScaleIntomile() < 0.1){
+                        textResultScale.setText(WARNING_LESS_THAN_0_1);
+                    } else if(entry.getMapScaleIntomile() > 63_360){
+                        textResultScale.setText(WARNING_MORE_THAN_63_360_IN);
+                    } else {
+                        textResultScale.setText(new DecimalFormat("#,###.0").format(entry.getMapScaleIntomile()));
+//                        textResultScale.setText(String.format(locale, "%.1f", entry.getMapScaleIntomile()));
+                    }
+                    break;
+                case SCALE_MILETOIN:
+                    if(entry.getMapScaleMiletoin() < 0.001){
+                        textResultScale.setText(WARNING_LESS_THAN_0_001);
+                    } else if(entry.getMapScaleMiletoin() > 63_360){
+                        textResultScale.setText(WARNING_MORE_THAN_63_360_IN);
+                    } else {
+                        textResultScale.setText(new DecimalFormat("#,###.000").format(entry.getMapScaleMiletoin()));
+//                        textResultScale.setText(String.format(locale, "%.2f", entry.getMapScaleMiletoin()));
+                    }
+                    break;
+                case SCALE_CMTOKM:
+                    if(entry.getMapScaleCmtokm() < 0.01){
+                        textResultScale.setText(WARNING_LESS_THAN_0_01);
+                    } else if(entry.getMapScaleCmtokm() > 999_999){
+                        textResultScale.setText(WARNING_MORE_THAN_999_999_CM);
+                    } else {
+                        textResultScale.setText(new DecimalFormat("#,###.00").format(entry.getMapScaleCmtokm()));
+//                        textResultScale.setText(String.format(locale, "%.1f", entry.getMapScaleCmtokm()));
+                    }
+                    break;
+                case SCALE_KMTOCM:
+                    if(entry.getMapScaleKmtocm() < 0.001){
+                        textResultScale.setText(WARNING_LESS_THAN_0_001);
+                    } else if(entry.getMapScaleKmtocm() > 999_999){
+                        textResultScale.setText(WARNING_MORE_THAN_999_999_CM);
+                    } else {
+                        textResultScale.setText(new DecimalFormat("#,###.000").format(entry.getMapScaleKmtocm()));
+//                        textResultScale.setText(String.format(locale, "%.2f", entry.getMapScaleKmtocm()));
+                    }
+                    break;
+                default:
+                    textResultGround.setText("--");
+                    Toast.makeText(this, ERROR_UNIT_CONVERSION, Toast.LENGTH_SHORT).show();
+            }
         }
-
     }
 
     private double convertMapDistanceToMM(String inputMap, int mapUnit){
@@ -470,131 +623,6 @@ public class DistanceMapScaleActivity extends AppCompatActivity {
         return scaleFractional;
     }
 
-    // checks current map units
-    public int getCurrentDistanceMapUnit(RadioGroup group) {
-        int id = group.getCheckedRadioButtonId();
-        int unit;
-        switch(id) {
-            case R.id.radio_mm:
-                unit = DISTANCE_MM;
-                break;
-            case R.id.radio_cm:
-                unit = DISTANCE_CM;
-                break;
-            case R.id.radio_in:
-                unit = DISTANCE_IN;
-                break;
-            default:
-                unit = DISTANCE_MM;
-        }
-        return unit;
-    }
-    // checks current ground units
-    public int getCurrentDistanceGroundUnit(RadioGroup group) {
-        int id = group.getCheckedRadioButtonId();
-        int unit;
-        switch(id) {
-            case R.id.radio_km:
-                unit = DISTANCE_KM;
-                break;
-            case R.id.radio_mile:
-                unit = DISTANCE_MILE;
-                break;
-            case R.id.radio_nautical:
-                unit = DISTANCE_NAUTICAL;
-                break;
-            default:
-                unit = DISTANCE_KM;
-        }
-        return unit;
-    }
-
-    // converts the map distance between mm, cm and inch
-    // and sets the current map distance units
-    public double convertAndSetResultMapDistance(MapEntryAdvanced entry, RadioGroup radioGroup){
-        int checkedId = radioGroup.getCheckedRadioButtonId();
-        double converted = 0D;
-        switch(checkedId) {
-            case R.id.radio_mm:
-                converted = entry.getMapDistanceMM();
-                textResultMap.setText(String.format(locale, "%.1f", converted));
-                break;
-            case R.id.radio_cm:
-                converted = entry.getMapDistanceCM();
-                textResultMap.setText(String.format(locale, "%.2f", converted));
-                break;
-            case R.id.radio_in:
-                converted = entry.getMapDistanceIN();
-                textResultMap.setText(String.format(locale, "%.2f", converted));
-                break;
-        }
-        return converted;  //not used for now
-    }
-
-    // converts calculated ground distance between km, miles and nautical miles
-    // and sets current ground distance units
-    public double convertAndSetResultGroundDistance(MapEntryAdvanced entry, RadioGroup radioGroup){
-        int checkedId = radioGroup.getCheckedRadioButtonId();
-        double converted = 0D;
-        switch(checkedId) {
-            // not implemented yet
-//            case R.id.radio_ft:
-//                converted = entry.getGroundDistanceFT();
-//                currentDistnanceGroundUnit = DISTANCE_FT;
-//                break;
-//            case R.id.radio_metre:
-//                converted = entry.getGroundDistanceMetre();
-//                currentDistnanceGroundUnit = DISTANCE_METRE;
-//                break;
-            case R.id.radio_km:
-                converted = entry.getGroundDistanceKM();
-                break;
-            case R.id.radio_mile:
-                converted = entry.getGroundDistanceMile();
-                break;
-            case R.id.radio_nautical:
-                converted = entry.getGroundDistanceNautical();
-                break;
-        }
-        textResultGround.setText(String.format(locale, "%.2f", converted));
-        return converted;  //not used for now
-    }
-
-    public void convertAndSetResultMapScale(MapEntryAdvanced entry, int selectedPositionId){
-        if(entry != null){
-            switch(selectedPositionId){
-                case SCALE_FRACTIONAL:
-                    textResultScale.setText(entry.getMapScaleFractionalFormattedString());
-                    break;
-                case SCALE_INTOMILE:
-                    textResultScale.setText(String.format(locale, "%.1f", entry.getMapScaleIntomile()));
-                    break;
-                case SCALE_MILETOIN:
-                    textResultScale.setText(String.format(locale, "%.2f", entry.getMapScaleMiletoin()));
-                    break;
-                case SCALE_CMTOKM:
-                    textResultScale.setText(String.format(locale, "%.1f", entry.getMapScaleCmtokm()));
-                    break;
-                case SCALE_KMTOCM:
-                    textResultScale.setText(String.format(locale, "%.2f", entry.getMapScaleKmtocm()));
-                    break;
-                default:
-                    textResultGround.setText("--");
-                    Toast.makeText(this, ERROR_UNIT_CONVERSION, Toast.LENGTH_SHORT);
-            }
-        }
-    }
-
-
-    private void clearTextFields(View view){
-        textResultMap.setText("");
-        textResultGround.setText("");
-        textResultScale.setText("");
-        mapEntryAdvanced = null;
-        inputCleared = true;
-
-    }
-
     private int convertStringToIntInput(String input){
         int inputInt = 0;
         long inputLong = 0L;
@@ -633,6 +661,14 @@ public class DistanceMapScaleActivity extends AppCompatActivity {
             Toast.makeText(this, ERROR_INPUT_EMPTY, Toast.LENGTH_SHORT).show();
         }
         return doubleInput;
+    }
+
+    private void clearTextFields(View view){
+        textResultMap.setText("");
+        textResultGround.setText("");
+        textResultScale.setText("");
+        mapEntryAdvanced = null;
+        inputCleared = true;
     }
 
     private void hideKeyboard(View view) {

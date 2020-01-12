@@ -26,9 +26,11 @@
     <!-- scale converting activities error messages -->
     <string name="error_input_int">Only digits allowed!</string>
     <string name="error_input_empty">Please enter a value.</string>
-    <string name="error_input_empty_any">Please enter all values.</string>
+    <string name="error_input_empty_any">Please enter all required values.</string>
     <string name="error_input_zero">Enter value larger than zero.</string>
-    <string name="error_input_zero_any">All values need to be larger than zero.</string>
+    <string name="error_input_zero_distance">Distance value needs to be larger than 0.</string>
+    <string name="error_input_zero_scale">Scale value needs to be larger than 0.</string>
+    <string name="error_input_one_scale">Fractional scale cannot be smaller than 1.</string>
     <string name="error_input_one">Enter value equal or larger than one.</string>
     <string name="error_input_too_big">The number entered is too big</string>
     <string name="error_converting_scale">Error occurred during scale calculations</string>
@@ -148,6 +150,9 @@ RESULT:
     <!-- MapEntry Map Scale layout -->
     <string name="title_activity_distance_map_scale">"Calculate distance on the ground"</string>
     <string name="subtitle_activity_distance_map_scale">"(given measured distance on the map &amp; the map scale)"</string>
+    <string name="subtitle_activity_distance_map_scale_land">"(given measured distance on the map
+and
+the map scale)"</string>
     <string name="distance_map_hint">distance on the map</string>
     <string name="distance_units_hint">choose the units</string>
     <string name="distance_scale_hint">map scale</string>
@@ -164,6 +169,10 @@ RESULT:
     <string name="radio_cmtokm">cm to a km</string>
     <string name="radio_kmtocm">km to a cm</string>
     <string name="btn_distance_calculate_ground">"CALCULATE  DISTANCE  on  the  GROUND"</string>
+    <string name="btn_distance_calculate_ground_land">"CALCULATE
+DISTANCE
+on  the
+GROUND"</string>
 
     <string name="spinner_scale_fractional">fractional</string>
     <string name="spinner_scale_intothemile">in to the mile</string>
@@ -190,5 +199,16 @@ RESULT:
     <string name="result_map_distance_description">distance \non the map: </string>
     <string name="result_ground_distance_description">distance \non the ground: </string>
     <string name="result_map_scale_description">"map scale: </string>
+
+    // results outside legible/allowed range
+    <string name="less_than_0_001">less than 0.001</string>
+    <string name="less_than_0_01">less than 0.01</string>
+    <string name="less_than_0_1">less than 0.1</string>
+    <string name="more_than_1_000_000">more than 1 km</string>
+    <string name="more_than_63_360">more than 1 mile</string>
+    <string name="more_than_63_360_in">more than 63,360</string>
+    <string name="more_than_999_999">more than 999,999 km</string>
+    <string name="more_than_999_999_cm">more than 999,999</string>
+    <string name="more_than_">more than </string>
 
 </resources>
