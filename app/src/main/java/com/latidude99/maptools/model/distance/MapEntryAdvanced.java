@@ -28,7 +28,7 @@ public final class MapEntryAdvanced {
     private double groundDistanceMile;
     private double groundDistanceNautical;
 
-    private int mapScaleFractional;
+    private long mapScaleFractional;
     private double mapScaleIntomile;
     private double mapScaleMiletoin;
     private double mapScaleCmtokm;
@@ -36,7 +36,7 @@ public final class MapEntryAdvanced {
 
     private MapEntryAdvanced(){}
 
-    public MapEntryAdvanced(double mapDistanceMM, int mapScaleFractional){
+    public MapEntryAdvanced(double mapDistanceMM, long mapScaleFractional){
         if(mapDistanceMM != 0 && mapScaleFractional != 0){
             this.groundDistanceKM = calculateGroundDistance(mapDistanceMM, mapScaleFractional);
             convertAndSetAllScaleFromFractional(mapScaleFractional);
@@ -47,7 +47,7 @@ public final class MapEntryAdvanced {
         }
     }
 
-    public MapEntryAdvanced(int mapScaleFractional, double groundDistanceKM){
+    public MapEntryAdvanced(long mapScaleFractional, double groundDistanceKM){
         if(mapScaleFractional != 0 && groundDistanceKM != 0){
             this.mapDistanceMM = calculateMapDistance(mapScaleFractional, groundDistanceKM);
             convertAndSetAllScaleFromFractional(mapScaleFractional);
@@ -96,7 +96,7 @@ public final class MapEntryAdvanced {
     public String getMapScaleFractionalFormattedString() {
         return "1: " + NumberFormat.getNumberInstance(locale).format(mapScaleFractional);
     }
-    public int getMapScaleFractional() {
+    public long getMapScaleFractional() {
         return mapScaleFractional;
     }
     public double getMapScaleIntomile() {
@@ -113,18 +113,18 @@ public final class MapEntryAdvanced {
     }
 
 
-    private double calculateGroundDistance(double mapDistance, int mapScale){
+    private double calculateGroundDistance(double mapDistance, long mapScale){
         double ground = (mapDistance * mapScale) / 1_000_000D; // result in km
         return ground;
     }
 
-    private double calculateMapDistance(int mapScale, double groundDistance){
+    private double calculateMapDistance(long mapScale, double groundDistance){
         double map = (groundDistance * 1_000_000D) / mapScale; // result in mm
         return map;
     }
 
-    private int calculateMapScale(double mapDistance, double groundDistance){
-        int scale = (int) ((groundDistance * 1_000_000D) / mapDistance); // result fractional scale denominator
+    private long calculateMapScale(double mapDistance, double groundDistance){
+        long scale = (long) ((groundDistance * 1_000_000D) / mapDistance); // result fractional scale denominator
         return scale;
     }
 
@@ -141,7 +141,7 @@ public final class MapEntryAdvanced {
         this.groundDistanceNautical = km / 1.852D;
     };
 
-    private void convertAndSetAllScaleFromFractional(int fra){
+    private void convertAndSetAllScaleFromFractional(long fra){
         this.mapScaleFractional = fra;
         this.mapScaleIntomile = 63360D / fra;
         this.mapScaleMiletoin = fra / 63360D;

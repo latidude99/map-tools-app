@@ -49,7 +49,7 @@ public class DistanceMapScaleActivity extends AppCompatActivity {
     private boolean inputCleared;
     private boolean computed;
     private double storedDistanceMapMM;
-    private int storedScaleFractional;
+    private long storedScaleFractional;
 
 
     // holds all the calculations for single entry
@@ -70,11 +70,13 @@ public class DistanceMapScaleActivity extends AppCompatActivity {
     private String WARNING_LESS_THAN_0_001;
     private String WARNING_LESS_THAN_0_01;
     private String WARNING_LESS_THAN_0_1;
+    private String WARNING_LESS_THAN_1;
     private String WARNING_MORE_THAN_1_000_000;
     private String WARNING_MORE_THAN_63_360;
     private String WARNING_MORE_THAN_63_360_IN;
     private String WARNING_MORE_THAN_999_999;
     private String WARNING_MORE_THAN_999_999_CM;
+    private String WARNING_MORE_THAN_1_000_000_000;
 
     private EditText textInputDistanceMap;
     private EditText textInputDistanceScale;
@@ -122,11 +124,13 @@ public class DistanceMapScaleActivity extends AppCompatActivity {
         WARNING_LESS_THAN_0_001 = getString(R.string.less_than_0_001);
         WARNING_LESS_THAN_0_01 = getString(R.string.less_than_0_01);
         WARNING_LESS_THAN_0_1 = getString(R.string.less_than_0_1);
+        WARNING_LESS_THAN_1 = getString(R.string.less_than_1);
         WARNING_MORE_THAN_1_000_000 = getString(R.string.more_than_1_000_000);
         WARNING_MORE_THAN_63_360 = getString(R.string.more_than_63_360);
         WARNING_MORE_THAN_63_360_IN = getString(R.string.more_than_63_360_in);
         WARNING_MORE_THAN_999_999 = getString(R.string.more_than_999_999);
         WARNING_MORE_THAN_999_999 = getString(R.string.more_than_999_999_cm);
+        WARNING_MORE_THAN_1_000_000_000 = getString(R.string.more_than_1_000_000_000);
 
         textInputDistanceMap = (EditText) findViewById(R.id.distance_map);
         textInputDistanceScale = (EditText) findViewById(R.id.distance_scale);
@@ -183,7 +187,7 @@ public class DistanceMapScaleActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 if(!inputCleared){
-                    clearTextFields(view);
+                    clearTextFields();
                     textInputDistanceMap.setText("");
                     textInputDistanceMap.requestFocus();
                     showKeyboard(view);
@@ -235,7 +239,7 @@ public class DistanceMapScaleActivity extends AppCompatActivity {
             outState.putBoolean("inputCleared", inputCleared);
             outState.putBoolean("computed", computed);
             outState.putDouble("storedDistanceMapMM", storedDistanceMapMM);
-            outState.putInt("storedScaleFractional", storedScaleFractional);
+            outState.putLong("storedScaleFractional", storedScaleFractional);
         }
     }
 
@@ -249,7 +253,7 @@ public class DistanceMapScaleActivity extends AppCompatActivity {
             inputCleared = savedInstanceState.getBoolean("inputCleared");
             if(computed && !inputCleared){
                 storedDistanceMapMM = savedInstanceState.getDouble("storedDistanceMapMM");
-                storedScaleFractional = savedInstanceState.getInt("storedScaleFractional");
+                storedScaleFractional = savedInstanceState.getLong("storedScaleFractional");
 
                 calculateAndDisplay();
             }
@@ -259,6 +263,8 @@ public class DistanceMapScaleActivity extends AppCompatActivity {
     private void processInputAndCalculateDistanceGround(View view) {
         String stringInputDistanceMap = textInputDistanceMap.getText().toString();
         String stringInputDistanceScale = textInputDistanceScale.getText().toString();
+
+        System.out.println("stringInputDistanceScale: " + stringInputDistanceScale);
 
         if(!"".equals(stringInputDistanceScale) && !"".equals(stringInputDistanceMap)){
             int positionInputDistanceMapUnit = spinnerInputDistanceUnit.getSelectedItemPosition();
@@ -292,14 +298,17 @@ public class DistanceMapScaleActivity extends AppCompatActivity {
             Toast.makeText(this, ERROR_INPUT_0_DISTANCE, Toast.LENGTH_SHORT).show();
             textInputDistanceMap.requestFocus();
             textInputDistanceMap.selectAll();
+            clearTextFields();
         }else if (!scaleValidatedForZero) {
             Toast.makeText(this, ERROR_INPUT_0_SCALE, Toast.LENGTH_SHORT).show();
             textInputDistanceScale.requestFocus();
             textInputDistanceScale.selectAll();
+            clearTextFields();
         }else if(scaleUnit == 0 && !scaleFractionalValidatedForOne){
             Toast.makeText(this, ERROR_INPUT_1_SCALE, Toast.LENGTH_SHORT).show();
             textInputDistanceScale.requestFocus();
             textInputDistanceScale.selectAll();
+            clearTextFields();
         }else{
             convertInputToBaseUnits(inputMap, inputScale, mapUnit, scaleUnit);
             calculateAndDisplay();
@@ -412,13 +421,13 @@ public class DistanceMapScaleActivity extends AppCompatActivity {
                 if(entry.getMapDistanceMM() < 0.1){
                     textResultMap.setText(WARNING_LESS_THAN_0_1);
                     Toast.makeText(this,
-                            "Seriously? \nMasured less than 0.1 MILLIMETRE on the map?",
+                            "Seriously? \nLess than 0.1 MILLIMETRE on the map?",
                             Toast.LENGTH_LONG).show();
                 } else if(entry.getMapDistanceMM() > 1_000_000){
                     textResultMap.setText(WARNING_MORE_THAN_1_000_000);
                     Toast.makeText(this,
-                            "Seriously? \nMeasured more than a KILOMETRE on the map??" +
-                                    "\nYour Nobel Price will be arriving shortly then",
+                            "Seriously? \nMore than a KILOMETRE on the map??" +
+                                    "\nNobel Price will be arriving shortly then",
                             Toast.LENGTH_LONG).show();
                 } else {
                     textResultMap.setText(new DecimalFormat("#,###.0").format(entry.getMapDistanceMM()));
@@ -522,7 +531,12 @@ public class DistanceMapScaleActivity extends AppCompatActivity {
         if(entry != null){
             switch(spinnerPosition) {
                 case SCALE_FRACTIONAL:
-                    textResultScale.setText(entry.getMapScaleFractionalFormattedString());
+                    if(entry.getMapScaleFractional() < 1){
+                        textResultScale.setText(WARNING_LESS_THAN_1);
+                    }else if(entry.getMapScaleFractional() > 1_000_000_000){
+                        textResultScale.setText(WARNING_MORE_THAN_1_000_000_000);
+                    }else
+                        textResultScale.setText(entry.getMapScaleFractionalFormattedString());
                     break;
                 case SCALE_INTOMILE:
                     if(entry.getMapScaleIntomile() < 0.1){
@@ -588,12 +602,12 @@ public class DistanceMapScaleActivity extends AppCompatActivity {
         return inputMM;
     }
 
-    private int convertMapScaleToFractional(String inputScale, int scaleUnit) throws InsufficientParameterException {
-        int scaleFractional = 0;
+    private long convertMapScaleToFractional(String inputScale, int scaleUnit) throws InsufficientParameterException {
+        long scaleFractional = 0;
         Scale scale;
         switch(scaleUnit){
             case SCALE_FRACTIONAL:
-                scaleFractional = convertStringToIntInput(inputScale);
+                scaleFractional = convertStringToLongInput(inputScale);
                 break;
             case SCALE_INTOMILE:
                 scale = new Scale.ScaleBuilder()
@@ -623,8 +637,7 @@ public class DistanceMapScaleActivity extends AppCompatActivity {
         return scaleFractional;
     }
 
-    private int convertStringToIntInput(String input){
-        int inputInt = 0;
+    private long convertStringToLongInput(String input){
         long inputLong = 0L;
         if(input != null){
             try{
@@ -635,15 +648,15 @@ public class DistanceMapScaleActivity extends AppCompatActivity {
             }
             if(inputLong < 1)
                 Toast.makeText(this, ERROR_INPUT_1, Toast.LENGTH_SHORT).show();
-            if(inputLong >= 999999999L)
+            else if(inputLong >= 999999999L)
                 Toast.makeText(this, ERROR_INPUT_TOO_BIG, Toast.LENGTH_SHORT).show();
             else
-                inputInt = (int) inputLong;
+                inputLong = inputLong;
         }else{
             Toast.makeText(this, ERROR_INPUT_EMPTY, Toast.LENGTH_SHORT).show();
         }
-        System.out.println("denominator: " + inputInt);
-        return inputInt;
+        System.out.println("denominator: " + inputLong);
+        return inputLong;
     }
 
     private double convertStringToDoubleInput(String input){
@@ -663,7 +676,7 @@ public class DistanceMapScaleActivity extends AppCompatActivity {
         return doubleInput;
     }
 
-    private void clearTextFields(View view){
+    private void clearTextFields(){
         textResultMap.setText("");
         textResultGround.setText("");
         textResultScale.setText("");
