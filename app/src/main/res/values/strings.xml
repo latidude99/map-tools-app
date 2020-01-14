@@ -153,7 +153,13 @@ CALCULATE:
     <string name="subtitle_activity_distance_map_scale_land">"(given measured distance on the map
 and
 the map scale)"</string>
+    <string name="title_activity_distance_ground_scale">"Calculate distance on the map"</string>
+    <string name="subtitle_activity_distance_ground_scale">"(given distance on the ground &amp; the map scale)"</string>
+    <string name="subtitle_activity_distance_ground_scale_land">"(given distance on the ground
+and
+the map scale)"</string>
     <string name="distance_map_hint">distance on the map</string>
+    <string name="distance_ground_hint">distance on the ground</string>
     <string name="distance_units_hint">choose the units</string>
     <string name="distance_scale_hint">map scale</string>
     <string name="distance_scaletype_hint">choose the scale type</string>
@@ -173,6 +179,11 @@ the map scale)"</string>
 DISTANCE
 on  the
 GROUND"</string>
+    <string name="btn_distance_calculate_map">"CALCULATE  DISTANCE  on  the  MAP"</string>
+    <string name="btn_distance_calculate_map_land">"CALCULATE
+DISTANCE
+on  the
+MAP"</string>
 
     <string name="spinner_scale_fractional">fractional</string>
     <string name="spinner_scale_intothemile">in to the mile</string>
@@ -190,10 +201,18 @@ GROUND"</string>
     <string name="spinner_distance_mm">millimetres</string>
     <string name="spinner_distance_cm">centimetres</string>
     <string name="spinner_distance_in">inches</string>
-    <string-array name="distance_distance_unit_values">
+    <string-array name="distance_map_unit_values">
         <item>millimetre(s)</item>
         <item>centimetre(s)</item>
         <item>inch(es)</item>
+    </string-array>
+
+    <string-array name="distance_ground_unit_values">
+        <item>feet</item>
+        <item>metre(s)</item>
+        <item>kilometre(s)</item>
+        <item>mile(s)</item>
+        <item>nautical mile(s)</item>
     </string-array>
 
     <string name="result_map_distance_description">distance \non the map: </string>

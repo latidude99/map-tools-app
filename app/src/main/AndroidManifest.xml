@@ -57,6 +57,10 @@
             android:label="Ground Distance Calculator"
             android:parentActivityName=".activity.distance.DistanceMapScaleActivity"
             android:windowSoftInputMode="stateVisible|adjustPan" />
+        <activity android:name=".activity.distance.DistanceGroundScaleActivity"
+            android:label="Map Distance Calculator"
+            android:parentActivityName=".activity.distance.DistanceMapScaleActivity"
+            android:windowSoftInputMode="stateVisible|adjustPan" />
     </application>
 
 </manifest>

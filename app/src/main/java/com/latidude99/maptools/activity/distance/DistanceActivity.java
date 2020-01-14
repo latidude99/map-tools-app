@@ -25,8 +25,8 @@ public class DistanceActivity extends AppCompatActivity {
             }
         });
 
-        Button btnGroundScale = (Button) findViewById(R.id.btn_map_scale);
-        final Intent distanceGroundScaleIntent = new Intent(this, DistanceMapScaleActivity.class);
+        Button btnGroundScale = (Button) findViewById(R.id.btn_ground_scale);
+        final Intent distanceGroundScaleIntent = new Intent(this, DistanceGroundScaleActivity.class);
         btnGroundScale.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -34,7 +34,7 @@ public class DistanceActivity extends AppCompatActivity {
             }
         });
 
-        Button btnMapGround = (Button) findViewById(R.id.btn_map_scale);
+        Button btnMapGround = (Button) findViewById(R.id.btn_map_ground);
         final Intent distanceMapGroundIntent = new Intent(this, DistanceMapScaleActivity.class);
         btnMapGround.setOnClickListener(new View.OnClickListener() {
             @Override

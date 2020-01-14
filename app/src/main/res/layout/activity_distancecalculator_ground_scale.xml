@@ -6,24 +6,24 @@
     android:layout_height="match_parent"
     android:orientation="vertical"
     android:padding="@dimen/activity_margin"
-    tools:context=".activity.distance.DistanceMapScaleActivity">
+    tools:context=".activity.distance.DistanceGroundScaleActivity">
 
     <TextView
-        android:id="@+id/title_activity_distance_map_scale"
+        android:id="@+id/title_activity_distance_ground_scale"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="@dimen/indent_very_small"
-        android:text="@string/title_activity_distance_map_scale"
+        android:text="@string/title_activity_distance_ground_scale"
         android:textSize="@dimen/distance_text_size"
         android:gravity="center_horizontal"
         android:textColor="@color/colorPrimary"/>
 
     <TextView
-        android:id="@+id/subtitle_activity_distance_map_scale"
+        android:id="@+id/subtitle_activity_distance_ground_scale"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginBottom="@dimen/indent_small"
-        android:text="@string/subtitle_activity_distance_map_scale"
+        android:text="@string/subtitle_activity_distance_ground_scale"
         android:textSize="@dimen/distance_subtext_size"
         android:gravity="center_horizontal"
         android:textColor="@color/colorPrimaryLight"/>
@@ -61,22 +61,22 @@
         android:layout_marginBottom="@dimen/indent_very_small">
 
         <EditText
-            android:id="@+id/distance_map"
+            android:id="@+id/distance_ground"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="3"
             android:layout_marginBottom="@dimen/distance_mapdistance_margin_bottom"
-            android:hint="@string/distance_map_hint"
+            android:hint="@string/distance_ground_hint"
             android:inputType="numberDecimal"
             android:selectAllOnFocus="true"
             android:textAppearance="@style/TextAppearance.AppCompat.Medium" />
 
         <Spinner
-            android:id="@+id/distance_map_unit"
+            android:id="@+id/distance_ground_unit"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="3"
-            android:entries="@array/distance_map_unit_values"
+            android:entries="@array/distance_ground_unit_values"
             android:textAlignment="center"/>
     </LinearLayout>
 
@@ -87,7 +87,7 @@
         android:height="65sp"
         android:layout_marginTop="@dimen/indent_small"
         android:layout_marginBottom="@dimen/indent_very_small"
-        android:text="@string/btn_distance_calculate_ground"
+        android:text="@string/btn_distance_calculate_map"
         android:textAllCaps="false"
         android:textColor="@color/colorPrimaryText"
         android:backgroundTint="@color/colorPrimary"
