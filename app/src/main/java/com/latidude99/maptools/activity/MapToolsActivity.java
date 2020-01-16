@@ -14,6 +14,7 @@ import com.crashlytics.android.Crashlytics;
 import com.latidude99.maptools.R;
 import com.latidude99.maptools.activity.distance.DistanceActivity;
 import com.latidude99.maptools.activity.scale.ScaleActivity;
+import com.latidude99.maptools.activity.unit.UnitActivity;
 
 public class MapToolsActivity extends AppCompatActivity {
 
@@ -22,6 +23,15 @@ public class MapToolsActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_map_tools);
         final String pro = getString(R.string.pro);
+
+        Button btnUnit = findViewById(R.id.btn_unit);
+        final Intent unitActivityIntent = new Intent(getApplicationContext(), UnitActivity.class);
+        btnUnit.setOnClickListener(new View.OnClickListener(){
+            @Override
+            public void onClick(View view) {
+                startActivity(unitActivityIntent);
+            }
+        });
 
         Button btnScale = findViewById(R.id.btn_scale);
         final Intent scaleActivityIntent = new Intent(getApplicationContext(), ScaleActivity.class);

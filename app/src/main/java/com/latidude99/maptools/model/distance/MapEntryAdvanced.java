@@ -134,7 +134,7 @@ public final class MapEntryAdvanced {
         this.mapDistanceIN =  mm / 25.4D;
     };
     private void convertAndSetAllGroundDistanceFromKM(double km){
-        this.groundDistanceFT = km * 3280.84;
+        this.groundDistanceFT = km * 3280.84D;
         this.groundDistanceMetre = km * 1000D;
         this.groundDistanceKM = km;
         this.groundDistanceMile = km / 1.609D;

@@ -249,7 +249,7 @@ public class FractionalScaleActivity extends AppCompatActivity {
     public void setCmToKmFormatted(Scale scale) {
         if(scale.getCmToKm() < 0.1){
             textViewCmToKm.setText("-");
-            textViewCmToKmDescription.setText("less than 0.1 cm to a kilometre");
+            textViewCmToKmDescription.setText("less than 0.1 cm to a km");
         }
         else{
             textViewCmToKm.setText(String.format(locale,"%.1f", scale.getCmToKm()));

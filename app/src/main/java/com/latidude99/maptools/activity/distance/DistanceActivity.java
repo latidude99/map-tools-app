@@ -35,7 +35,7 @@ public class DistanceActivity extends AppCompatActivity {
         });
 
         Button btnMapGround = (Button) findViewById(R.id.btn_map_ground);
-        final Intent distanceMapGroundIntent = new Intent(this, DistanceMapScaleActivity.class);
+        final Intent distanceMapGroundIntent = new Intent(this, DistanceMapGroundActivity.class);
         btnMapGround.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {

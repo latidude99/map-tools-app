@@ -15,9 +15,7 @@
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
-        </activity>
-
-        <!-- Scale Converter -->
+        </activity> <!-- Scale Converter -->
         <activity
             android:name=".activity.scale.ScaleActivity"
             android:label="Scale Converter"
@@ -46,21 +44,30 @@
             android:name=".activity.scale.KmtocmScaleActivity"
             android:label="@string/toolbar_activity_kmtocm"
             android:parentActivityName=".activity.scale.ScaleActivity"
-            android:windowSoftInputMode="stateVisible|adjustPan" />
-
-        <!-- MapEntry Calculator -->
+            android:windowSoftInputMode="stateVisible|adjustPan" /> <!-- MapEntry Calculator -->
         <activity
             android:name=".activity.distance.DistanceActivity"
             android:label="Distance Calcuator"
             android:parentActivityName=".activity.MapToolsActivity" />
-        <activity android:name=".activity.distance.DistanceMapScaleActivity"
+        <activity
+            android:name=".activity.distance.DistanceMapScaleActivity"
             android:label="Ground Distance Calculator"
             android:parentActivityName=".activity.distance.DistanceMapScaleActivity"
             android:windowSoftInputMode="stateVisible|adjustPan" />
-        <activity android:name=".activity.distance.DistanceGroundScaleActivity"
+        <activity
+            android:name=".activity.distance.DistanceGroundScaleActivity"
             android:label="Map Distance Calculator"
             android:parentActivityName=".activity.distance.DistanceMapScaleActivity"
             android:windowSoftInputMode="stateVisible|adjustPan" />
+        <activity
+            android:name=".activity.distance.DistanceMapGroundActivity"
+            android:label="Scale Calculator"
+            android:parentActivityName=".activity.distance.DistanceMapScaleActivity"
+            android:windowSoftInputMode="stateVisible|adjustPan" />
+        <activity
+            android:name=".activity.unit.UnitActivity"
+            android:label="Unit Converter"
+            android:parentActivityName=".activity.MapToolsActivity" />
     </application>
 
 </manifest>

@@ -14,7 +14,7 @@
     <dimen name="indent_huge">80dp</dimen>
 
     <dimen name="linear_scales_converted_indent_portrait">20dp</dimen>
-    <dimen name="text_scale_converted_portrait">22sp</dimen>
+    <dimen name="text_scale_converted_portrait">20sp</dimen>
     <dimen name="indent_scale_description">10dp</dimen>
 
     <dimen name="btn_distance_paddingLeft">60dp</dimen>

@@ -2,6 +2,7 @@
     <string name="app_name">MapTools</string>
 
     <!-- MapToolsActivity layout buttons -->
+    <string name="unit_converter">Unit Converter</string>
     <string name="scale_converter">Scale Converter</string>
     <string name="disctance_calculator">Distance/Scale Calculator</string>
     <string name="coordinates_converter">Coordinates Converter\n (PRO)</string>
@@ -52,7 +53,7 @@
     <string name="m_to_cm">metres to a cm</string>
     <string name="in_to_mile_less_message">less than 0.1 inch to the mile</string>
     <string name="mile_to_in_less_message">less than 0.01 mile to an inch</string>
-    <string name="cm_to_km_less_message">less than 0.1 cm to a kilometre</string>
+    <string name="cm_to_km_less_message">less than 0.1 cm to a km</string>
 
     <!-- Fractional scale layout -->                    -->
     <string name="toolbar_activity_fractional">Fractional</string>
@@ -158,6 +159,11 @@ the map scale)"</string>
     <string name="subtitle_activity_distance_ground_scale_land">"(given distance on the ground
 and
 the map scale)"</string>
+    <string name="title_activity_distance_map_ground">"Calculate scale of the map"</string>
+    <string name="subtitle_activity_distance_map_ground">"(given distances on the map &amp; the ground)"</string>
+    <string name="subtitle_activity_distance_map_ground_land">"(given distances on the map
+and
+the ground)"</string>
     <string name="distance_map_hint">distance on the map</string>
     <string name="distance_ground_hint">distance on the ground</string>
     <string name="distance_units_hint">choose the units</string>
@@ -183,6 +189,11 @@ GROUND"</string>
     <string name="btn_distance_calculate_map_land">"CALCULATE
 DISTANCE
 on  the
+MAP"</string>
+    <string name="btn_distance_calculate_scale">"CALCULATE  SCALE  of  the  MAP"</string>
+    <string name="btn_distance_calculate_scale_land">"CALCULATE
+SCALE
+of  the
 MAP"</string>
 
     <string name="spinner_scale_fractional">fractional</string>
@@ -230,5 +241,14 @@ MAP"</string>
     <string name="more_than_999_999">more than 999,999 km</string>
     <string name="more_than_999_999_cm">more than 999,999</string>
     <string name="more_than_1_000_000_000">more than 1:1 billion</string>
+
+    <string name="btn_length">Length</string>
+    <string name="btn_area">Area</string>
+    <string name="btn_angle">Angle</string>
+    <string name="btn_weight">Weight</string>
+    <string name="btn_speed">Speed</string>
+    <string name="btn_volume">Volume</string>
+    <string name="btn_temp">Temperature</string>
+    <string name="btn_pressure">Pressure</string>
 
 </resources>
