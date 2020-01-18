@@ -1,0 +1,299 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="horizontal"
+    android:padding="@dimen/activity_margin"
+    android:background="@drawable/backrepeat"
+    tools:context=".activity.distance.DistanceMapScaleActivity">
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:layout_marginRight="@dimen/distance_paddingRight">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/title_activity_distance_map_scale"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/indent_very_small"
+                android:text="@string/title_activity_distance_map_scale"
+                android:textSize="@dimen/distance_text_size"
+                android:gravity="center_horizontal"
+                android:textColor="@color/colorPrimary"/>
+
+            <TextView
+                android:id="@+id/subtitle_activity_distance_map_scale"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/subtitle_activity_distance_map_scale_land"
+                android:textSize="@dimen/distance_subtext_size"
+                android:gravity="center_horizontal"
+                android:textColor="@color/colorPrimaryLight"/>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="horizontal">
+
+                <Button
+                    android:id="@+id/btn_calculate"
+                    android:layout_width="0dp"
+                    android:layout_weight="1"
+                    android:layout_height="110dp"
+                    android:height="75sp"
+                    android:layout_marginRight="@dimen/btn_distance_calculate_marginRight"
+                    android:background="@drawable/button_rounded"
+                    android:backgroundTint="@color/colorPrimary"
+                    android:text="@string/btn_distance_calculate_ground_land"
+                    android:textAllCaps="false"
+                    android:textColor="@color/colorPrimaryText" />
+
+                <Button
+                    android:id="@+id/btn_clear"
+                    android:layout_width="0dp"
+                    android:layout_weight="1"
+                    android:layout_height="110dp"
+                    android:height="75sp"
+                    android:layout_marginTop="@dimen/btn_distance_clear_marginTop"
+                    android:background="@drawable/button_rounded"
+                    android:backgroundTint="@color/colorPrimary"
+                    android:text="@string/clear"
+                    android:textColor="@color/colorPrimaryText" />
+            </LinearLayout>
+        </LinearLayout>
+
+
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="0dp"
+        android:layout_weight="5"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <EditText
+                android:id="@+id/distance_scale"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="3"
+                android:hint="@string/distance_scale_hint"
+                android:inputType="numberDecimal"
+                android:selectAllOnFocus="true"
+                android:textSize="@dimen/distance_input_text_size"
+                android:imeOptions="flagNoExtractUi"/>
+
+            <Spinner
+                android:id="@+id/distance_scale_type"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="3"
+                android:entries="@array/distance_scale_type_values"
+                android:textAlignment="center"/>
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_marginBottom="@dimen/indent_very_small">
+
+            <EditText
+                android:id="@+id/distance_map"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="3"
+                android:layout_marginBottom="@dimen/distance_mapdistance_margin_bottom"
+                android:hint="@string/distance_map_hint"
+                android:inputType="numberDecimal"
+                android:selectAllOnFocus="true"
+                android:textSize="@dimen/distance_input_text_size"
+                android:imeOptions="flagNoExtractUi"/>
+
+            <Spinner
+                android:id="@+id/distance_map_unit"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="3"
+                android:entries="@array/distance_map_unit_values"
+                android:textAlignment="center"/>
+        </LinearLayout>
+
+
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:paddingTop="@dimen/distance_paddingTop"
+                android:paddingRight="0dp"
+                android:visibility="visible">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:layout_marginBottom="@dimen/distance_result_bottom">
+
+                    <TextView
+                        android:id="@+id/distance_result_map_description"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="4"
+                        android:textSize="@dimen/result_distance_text_size"
+                        android:text="@string/result_map_distance_description"/>
+                    <TextView
+                        android:id="@+id/distance_result_map"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="3"
+                        android:textSize="@dimen/result_distance_text_size"
+                        android:textColor="@color/tab2_result"
+                        android:layout_marginTop="@dimen/indent_tiny"
+                        android:gravity="bottom|center_horizontal"/>
+
+                    <RadioGroup
+                        android:id="@+id/radios_distance_map_unit"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="8"
+                        android:orientation="horizontal"
+                        android:gravity="fill_horizontal"
+                        android:paddingLeft="@dimen/indent_very_small"
+                        android:layout_marginBottom="@dimen/distance_radio_margin_bottom"
+                        android:checkedButton="@+id/radio_mm">
+
+                        <RadioButton android:id="@+id/radio_mm"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="@string/radio_mm"
+                            android:textSize="@dimen/radio_distance_text_size" />
+
+                        <RadioButton android:id="@+id/radio_cm"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="@string/radio_cm"
+                            android:textSize="@dimen/radio_distance_text_size"/>
+
+                        <RadioButton android:id="@+id/radio_in"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="@string/radio_inch"
+                            android:textSize="@dimen/radio_distance_text_size"/>
+
+                    </RadioGroup>
+
+                </LinearLayout>
+
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:layout_marginBottom="@dimen/distance_result_bottom">
+
+                    <TextView
+                        android:id="@+id/distance_result_ground_description"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="4"
+                        android:textSize="@dimen/result_distance_text_size"
+                        android:text="@string/result_ground_distance_description"/>
+
+                    <TextView
+                        android:id="@+id/distance_result_ground"
+                        android:layout_width="0dp"
+                        android:layout_weight="3"
+                        android:layout_height="wrap_content"
+                        android:textSize="@dimen/result_distance_text_size"
+                        android:layout_marginBottom="@dimen/distance_result_bottom"
+                        android:textColor="@color/tab2_result"
+                        android:layout_marginTop="@dimen/indent_tiny"
+                        android:gravity="bottom|center_horizontal"/>
+
+                    <RadioGroup
+                        android:id="@+id/radios_distance_ground_unit"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="8"
+                        android:orientation="horizontal"
+                        android:gravity="fill_horizontal"
+                        android:paddingLeft="@dimen/indent_very_small"
+                        android:layout_marginBottom="@dimen/distance_radio_margin_bottom"
+                        android:checkedButton="@+id/radio_km">
+
+                        <RadioButton android:id="@+id/radio_km"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="@string/radio_km"
+                            android:textSize="@dimen/radio_distance_text_size"/>
+
+                        <RadioButton android:id="@+id/radio_mile"
+                            android:layout_width="wrap_content"
+                            android:layout_height="match_parent"
+                            android:text="@string/radio_mile"
+                            android:textSize="@dimen/radio_distance_text_size"/>
+
+                        <RadioButton android:id="@+id/radio_nautical"
+                            android:layout_width="wrap_content"
+                            android:layout_height="match_parent"
+                            android:text="@string/radio_nautical"
+                            android:textSize="@dimen/radio_distance_text_size"/>
+
+                    </RadioGroup>
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:layout_marginBottom="@dimen/distance_result_bottom">
+
+                    <TextView
+                        android:id="@+id/distance_result_scale_description"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="2"
+                        android:textSize="@dimen/result_distance_text_size"
+                        android:text="@string/result_map_scale_description"/>
+                    <TextView
+                        android:id="@+id/distance_result_scale"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="3"
+                        android:textColor="@color/tab2_result"
+                        android:textSize="@dimen/result_distance_text_size"
+                        android:gravity="bottom|center_horizontal"/>
+
+                    <Spinner
+                        android:id="@+id/distance_result_scale_type"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="5"
+                        android:entries="@array/distance_scale_type_values"
+                        android:textAlignment="center"/>
+
+                </LinearLayout>
+
+            </LinearLayout>
+
+
+        </LinearLayout>
+
+</LinearLayout>

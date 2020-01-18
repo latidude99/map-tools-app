@@ -3,6 +3,7 @@
     <dimen name="activity_margin">16dp</dimen>
     <dimen name="activity_horizontal_margin">16dp</dimen>
     <dimen name="activity_vertical_margin">16dp</dimen>:
+    <dimen name="indent_tiny">5dp</dimen>
     <dimen name="indent_very_small">10dp</dimen>
     <dimen name="indent_small">20dp</dimen>
     <dimen name="indent_small_medium">30dp</dimen>
@@ -13,7 +14,50 @@
     <dimen name="indent_huge">80dp</dimen>
 
     <dimen name="linear_scales_converted_indent_portrait">20dp</dimen>
-    <dimen name="text_scale_converted_portrait">22sp</dimen>
+    <dimen name="text_scale_converted_portrait">20sp</dimen>
     <dimen name="indent_scale_description">10dp</dimen>
+
+    <dimen name="btn_distance_paddingLeft">60dp</dimen>
+    <dimen name="btn_distance_paddingLeft_land">30dp</dimen>
+    <dimen name="btn_distance_text">20sp</dimen>
+    <dimen name="btn_distance_clear_marginTop">25dp</dimen>
+    <dimen name="btn_distance_calculate_marginRight">10dp</dimen>
+
+    <dimen name="distance_paddingTop">10dp</dimen>
+    <dimen name="distance_paddingLeft">10dp</dimen>
+    <dimen name="distance_paddingRight">15dp</dimen>
+    <dimen name="distance_text_size">17sp</dimen>
+    <dimen name="distance_subtext_size">13sp</dimen>
+
+    <dimen name="distance_input_text_size">15sp</dimen>
+
+    <dimen name="distance_result_bottom">10dp</dimen>
+    <dimen name="distance_radio_margin_bottom">10dp</dimen>
+    <dimen name="distance_mapdistance_margin_bottom">10dp</dimen>
+    <dimen name="result_distance_text_size">14sp</dimen>
+    <dimen name="radio_distance_text_size">10sp</dimen>
+
+
+
+    <dimen name="layout0_padding">16dp</dimen>
+    <dimen name="layout_entry_padding_top">30dp</dimen>
+    <dimen name="layout_entry_padding_left">10dp</dimen>
+    <dimen name="layout_entry_margin_bottom">10dp</dimen>
+    <dimen name="entry_padding_right">60dp</dimen>
+    <dimen name="buttons_margin_bottom">20dp</dimen>
+    <dimen name="unit_row_margin_bottom">10dp</dimen>
+    <dimen name="unit_desc_margin_right">15dp</dimen>
+    <dimen name="unit_desc_text_size">14sp</dimen>
+    <dimen name="unit_value_margin_top">5dp</dimen>
+    <dimen name="unit_value_text_size">17sp</dimen>
+    <dimen name="unit_symbol_margin_left">7dp</dimen>
+    <dimen name="unit_symbol_text_size">12sp</dimen>
+
+
+
+
+
+
+
 
 </resources>

@@ -1,0 +1,150 @@
+<?xml version="1.0" encoding="utf-8"?>
+<TableLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/backrepeat"
+    android:stretchColumns="*"
+    tools:context=".activity.unit.UnitActivity">
+
+        <TableRow
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1">
+
+            <Button
+                android:id="@+id/btn_length"
+                android:layout_width="0dp"
+                android:layout_weight="1"
+                android:layout_height="match_parent"
+                android:layout_marginTop="@dimen/indent_small"
+                android:layout_marginBottom="@dimen/indent_very_small"
+                android:layout_marginLeft="@dimen/indent_small"
+                android:layout_marginRight="@dimen/indent_very_small"
+                android:text="@string/btn_length"
+                android:textColor="@color/colorPrimaryText"
+                android:backgroundTint="@color/colorPrimary"
+                android:background="@drawable/button_rounded"/>
+
+            <Button
+                android:id="@+id/btn_area"
+                android:layout_width="0dp"
+                android:layout_weight="1"
+                android:layout_height="match_parent"
+                android:layout_marginTop="@dimen/indent_small"
+                android:layout_marginBottom="@dimen/indent_very_small"
+                android:layout_marginLeft="@dimen/indent_very_small"
+                android:layout_marginRight="@dimen/indent_small"
+                android:text="@string/btn_area"
+                android:textColor="@color/colorPrimaryText"
+                android:backgroundTint="@color/colorPrimary"
+                android:background="@drawable/button_rounded"/>
+        </TableRow>
+
+        <TableRow
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1">
+
+            <Button
+                android:id="@+id/btn_angle"
+                android:layout_width="0dp"
+                android:layout_weight="1"
+                android:layout_height="match_parent"
+                android:layout_marginTop="@dimen/indent_small"
+                android:layout_marginBottom="@dimen/indent_very_small"
+                android:layout_marginLeft="@dimen/indent_small"
+                android:layout_marginRight="@dimen/indent_very_small"
+                android:text="@string/btn_angle"
+                android:textColor="@color/colorPrimaryText"
+                android:backgroundTint="@color/colorPrimary"
+                android:background="@drawable/button_rounded"/>
+
+            <Button
+                android:id="@+id/btn_weight"
+                android:layout_width="0dp"
+                android:layout_weight="1"
+                android:layout_height="match_parent"
+                android:layout_marginTop="@dimen/indent_small"
+                android:layout_marginBottom="@dimen/indent_very_small"
+                android:layout_marginLeft="@dimen/indent_very_small"
+                android:layout_marginRight="@dimen/indent_small"
+                android:text="@string/btn_weight"
+                android:textColor="@color/colorPrimaryText"
+                android:backgroundTint="@color/colorPrimary"
+                android:background="@drawable/button_rounded"/>
+        </TableRow>
+
+        <TableRow
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1">
+
+            <Button
+                android:id="@+id/btn_speed"
+                android:layout_width="0dp"
+                android:layout_weight="1"
+                android:layout_height="match_parent"
+                android:layout_marginTop="@dimen/indent_small"
+                android:layout_marginBottom="@dimen/indent_very_small"
+                android:layout_marginLeft="@dimen/indent_small"
+                android:layout_marginRight="@dimen/indent_very_small"
+                android:text="@string/btn_speed"
+                android:textColor="@color/colorPrimaryText"
+                android:backgroundTint="@color/colorPrimary"
+                android:background="@drawable/button_rounded"/>
+
+            <Button
+                android:id="@+id/btn_volume"
+                android:layout_width="0dp"
+                android:layout_weight="1"
+                android:layout_height="match_parent"
+                android:layout_marginTop="@dimen/indent_small"
+                android:layout_marginBottom="@dimen/indent_very_small"
+                android:layout_marginLeft="@dimen/indent_very_small"
+                android:layout_marginRight="@dimen/indent_small"
+                android:text="@string/btn_volume"
+                android:textColor="@color/colorPrimaryText"
+                android:backgroundTint="@color/colorPrimary"
+                android:background="@drawable/button_rounded"/>
+        </TableRow>
+
+        <TableRow
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1">
+
+            <Button
+                android:id="@+id/btn_temp"
+                android:layout_width="0dp"
+                android:layout_weight="1"
+                android:layout_height="match_parent"
+                android:layout_marginTop="@dimen/indent_small"
+                android:layout_marginBottom="@dimen/indent_very_small"
+                android:layout_marginLeft="@dimen/indent_small"
+                android:layout_marginRight="@dimen/indent_very_small"
+                android:text="@string/btn_temp"
+                android:textColor="@color/colorPrimaryText"
+                android:backgroundTint="@color/colorPrimary"
+                android:background="@drawable/button_rounded"/>
+
+            <Button
+                android:id="@+id/btn_pressure"
+                android:layout_width="0dp"
+                android:layout_weight="1"
+                android:layout_height="match_parent"
+                android:layout_marginTop="@dimen/indent_small"
+                android:layout_marginBottom="@dimen/indent_very_small"
+                android:layout_marginLeft="@dimen/indent_very_small"
+                android:layout_marginRight="@dimen/indent_small"
+                android:text="@string/btn_pressure"
+                android:textColor="@color/colorPrimaryText"
+                android:backgroundTint="@color/colorPrimary"
+                android:background="@drawable/button_rounded"/>
+        </TableRow>
+
+
+
+
+</TableLayout>

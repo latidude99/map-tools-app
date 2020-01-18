@@ -6,7 +6,40 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:orientation="vertical"
     android:padding="@dimen/activity_margin"
+    android:background="@drawable/backrepeat"
     tools:context=".activity.MapToolsActivity">
+
+    <Button
+        android:id="@+id/btn_unit"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:text="@string/unit_converter"
+        android:textAllCaps="false"
+        android:textSize="28sp"
+        android:typeface="monospace"
+        tools:layout_editor_absoluteX="151dp"
+        tools:layout_editor_absoluteY="74dp"
+        android:layout_marginBottom="@dimen/indent_very_small"
+        android:textColor="@color/colorButtonText"
+        android:backgroundTint="@color/colorPrimary"
+        android:background="@drawable/button_rounded"/>
+
+    <Button
+        android:id="@+id/unit_scale"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:text="@string/unit_converter"
+        android:textAllCaps="false"
+        android:textSize="28sp"
+        android:typeface="monospace"
+        tools:layout_editor_absoluteX="151dp"
+        tools:layout_editor_absoluteY="74dp"
+        android:layout_marginBottom="@dimen/indent_very_small"
+        android:textColor="@color/colorButtonText"
+        android:backgroundTint="@color/colorPrimary"
+        android:background="@drawable/button_rounded" />
 
     <Button
         android:id="@+id/btn_scale"
@@ -33,11 +66,11 @@
         android:textAllCaps="false"
         android:textSize="28sp"
         android:typeface="monospace"
-        android:textColor="@color/btn_inactive_text"
         tools:layout_editor_absoluteX="151dp"
         tools:layout_editor_absoluteY="74dp"
         android:layout_marginBottom="@dimen/indent_very_small"
-        android:backgroundTint="@color/colorPrimaryLight"
+        android:textColor="@color/colorButtonText"
+        android:backgroundTint="@color/colorPrimary"
         android:background="@drawable/button_rounded"/>
 
     <Button

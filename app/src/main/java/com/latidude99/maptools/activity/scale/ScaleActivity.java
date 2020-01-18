@@ -14,7 +14,7 @@ public class ScaleActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_scale);
+        setContentView(R.layout.activity_scaleconverter);
 
         Button btnFractional = (Button) findViewById(R.id.btn_fractional);
         final Intent fractionalIntent = new Intent(this, FractionalScaleActivity.class);

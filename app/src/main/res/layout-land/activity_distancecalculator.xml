@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="horizontal"
+    android:padding="@dimen/activity_margin"
+    android:background="@drawable/backrepeat"
+    tools:context="com.latidude99.maptools.activity.distance.DistanceActivity">
+
+
+    <Button
+        android:id="@+id/btn_map_scale"
+        android:layout_width="0dp"
+        android:layout_height="match_parent"
+        android:layout_marginRight="@dimen/indent_very_small"
+        android:layout_weight="1"
+        android:background="@drawable/button_rounded"
+        android:backgroundTint="@color/colorPrimary"
+        android:text="@string/btn_map_scale_land"
+        android:gravity="left|center_vertical"
+        android:paddingLeft="@dimen/btn_distance_paddingLeft_land"
+        android:textAllCaps="false"
+        android:textColor="@color/colorButtonText"
+        android:textSize="@dimen/btn_distance_text"
+        android:typeface="monospace"
+        tools:layout_editor_absoluteX="151dp"
+        tools:layout_editor_absoluteY="74dp" />
+
+    <Button
+        android:id="@+id/btn_ground_scale"
+        android:layout_width="0dp"
+        android:layout_height="match_parent"
+        android:layout_weight="1"
+        android:text="@string/btn_ground_scale_land"
+        android:gravity="left|center_vertical"
+        android:paddingLeft="@dimen/btn_distance_paddingLeft_land"
+        android:textAllCaps="false"
+        android:textSize="@dimen/btn_distance_text"
+        android:typeface="monospace"
+        tools:layout_editor_absoluteX="151dp"
+        tools:layout_editor_absoluteY="74dp"
+        android:layout_marginRight="@dimen/indent_very_small"
+        android:textColor="@color/colorButtonText"
+        android:backgroundTint="@color/colorPrimary"
+        android:background="@drawable/button_rounded"/>
+
+    <Button
+        android:id="@+id/btn_map_ground"
+        android:layout_width="0dp"
+        android:layout_height="match_parent"
+        android:layout_weight="1"
+        android:text="@string/btn_map_ground_land"
+        android:gravity="left|center_vertical"
+        android:paddingLeft="@dimen/btn_distance_paddingLeft_land"
+        android:textAllCaps="false"
+        android:textSize="@dimen/btn_distance_text"
+        android:typeface="monospace"
+        tools:layout_editor_absoluteX="151dp"
+        tools:layout_editor_absoluteY="74dp"
+        android:layout_marginRight="@dimen/indent_very_small"
+        android:textColor="@color/colorButtonText"
+        android:backgroundTint="@color/colorPrimary"
+        android:background="@drawable/button_rounded"/>
+
+
+
+</LinearLayout>

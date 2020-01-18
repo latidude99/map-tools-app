@@ -5,6 +5,7 @@
     android:layout_height="match_parent"
     android:orientation="vertical"
     android:padding="@dimen/activity_margin"
+    android:background="@drawable/backrepeat"
     tools:context=".activity.MapToolsActivity">
 
 
@@ -74,160 +75,159 @@
             android:layout_height="wrap_content"
             android:gravity="top"
             android:orientation="vertical"
-            android:layout_marginLeft="@dimen/linear_scales_converted_indent_portrait">
+            >
 
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:orientation="vertical">
+                android:orientation="horizontal"
+                android:layout_marginTop="@dimen/indent_very_small">
                 <TextView
                     android:id="@+id/title_fractional"
-                    android:layout_width="match_parent"
+                    android:layout_width="0dp"
+                    android:layout_weight="2"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="@dimen/indent_very_small"
                     android:text="@string/title_converted_fractional"
                     android:textAppearance="@style/TextAppearance.AppCompat.Small" />
                 <TextView
                     android:id="@+id/converted_fractional"
-                    android:layout_width="wrap_content"
+                    android:layout_width="0dp"
+                    android:layout_weight="5"
                     android:layout_height="wrap_content"
-                    android:layout_marginLeft="@dimen/indent_huge"
+                    android:gravity="start"
                     android:hint="@string/value"
                     android:textSize="@dimen/text_scale_converted_portrait"
-                    android:textStyle="normal"/>
+                    android:textColor="@color/tab1_result"
+                    android:textStyle="bold"/>
             </LinearLayout>
 
 
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:orientation="vertical">
+                android:orientation="horizontal"
+                android:layout_marginTop="@dimen/indent_very_small">
                 <TextView
                     android:id="@+id/title_imperial1"
-                    android:layout_width="match_parent"
+                    android:layout_width="0dp"
+                    android:layout_weight="2"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="@dimen/indent_very_small"
                     android:text="@string/title_converted_imperial"
                     android:textAppearance="@style/TextAppearance.AppCompat.Small" />
-                <LinearLayout
-                    android:layout_width="wrap_content"
+                <TextView
+                    android:id="@+id/converted_in_to_mile"
+                    android:layout_width="0dp"
+                    android:layout_weight="3"
                     android:layout_height="wrap_content"
-                    android:orientation="horizontal">
-                    <TextView
-                        android:id="@+id/converted_in_to_mile"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginLeft="@dimen/indent_huge"
-                        android:layout_marginRight="@dimen/indent_scale_description"
-                        android:hint="@string/value"
-                        android:textSize="@dimen/text_scale_converted_portrait"
-                        android:textStyle="normal"/>
-                    <TextView
-                        android:id="@+id/in_to_mile_decription"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="@string/in_to_mile"
-                        android:textAppearance="@style/TextAppearance.AppCompat.Small"/>
-                </LinearLayout>
+                    android:layout_marginRight="@dimen/indent_small"
+                    android:gravity="end"
+                    android:hint="@string/value"
+                    android:textSize="@dimen/text_scale_converted_portrait"
+                    android:textColor="@color/tab1_result"
+                    android:textStyle="normal"/>
+                <TextView
+                    android:id="@+id/in_to_mile_decription"
+                    android:layout_width="0dp"
+                    android:layout_weight="6"
+                    android:layout_height="wrap_content"
+                    android:text="@string/in_to_mile"
+                    android:textAppearance="@style/TextAppearance.AppCompat.Small"/>
             </LinearLayout>
 
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:orientation="vertical">
+                android:orientation="horizontal"
+                android:layout_marginTop="@dimen/indent_very_small">
                 <TextView
                     android:id="@+id/title_imperial2"
-                    android:layout_width="match_parent"
+                    android:layout_width="0dp"
+                    android:layout_weight="2"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="@dimen/indent_very_small"
                     android:text="@string/title_converted_imperial"
                     android:textAppearance="@style/TextAppearance.AppCompat.Small" />
-                <LinearLayout
-                    android:layout_width="wrap_content"
+                <TextView
+                    android:id="@+id/converted_mile_to_in"
+                    android:layout_width="0dp"
+                    android:layout_weight="3"
                     android:layout_height="wrap_content"
-                    android:orientation="horizontal">
-                    <TextView
-                        android:id="@+id/converted_mile_to_in"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginLeft="@dimen/indent_huge"
-                        android:layout_marginRight="@dimen/indent_scale_description"
-                        android:hint="@string/value"
-                        android:textSize="@dimen/text_scale_converted_portrait"
-                        android:textStyle="normal"/> />
-                    <TextView
-                        android:id="@+id/mile_to_in_description"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="@string/mile_to_in"
-                        android:textAppearance="@style/TextAppearance.AppCompat.Small"/>
-                </LinearLayout>
+                    android:layout_marginRight="@dimen/indent_small"
+                    android:gravity="end"
+                    android:hint="@string/value"
+                    android:textSize="@dimen/text_scale_converted_portrait"
+                    android:textColor="@color/tab1_result"
+                    android:textStyle="normal"/>
+                <TextView
+                    android:id="@+id/mile_to_in_description"
+                    android:layout_width="0dp"
+                    android:layout_weight="6"
+                    android:layout_height="wrap_content"
+                    android:text="@string/mile_to_in"
+                    android:textAppearance="@style/TextAppearance.AppCompat.Small"/>
             </LinearLayout>
 
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:orientation="vertical">
+                android:orientation="horizontal"
+                android:layout_marginTop="@dimen/indent_very_small">
                 <TextView
                     android:id="@+id/title_metric1"
-                    android:layout_width="match_parent"
+                    android:layout_width="0dp"
+                    android:layout_weight="2"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="@dimen/indent_very_small"
                     android:text="@string/title_converted_metric"
                     android:textAppearance="@style/TextAppearance.AppCompat.Small" />
-                <LinearLayout
-                    android:layout_width="wrap_content"
+                <TextView
+                    android:id="@+id/converted_cm_to_km"
+                    android:layout_width="0dp"
+                    android:layout_weight="3"
                     android:layout_height="wrap_content"
-                    android:orientation="horizontal">
-                    <TextView
-                        android:id="@+id/converted_cm_to_km"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginLeft="@dimen/indent_huge"
-                        android:layout_marginRight="@dimen/indent_scale_description"
-                        android:hint="@string/value"
-                        android:textSize="@dimen/text_scale_converted_portrait"
-                        android:textStyle="normal"/>
-                    <TextView
-                        android:id="@+id/cm_to_km_description"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="@string/cm_to_km"
-                        android:textAppearance="@style/TextAppearance.AppCompat.Small"/>
-                </LinearLayout>
+                    android:layout_marginRight="@dimen/indent_small"
+                    android:gravity="end"
+                    android:hint="@string/value"
+                    android:textSize="@dimen/text_scale_converted_portrait"
+                    android:textColor="@color/tab1_result"
+                    android:textStyle="normal"/>
+                <TextView
+                    android:id="@+id/cm_to_km_description"
+                    android:layout_width="0dp"
+                    android:layout_weight="6"
+                    android:layout_height="wrap_content"
+                    android:text="@string/cm_to_km"
+                    android:textAppearance="@style/TextAppearance.AppCompat.Small"/>
             </LinearLayout>
 
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:orientation="vertical">
+                android:orientation="horizontal"
+                android:layout_marginTop="@dimen/indent_very_small">
                 <TextView
                     android:id="@+id/title_metric2"
-                    android:layout_width="match_parent"
+                    android:layout_width="0dp"
+                    android:layout_weight="2"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="@dimen/indent_very_small"
                     android:text="@string/title_converted_metric"
                     android:textAppearance="@style/TextAppearance.AppCompat.Small" />
-                <LinearLayout
-                    android:layout_width="wrap_content"
+                <TextView
+                    android:id="@+id/converted_km_to_cm"
+                    android:layout_width="0dp"
+                    android:layout_weight="3"
                     android:layout_height="wrap_content"
-                    android:orientation="horizontal">
-                    <TextView
-                        android:id="@+id/converted_km_to_cm"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginLeft="@dimen/indent_huge"
-                        android:layout_marginRight="@dimen/indent_scale_description"
-                        android:hint="@string/value"
-                        android:textSize="@dimen/text_scale_converted_portrait"
-                        android:textStyle="normal"/>
-                    <TextView
-                        android:id="@+id/km_to_cm_description"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="@string/km_to_cm"
-                        android:textAppearance="@style/TextAppearance.AppCompat.Small"/>
-                </LinearLayout>
+                    android:layout_marginRight="@dimen/indent_small"
+                    android:gravity="end"
+                    android:hint="@string/value"
+                    android:textSize="@dimen/text_scale_converted_portrait"
+                    android:textColor="@color/tab1_result"
+                    android:textStyle="normal"/>
+                <TextView
+                    android:id="@+id/km_to_cm_description"
+                    android:layout_width="0dp"
+                    android:layout_weight="6"
+                    android:layout_height="wrap_content"
+                    android:text="@string/km_to_cm"
+                    android:textAppearance="@style/TextAppearance.AppCompat.Small"/>
             </LinearLayout>
         </LinearLayout>
 

@@ -4,9 +4,9 @@
 
     <application
         android:allowBackup="true"
-        android:icon="@mipmap/ic_launcher"
+        android:icon="@mipmap/maptools_launcher_foreground"
         android:label="@string/app_name"
-        android:roundIcon="@mipmap/ic_launcher_round"
+        android:roundIcon="@mipmap/maptools_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
 
@@ -16,8 +16,7 @@
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
-        </activity>
-        <!-- Scale Converter -->
+        </activity> <!-- Scale Converter -->
         <activity
             android:name=".activity.scale.ScaleActivity"
             android:label="Scale Converter"
@@ -46,12 +45,34 @@
             android:name=".activity.scale.KmtocmScaleActivity"
             android:label="@string/toolbar_activity_kmtocm"
             android:parentActivityName=".activity.scale.ScaleActivity"
+            android:windowSoftInputMode="stateVisible|adjustPan" /> <!-- MapEntry Calculator -->
+        <activity
+            android:name=".activity.distance.DistanceActivity"
+            android:label="Distance Calcuator"
+            android:parentActivityName=".activity.MapToolsActivity" />
+        <activity
+            android:name=".activity.distance.DistanceMapScaleActivity"
+            android:label="Ground Distance Calculator"
+            android:parentActivityName=".activity.distance.DistanceMapScaleActivity"
             android:windowSoftInputMode="stateVisible|adjustPan" />
-
-        <!-- Distance Calculator -->
-        <activity android:name=".activity.distance.DistanceActivity">
-
-        </activity>
+        <activity
+            android:name=".activity.distance.DistanceGroundScaleActivity"
+            android:label="Map Distance Calculator"
+            android:parentActivityName=".activity.distance.DistanceMapScaleActivity"
+            android:windowSoftInputMode="stateVisible|adjustPan" />
+        <activity
+            android:name=".activity.distance.DistanceMapGroundActivity"
+            android:label="Scale Calculator"
+            android:parentActivityName=".activity.distance.DistanceMapScaleActivity"
+            android:windowSoftInputMode="stateVisible|adjustPan" />
+        <activity
+            android:name=".activity.unit.UnitActivity"
+            android:label="Unit Converter"
+            android:parentActivityName=".activity.MapToolsActivity" />
+        <activity android:name=".activity.unit.Unit_Length_Activity"
+            android:label="Unit Converter - Length"
+            android:parentActivityName=".activity.unit.UnitActivity"
+            android:windowSoftInputMode="stateVisible|adjustPan" />
     </application>
 
 </manifest>

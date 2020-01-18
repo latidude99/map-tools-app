@@ -1,5 +1,6 @@
 package com.latidude99.maptools.model.scale;
 
+import java.text.NumberFormat;
 import java.util.Locale;
 
 public class Scale {
@@ -149,35 +150,35 @@ public class Scale {
     // additional methods of the Scale class
 
     public String getFractionalFormattedString() {
-        return "1: " + fractional;
+        return "1: " + NumberFormat.getNumberInstance(locale).format(fractional);
     }
 
     public String getInToMileFormattedString() {
         if(inToMile < 0.1)
             return "less than 0.1 inch to the mile";
         else
-            return String.format(locale, "%.2f", inToMile) + " inches to the mile";
+            return String.format(locale, "%.2f", inToMile) + " inch(es) to the mile";
     }
 
     public String getMileToInFormattedString() {
         if(mileToIn < 0.001)
             return "less than 0.001 mile to an inch";
         else
-            return String.format(locale, "%.1f", mileToIn) + " miles to an inch";
+            return String.format(locale, "%.1f", mileToIn) + " mile(s) to an inch";
     }
 
     public String getCmToKmFormattedString() {
         if(cmToKm < 0.1)
             return "less than 0.1 cm to a kilometre";
         else
-            return String.format(locale,"%.1f", cmToKm) +  " centimetres to a kilometre";
+            return String.format(locale,"%.1f", cmToKm) +  " centimetre(s) to a kilometre";
     }
 
     public String getKmToCmFormattedString() {
         if(kmToCm >= 0.1)
             return String.format(locale, "%.1f", kmToCm) + " km to a centimetre";
         else
-            return String.format(locale, "%.1f", kmToCm*1000) + " metres to a centimetre";
+            return String.format(locale, "%.1f", kmToCm*1000) + " metre(s) to a centimetre";
     }
 
 

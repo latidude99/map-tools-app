@@ -48,7 +48,7 @@ public class MiletoinchScaleActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_miletoinch_scale);
+        setContentView(R.layout.activity_scaleconverter_miletoinch_scale);
 
         ERROR_INPUT_INT = getString(R.string.error_input_int);
         ERROR_INPUT_EMPTY = getString(R.string.error_input_empty);
