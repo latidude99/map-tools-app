@@ -251,4 +251,45 @@ MAP"</string>
     <string name="btn_temp">Temperature</string>
     <string name="btn_pressure">Pressure</string>
 
+    // unit converter
+
+    <string-array name="unit_length_values">
+        <item>micrometres</item>
+        <item>millimetres</item>
+        <item>centimetres</item>
+        <item>feet</item>
+        <item>yards</item>
+        <item>metres</item>
+        <item>fathoms</item>
+        <item>kilometres</item>
+        <item>statue miles</item>
+        <item>nautical miles</item>
+    </string-array>
+
+    <string name="unit_length_hint">Enter length value</string>
+
+    <string name="length_um">micrometres:</string>
+    <string name="length_um_symbol">[μm]</string>
+    <string name="length_mm">millimetres:</string>
+    <string name="length_mm_symbol">[mm]</string>
+    <string name="length_cm">centimetres:</string>
+    <string name="length_cm_symbol">[cm]</string>
+    <string name="length_ft">feet:</string>
+    <string name="length_ft_symbol">[ft]</string>
+    <string name="length_yd">yards:</string>
+    <string name="length_yd_symbol">[yd]</string>
+    <string name="length_m">metres:</string>
+    <string name="length_m_symbol">[m]</string>
+    <string name="length_ftm">fathoms:</string>
+    <string name="length_ftm_symbol">[ftm]</string>
+    <string name="length_km">kilometres:</string>
+    <string name="length_km_symbol">[km]</string>
+    <string name="length_statue_mile">statue miles:</string>
+    <string name="length_statue_mile_symbol">[mi]</string>
+    <string name="length_nautical_mile">nautical miles:</string>
+    <string name="length_nautical_mile_symbol">[NM]</string>
+
+
+
+
 </resources>
