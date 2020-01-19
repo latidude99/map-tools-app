@@ -253,7 +253,7 @@ MAP"</string>
 
     // unit converter
 
-    <string-array name="unit_length_values">
+    <string-array name="unit_length_units_type">
         <item>micrometres</item>
         <item>millimetres</item>
         <item>centimetres</item>
@@ -274,6 +274,8 @@ MAP"</string>
     <string name="length_mm_symbol">[mm]</string>
     <string name="length_cm">centimetres:</string>
     <string name="length_cm_symbol">[cm]</string>
+    <string name="length_in">inches:</string>
+    <string name="length_in_symbol">[in]</string>
     <string name="length_ft">feet:</string>
     <string name="length_ft_symbol">[ft]</string>
     <string name="length_yd">yards:</string>
