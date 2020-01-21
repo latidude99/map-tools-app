@@ -48,7 +48,8 @@ public class Unit_Length_Activity extends AppCompatActivity {
     // used to store info/calculation when orientation changes
     private boolean inputCleared;
     private boolean converted;
-    private double storedLengthUM;  //  length in micrometres
+    private String storedLengthOut;  //  length in micrometres
+    private int storedUnit;
 
 
 
@@ -78,6 +79,8 @@ public class Unit_Length_Activity extends AppCompatActivity {
         textLengthMI = (TextView) findViewById(R.id.converted_length_statue_mile);
         textLengthNM = (TextView) findViewById(R.id.converted_length_nautical_mile);
 
+        restoreCalculations(savedInstanceState);
+
         Button btnConvert = (Button) findViewById(R.id.btn_convert);
         btnConvert.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -101,12 +104,46 @@ public class Unit_Length_Activity extends AppCompatActivity {
                 }
             }
         });
-
-
-
     }
 
+    @Override
+    public void onSaveInstanceState(Bundle outState) {
+        super.onSaveInstanceState(outState);
+        if (converted) {
+            System.out.println("save, if, computed: " + converted);
+            outState.putBoolean("inputCleared", inputCleared);
+            outState.putBoolean("converted", converted);
+            outState.putString("storedLengthOut", storedLengthOut);
+            outState.putInt("storedUnitOut", storedUnit);
+        } else {
+            System.out.println("save, else, converted: " + converted);
+            outState.putBoolean("inputCleared", inputCleared);
+            outState.putBoolean("converted", converted);
+            outState.putString("storedLengthOut", textInputLength.getText().toString());
+            outState.putInt("storedUnitOut", spinnerInputLengthUnits.getSelectedItemPosition());
+        }
+    }
+
+
     // ---------------------- end onCreate() and similar inherited methods ----------------------
+
+    private void restoreCalculations(Bundle savedInstanceState) {
+        if(savedInstanceState != null){
+            converted = savedInstanceState.getBoolean("converted");
+            inputCleared = savedInstanceState.getBoolean("inputCleared");
+            if(converted && !inputCleared){
+                storedLengthOut = savedInstanceState.getString("storedLengthOut");
+                storedUnit = savedInstanceState.getInt("storedUnitOut");
+                System.out.println("restore, if, computed: " + converted);
+                convertLengthAndDisplay(storedLengthOut, storedUnit);
+            }else{
+                System.out.println("restore, else, computed: " + converted);
+                textInputLength.setText(savedInstanceState.getString("storedLengthOut"));
+                spinnerInputLengthUnits.setSelection(savedInstanceState.getInt("storedUnitOut"));
+            }
+        }
+    }
+
 
     private void processInputAndConvertLength(View view){
         String stringInputLength = textInputLength.getText().toString();
@@ -124,6 +161,8 @@ public class Unit_Length_Activity extends AppCompatActivity {
             hideKeyboard(view);
             converted = true;
             inputCleared = false;
+            storedLengthOut = stringInputLength;
+            storedUnit = positionInputLengthUnit;
         }
     }
 
@@ -198,17 +237,17 @@ public class Unit_Length_Activity extends AppCompatActivity {
     }
 
     private void displayConvertedValues(LengthEntry lengthEntry){
-        textLengthUM.setText(new DecimalFormat("#,###").format(lengthEntry.getUm()));
-        textLengthMM.setText(new DecimalFormat("#,###.00").format(lengthEntry.getMm()));
-        textLengthCM.setText(new DecimalFormat("#,###.00").format(lengthEntry.getCm()));
-        textLengthIN.setText(new DecimalFormat("#,###.00").format(lengthEntry.getIn()));
-        textLengthFT.setText(new DecimalFormat("#,###.00").format(lengthEntry.getFt()));
-        textLengthYD.setText(new DecimalFormat("#,###.00").format(lengthEntry.getYd()));
-        textLengthM.setText(new DecimalFormat("#,###.00").format(lengthEntry.getM()));
-        textLengthFTM.setText(new DecimalFormat("#,###.00").format(lengthEntry.getFtm()));
-        textLengthKM.setText(new DecimalFormat("#,###.00").format(lengthEntry.getKm()));
-        textLengthMI.setText(new DecimalFormat("#,###.00").format(lengthEntry.getMi()));
-        textLengthNM.setText(new DecimalFormat("#,###.00").format(lengthEntry.getNm()));
+        textLengthUM.setText(new DecimalFormat("#,###.###").format(lengthEntry.getUm()));
+        textLengthMM.setText(new DecimalFormat("#,###.0#####").format(lengthEntry.getMm()));
+        textLengthCM.setText(new DecimalFormat("#,###.0######").format(lengthEntry.getCm()));
+        textLengthIN.setText(new DecimalFormat("#,###.0#########").format(lengthEntry.getIn()));
+        textLengthFT.setText(new DecimalFormat("#,###.0##########").format(lengthEntry.getFt()));
+        textLengthYD.setText(new DecimalFormat("#,###.0###########").format(lengthEntry.getYd()));
+        textLengthM.setText(new DecimalFormat("#,###.0#############").format(lengthEntry.getM()));
+        textLengthFTM.setText(new DecimalFormat("#,###.0###########").format(lengthEntry.getFtm()));
+        textLengthKM.setText(new DecimalFormat("#,###.0###############").format(lengthEntry.getKm()));
+        textLengthMI.setText(new DecimalFormat("#,###.0################").format(lengthEntry.getMi()));
+        textLengthNM.setText(new DecimalFormat("#,###.0################").format(lengthEntry.getNm()));
     }
 
     private double convertStringToDoubleInput(String input){
