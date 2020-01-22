@@ -259,6 +259,7 @@ MAP"</string>
         <item>micrometres</item>
         <item>millimetres</item>
         <item>centimetres</item>
+        <item>inches</item>
         <item>feet</item>
         <item>yards</item>
         <item>metres</item>
@@ -293,7 +294,47 @@ MAP"</string>
     <string name="length_nautical_mile">nautical miles:</string>
     <string name="length_nautical_mile_symbol">[NM]</string>
 
+    <string-array name="unit_area_units_type">
+        <item>square micrometres</item>
+        <item>square millimetres</item>
+        <item>square centimetres</item>
+        <item>square inches</item>
+        <item>square feet</item>
+        <item>square yards</item>
+        <item>square metres</item>
+        <item>ares</item>
+        <item>acres</item>
+        <item>hectares</item>
+        <item>square kilometres</item>
+        <item>square statue miles</item>
+    </string-array>
 
+    <string name="area_unit_2">2</string>
+    <string name="area_unit_right_bracket">]</string>
+    <string name="area_um">square micrometres:</string>
+    <string name="area__um_symbol">[μm</string>
+    <string name="area__mm">square millimetres:</string>
+    <string name="area__mm_symbol">[mm</string>
+    <string name="area__cm">square centimetres:</string>
+    <string name="area__cm_symbol">[cm</string>
+    <string name="area__in">square inches:</string>
+    <string name="area__in_symbol">[in</string>
+    <string name="area__ft">square feet:</string>
+    <string name="area__ft_symbol">[ft</string>
+    <string name="area__yd">square yards:</string>
+    <string name="area__yd_symbol">[yd</string>
+    <string name="area__m">square metres:</string>
+    <string name="area__m_symbol">[m</string>
+    <string name="area__ares">ares:</string>
+    <string name="area__ares_symbol">[a]</string>
+    <string name="area__acres">acre:</string>
+    <string name="area__acres_symbol">[a]</string>
+    <string name="area__hectares">hectares:</string>
+    <string name="area__hectares_symbol">[ha]</string>
+    <string name="area__km">square kilometres:</string>
+    <string name="area__km_symbol">[km</string>
+    <string name="area__statue_mile">square statue miles:</string>
+    <string name="area__statue_mile_symbol">[mi</string>
 
 
 </resources>

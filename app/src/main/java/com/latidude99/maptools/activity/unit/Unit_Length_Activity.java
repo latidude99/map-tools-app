@@ -155,6 +155,7 @@ public class Unit_Length_Activity extends AppCompatActivity {
                 storedLengthOut = savedInstanceState.getString("storedLengthOut");
                 storedUnit = savedInstanceState.getInt("storedUnitOut");
                 System.out.println("restore, if, computed: " + converted);
+                spinnerInputLengthUnits.setSelection(storedUnit);
                 convertLengthAndDisplay(storedLengthOut, storedUnit);
             }else{
                 System.out.println("restore, else, computed: " + converted);
