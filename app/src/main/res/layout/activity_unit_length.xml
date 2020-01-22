@@ -100,7 +100,7 @@
                     android:layout_marginTop="@dimen/unit_value_margin_top"
                     android:gravity="right"
                     android:layout_gravity="bottom"
-                    android:hint="@string/value"
+                    
                     android:textSize="@dimen/unit_value_text_size"
                     android:textColor="@color/tab1_result"
                     android:textStyle="normal"/>
@@ -138,7 +138,7 @@
                     android:layout_marginTop="@dimen/unit_value_margin_top"
                     android:gravity="right"
                     android:layout_gravity="bottom"
-                    android:hint="@string/value"
+                    
                     android:textSize="@dimen/unit_value_text_size"
                     android:textColor="@color/tab1_result"
                     android:textStyle="normal"/>
@@ -176,7 +176,7 @@
                     android:layout_marginTop="@dimen/unit_value_margin_top"
                     android:gravity="right"
                     android:layout_gravity="bottom"
-                    android:hint="@string/value"
+                    
                     android:textSize="@dimen/unit_value_text_size"
                     android:textColor="@color/tab1_result"
                     android:textStyle="normal"/>
@@ -215,7 +215,7 @@
                     android:layout_marginTop="@dimen/unit_value_margin_top"
                     android:gravity="right"
                     android:layout_gravity="bottom"
-                    android:hint="@string/value"
+                    
                     android:textSize="@dimen/unit_value_text_size"
                     android:textColor="@color/tab1_result"
                     android:textStyle="normal"/>
@@ -253,7 +253,7 @@
                     android:layout_marginTop="@dimen/unit_value_margin_top"
                     android:gravity="right"
                     android:layout_gravity="bottom"
-                    android:hint="@string/value"
+                    
                     android:textSize="@dimen/unit_value_text_size"
                     android:textColor="@color/tab1_result"
                     android:textStyle="normal"/>
@@ -291,7 +291,7 @@
                     android:layout_marginTop="@dimen/unit_value_margin_top"
                     android:gravity="right"
                     android:layout_gravity="bottom"
-                    android:hint="@string/value"
+                    
                     android:textSize="@dimen/unit_value_text_size"
                     android:textColor="@color/tab1_result"
                     android:textStyle="normal"/>
@@ -329,7 +329,7 @@
                     android:layout_marginTop="@dimen/unit_value_margin_top"
                     android:gravity="right"
                     android:layout_gravity="bottom"
-                    android:hint="@string/value"
+                    
                     android:textSize="@dimen/unit_value_text_size"
                     android:textColor="@color/tab1_result"
                     android:textStyle="normal"/>
@@ -367,7 +367,7 @@
                     android:layout_marginTop="@dimen/unit_value_margin_top"
                     android:gravity="right"
                     android:layout_gravity="bottom"
-                    android:hint="@string/value"
+                    
                     android:textSize="@dimen/unit_value_text_size"
                     android:textColor="@color/tab1_result"
                     android:textStyle="normal"/>
@@ -405,7 +405,7 @@
                     android:layout_marginTop="@dimen/unit_value_margin_top"
                     android:gravity="right"
                     android:layout_gravity="bottom"
-                    android:hint="@string/value"
+                    
                     android:textSize="@dimen/unit_value_text_size"
                     android:textColor="@color/tab1_result"
                     android:textStyle="normal"/>
@@ -443,7 +443,7 @@
                     android:layout_marginTop="@dimen/unit_value_margin_top"
                     android:gravity="right"
                     android:layout_gravity="bottom"
-                    android:hint="@string/value"
+                    
                     android:textSize="@dimen/unit_value_text_size"
                     android:textColor="@color/tab1_result"
                     android:textStyle="normal"/>
@@ -482,7 +482,7 @@
                     android:layout_marginTop="@dimen/unit_value_margin_top"
                     android:gravity="right"
                     android:layout_gravity="bottom"
-                    android:hint="@string/value"
+                    
                     android:textSize="@dimen/unit_value_text_size"
                     android:textColor="@color/tab1_result"
                     android:textStyle="normal"/>
