@@ -1,0 +1,502 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:paddingLeft="@dimen/layout0_padding"
+    android:paddingRight="@dimen/layout0_padding"
+    android:background="@drawable/backrepeat"
+    tools:context=".activity.unit.UnitActivity">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:paddingTop="@dimen/layout_entry_padding_top"
+        android:paddingLeft="@dimen/layout_entry_padding_left"
+        android:layout_marginBottom="@dimen/layout_entry_margin_bottom">
+
+        <EditText
+            android:id="@+id/unit_length_value"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:hint="@string/unit_length_hint"
+            android:paddingRight="@dimen/entry_padding_right"
+            android:inputType="numberDecimal"
+            android:selectAllOnFocus="true"
+            android:textAppearance="@style/TextAppearance.AppCompat.Medium" />
+
+        <Spinner
+            android:id="@+id/unit_length_units"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:gravity="end"
+            android:entries="@array/unit_length_units_type"
+            android:textAlignment="center"/>
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_marginBottom="@dimen/buttons_margin_bottom">
+
+        <Button
+            android:id="@+id/btn_convert"
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:layout_height="wrap_content"
+            android:layout_margin="@dimen/indent_very_small"
+            android:text="@string/convert"
+            android:textColor="@color/colorPrimaryText"
+            android:backgroundTint="@color/colorPrimary"
+            android:background="@drawable/button_rounded"/>
+
+        <Button
+            android:id="@+id/btn_clear"
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:layout_height="wrap_content"
+            android:layout_margin="@dimen/indent_very_small"
+            android:text="@string/clear"
+            android:textColor="@color/colorPrimaryText"
+            android:backgroundTint="@color/colorPrimary"
+            android:background="@drawable/button_rounded"/>
+
+    </LinearLayout>
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:layout_marginBottom="@dimen/unit_row_margin_bottom">
+
+                <TextView
+                    android:id="@+id/desc_length_um"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginRight="@dimen/unit_desc_margin_right"
+                    android:text="@string/length_um"
+                    android:gravity="left"
+                    android:layout_gravity="center_vertical"
+                    android:textSize="@dimen/unit_desc_text_size"/>
+
+                <TextView
+                    android:id="@+id/converted_length_um"
+                    android:layout_width="0dp"
+                    android:layout_weight="5"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/unit_value_margin_top"
+                    android:gravity="right"
+                    android:layout_gravity="bottom"
+                    
+                    android:textSize="@dimen/unit_value_text_size"
+                    android:textColor="@color/tab1_result"
+                    android:textStyle="normal"/>
+                <TextView
+                    android:id="@+id/desc_length_um_symbol"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="@dimen/unit_symbol_margin_left"
+                    android:text="@string/length_um_symbol"
+                    android:gravity="right"
+                    android:layout_gravity="bottom"
+                    android:textSize="@dimen/unit_symbol_text_size"/>
+            </LinearLayout>
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:layout_marginBottom="@dimen/unit_row_margin_bottom">
+
+                <TextView
+                    android:id="@+id/desc_length_mm"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginRight="@dimen/unit_desc_margin_right"
+                    android:text="@string/length_mm"
+                    android:gravity="left"
+                    android:layout_gravity="center_vertical"
+                    android:textSize="@dimen/unit_desc_text_size"/>
+
+                <TextView
+                    android:id="@+id/converted_length_mm"
+                    android:layout_width="0dp"
+                    android:layout_weight="5"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/unit_value_margin_top"
+                    android:gravity="right"
+                    android:layout_gravity="bottom"
+                    
+                    android:textSize="@dimen/unit_value_text_size"
+                    android:textColor="@color/tab1_result"
+                    android:textStyle="normal"/>
+                <TextView
+                    android:id="@+id/desc_length_mm_symbol"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="@dimen/unit_symbol_margin_left"
+                    android:text="@string/length_mm_symbol"
+                    android:gravity="right"
+                    android:layout_gravity="bottom"
+                    android:textSize="@dimen/unit_symbol_text_size"/>
+            </LinearLayout>
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:layout_marginBottom="@dimen/unit_row_margin_bottom">
+
+                <TextView
+                    android:id="@+id/desc_length_cm"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginRight="@dimen/unit_desc_margin_right"
+                    android:text="@string/length_cm"
+                    android:gravity="left"
+                    android:layout_gravity="center_vertical"
+                    android:textSize="@dimen/unit_desc_text_size"/>
+
+                <TextView
+                    android:id="@+id/converted_length_cm"
+                    android:layout_width="0dp"
+                    android:layout_weight="5"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/unit_value_margin_top"
+                    android:gravity="right"
+                    android:layout_gravity="bottom"
+                    
+                    android:textSize="@dimen/unit_value_text_size"
+                    android:textColor="@color/tab1_result"
+                    android:textStyle="normal"/>
+                <TextView
+                    android:id="@+id/desc_length_cm_symbol"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="@dimen/unit_symbol_margin_left"
+                    android:text="@string/length_cm_symbol"
+                    android:gravity="right"
+                    android:layout_gravity="bottom"
+                    android:textSize="@dimen/unit_symbol_text_size"/>
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:layout_marginBottom="@dimen/unit_row_margin_bottom">
+
+                <TextView
+                    android:id="@+id/desc_length_in"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginRight="@dimen/unit_desc_margin_right"
+                    android:text="@string/length_in"
+                    android:gravity="left"
+                    android:layout_gravity="center_vertical"
+                    android:textSize="@dimen/unit_desc_text_size"/>
+
+                <TextView
+                    android:id="@+id/converted_length_in"
+                    android:layout_width="0dp"
+                    android:layout_weight="5"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/unit_value_margin_top"
+                    android:gravity="right"
+                    android:layout_gravity="bottom"
+                    
+                    android:textSize="@dimen/unit_value_text_size"
+                    android:textColor="@color/tab1_result"
+                    android:textStyle="normal"/>
+                <TextView
+                    android:id="@+id/desc_length_in_symbol"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="@dimen/unit_symbol_margin_left"
+                    android:text="@string/length_in_symbol"
+                    android:gravity="right"
+                    android:layout_gravity="bottom"
+                    android:textSize="@dimen/unit_symbol_text_size"/>
+            </LinearLayout>
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:layout_marginBottom="@dimen/unit_row_margin_bottom">
+
+                <TextView
+                    android:id="@+id/desc_length_ft"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginRight="@dimen/unit_desc_margin_right"
+                    android:text="@string/length_ft"
+                    android:gravity="left"
+                    android:layout_gravity="center_vertical"
+                    android:textSize="@dimen/unit_desc_text_size"/>
+
+                <TextView
+                    android:id="@+id/converted_length_ft"
+                    android:layout_width="0dp"
+                    android:layout_weight="5"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/unit_value_margin_top"
+                    android:gravity="right"
+                    android:layout_gravity="bottom"
+                    
+                    android:textSize="@dimen/unit_value_text_size"
+                    android:textColor="@color/tab1_result"
+                    android:textStyle="normal"/>
+                <TextView
+                    android:id="@+id/desc_length_ft_symbol"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="@dimen/unit_symbol_margin_left"
+                    android:text="@string/length_ft_symbol"
+                    android:gravity="right"
+                    android:layout_gravity="bottom"
+                    android:textSize="@dimen/unit_symbol_text_size"/>
+            </LinearLayout>
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:layout_marginBottom="@dimen/unit_row_margin_bottom">
+
+                <TextView
+                    android:id="@+id/desc_length_yd"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginRight="@dimen/unit_desc_margin_right"
+                    android:text="@string/length_yd"
+                    android:gravity="left"
+                    android:layout_gravity="center_vertical"
+                    android:textSize="@dimen/unit_desc_text_size"/>
+
+                <TextView
+                    android:id="@+id/converted_length_yd"
+                    android:layout_width="0dp"
+                    android:layout_weight="5"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/unit_value_margin_top"
+                    android:gravity="right"
+                    android:layout_gravity="bottom"
+                    
+                    android:textSize="@dimen/unit_value_text_size"
+                    android:textColor="@color/tab1_result"
+                    android:textStyle="normal"/>
+                <TextView
+                    android:id="@+id/desc_length_yd_symbol"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="@dimen/unit_symbol_margin_left"
+                    android:text="@string/length_yd_symbol"
+                    android:gravity="right"
+                    android:layout_gravity="bottom"
+                    android:textSize="@dimen/unit_symbol_text_size"/>
+            </LinearLayout>
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:layout_marginBottom="@dimen/unit_row_margin_bottom">
+
+                <TextView
+                    android:id="@+id/desc_length_m"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginRight="@dimen/unit_desc_margin_right"
+                    android:text="@string/length_m"
+                    android:gravity="left"
+                    android:layout_gravity="center_vertical"
+                    android:textSize="@dimen/unit_desc_text_size"/>
+
+                <TextView
+                    android:id="@+id/converted_length_m"
+                    android:layout_width="0dp"
+                    android:layout_weight="5"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/unit_value_margin_top"
+                    android:gravity="right"
+                    android:layout_gravity="bottom"
+                    
+                    android:textSize="@dimen/unit_value_text_size"
+                    android:textColor="@color/tab1_result"
+                    android:textStyle="normal"/>
+                <TextView
+                    android:id="@+id/desc_length_m_symbol"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="@dimen/unit_symbol_margin_left"
+                    android:text="@string/length_m_symbol"
+                    android:gravity="right"
+                    android:layout_gravity="bottom"
+                    android:textSize="@dimen/unit_symbol_text_size"/>
+            </LinearLayout>
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:layout_marginBottom="@dimen/unit_row_margin_bottom">
+
+                <TextView
+                    android:id="@+id/desc_length_ftm"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginRight="@dimen/unit_desc_margin_right"
+                    android:text="@string/length_ftm"
+                    android:gravity="left"
+                    android:layout_gravity="center_vertical"
+                    android:textSize="@dimen/unit_desc_text_size"/>
+
+                <TextView
+                    android:id="@+id/converted_length_ftm"
+                    android:layout_width="0dp"
+                    android:layout_weight="5"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/unit_value_margin_top"
+                    android:gravity="right"
+                    android:layout_gravity="bottom"
+                    
+                    android:textSize="@dimen/unit_value_text_size"
+                    android:textColor="@color/tab1_result"
+                    android:textStyle="normal"/>
+                <TextView
+                    android:id="@+id/desc_length_ftm_symbol"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="@dimen/unit_symbol_margin_left"
+                    android:text="@string/length_ftm_symbol"
+                    android:gravity="right"
+                    android:layout_gravity="bottom"
+                    android:textSize="@dimen/unit_symbol_text_size"/>
+            </LinearLayout>
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:layout_marginBottom="@dimen/unit_row_margin_bottom">
+
+                <TextView
+                    android:id="@+id/desc_length_km"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginRight="@dimen/unit_desc_margin_right"
+                    android:text="@string/length_km"
+                    android:gravity="left"
+                    android:layout_gravity="center_vertical"
+                    android:textSize="@dimen/unit_desc_text_size"/>
+
+                <TextView
+                    android:id="@+id/converted_length_km"
+                    android:layout_width="0dp"
+                    android:layout_weight="5"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/unit_value_margin_top"
+                    android:gravity="right"
+                    android:layout_gravity="bottom"
+                    
+                    android:textSize="@dimen/unit_value_text_size"
+                    android:textColor="@color/tab1_result"
+                    android:textStyle="normal"/>
+                <TextView
+                    android:id="@+id/desc_length_km_symbol"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="@dimen/unit_symbol_margin_left"
+                    android:text="@string/length_km_symbol"
+                    android:gravity="right"
+                    android:layout_gravity="bottom"
+                    android:textSize="@dimen/unit_symbol_text_size"/>
+            </LinearLayout>
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:layout_marginBottom="@dimen/unit_row_margin_bottom">
+
+                <TextView
+                    android:id="@+id/desc_length_statue_mile"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginRight="@dimen/unit_desc_margin_right"
+                    android:text="@string/length_statue_mile"
+                    android:gravity="left"
+                    android:layout_gravity="center_vertical"
+                    android:textSize="@dimen/unit_desc_text_size"/>
+
+                <TextView
+                    android:id="@+id/converted_length_statue_mile"
+                    android:layout_width="0dp"
+                    android:layout_weight="5"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/unit_value_margin_top"
+                    android:gravity="right"
+                    android:layout_gravity="bottom"
+                    
+                    android:textSize="@dimen/unit_value_text_size"
+                    android:textColor="@color/tab1_result"
+                    android:textStyle="normal"/>
+                <TextView
+                    android:id="@+id/desc_length_statue_mile_symbol"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="@dimen/unit_symbol_margin_left"
+                    android:text="@string/length_statue_mile_symbol"
+                    android:gravity="right"
+                    android:layout_gravity="bottom"
+                    android:textSize="@dimen/unit_symbol_text_size"/>
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:layout_marginBottom="@dimen/unit_row_margin_bottom">
+
+                <TextView
+                    android:id="@+id/desc_length_nautical_mile"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginRight="@dimen/unit_desc_margin_right"
+                    android:text="@string/length_nautical_mile"
+                    android:gravity="left"
+                    android:layout_gravity="center_vertical"
+                    android:textSize="@dimen/unit_desc_text_size"/>
+
+                <TextView
+                    android:id="@+id/converted_length_nautical_mile"
+                    android:layout_width="0dp"
+                    android:layout_weight="5"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/unit_value_margin_top"
+                    android:gravity="right"
+                    android:layout_gravity="bottom"
+                    
+                    android:textSize="@dimen/unit_value_text_size"
+                    android:textColor="@color/tab1_result"
+                    android:textStyle="normal"/>
+                <TextView
+                    android:id="@+id/desc_length_nautical_mile_symbol"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="@dimen/unit_symbol_margin_left"
+                    android:text="@string/length_nautical_mile_symbol"
+                    android:gravity="right"
+                    android:layout_gravity="bottom"
+                    android:textSize="@dimen/unit_symbol_text_size"/>
+            </LinearLayout>
+
+        </LinearLayout>
+</ScrollView>
+</LinearLayout>
