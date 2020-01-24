@@ -123,7 +123,7 @@ public class AreaEntry {
             return this;
         }
 
-        public Builder setFeetAndConvertAll(double ft2) {
+        public Builder setFeet2AndConvertAll(double ft2) {
             this.ft2 = ft2;
             convertAllFromFT2(ft2);
             return this;
@@ -185,6 +185,7 @@ public class AreaEntry {
                 this.are = input * 0.00000000000001;
                 this.acre = input * 0.0000000000000002471053814;
                 this.ha = input * 0.0000000000000001;
+                this.km2 = input / Math.pow(1_000_000_000,2);
                 this.mi2 = input / Math.pow(1_609_344_000, 2);
                 return true;
             } catch (Exception e) {
@@ -457,11 +458,28 @@ public class AreaEntry {
                 String message = "There has to be at least one parawmeter set in the builder";
                 throw new InsufficientParameterException(message);
             }
+            System.out.println(areaEntry);
             return areaEntry;
         }
 
     }
 
-
-
+    @Override
+    public String toString() {
+        return "AreaEntry{" +
+                "locale=" + locale +
+                ", um2=" + um2 +
+                ", mm2=" + mm2 +
+                ", cm2=" + cm2 +
+                ", in2=" + in2 +
+                ", ft2=" + ft2 +
+                ", yd2=" + yd2 +
+                ", m2=" + m2 +
+                ", are=" + are +
+                ", acre=" + acre +
+                ", ha=" + ha +
+                ", km2=" + km2 +
+                ", mi2=" + mi2 +
+                '}';
+    }
 }

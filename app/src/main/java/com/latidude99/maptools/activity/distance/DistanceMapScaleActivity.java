@@ -202,7 +202,8 @@ public class DistanceMapScaleActivity extends AppCompatActivity {
         radioResultGroupDistanceGroundUnit.setOnCheckedChangeListener(new OnCheckedChangeListener(){
             @Override
             public void onCheckedChanged(RadioGroup group, int checkedId) {
-                setResultDistanceGround(mapEntryAdvanced, group);
+                if(mapEntryAdvanced !=  null)
+                    setResultDistanceGround(mapEntryAdvanced, group);
             }
         });
 
@@ -210,7 +211,8 @@ public class DistanceMapScaleActivity extends AppCompatActivity {
         radioResultGroupDistanceMapUnit.setOnCheckedChangeListener(new OnCheckedChangeListener(){
             @Override
             public void onCheckedChanged(RadioGroup group, int checkedId) {
-                setResultDistanceMap(mapEntryAdvanced, group);
+                if(mapEntryAdvanced !=  null)
+                    setResultDistanceMap(mapEntryAdvanced, group);
             }
         });
 

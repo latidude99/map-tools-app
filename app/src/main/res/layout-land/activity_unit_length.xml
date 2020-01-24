@@ -8,7 +8,7 @@
     android:paddingLeft="@dimen/layout0_padding"
     android:paddingRight="@dimen/layout0_padding"
     android:background="@drawable/backrepeat"
-    tools:context=".activity.unit.UnitActivity">
+    tools:context=".activity.unit.Unit_Length_Activity">
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -37,37 +37,38 @@
             android:entries="@array/unit_length_units_type"
             android:gravity="end"
             android:textAlignment="center" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_marginBottom="@dimen/buttons_margin_bottom">
+
+            <Button
+                android:id="@+id/btn_convert"
+                android:layout_width="0dp"
+                android:layout_weight="1"
+                android:layout_height="wrap_content"
+                android:layout_margin="@dimen/indent_very_small"
+                android:text="@string/convert"
+                android:textColor="@color/colorPrimaryText"
+                android:backgroundTint="@color/colorPrimary"
+                android:background="@drawable/button_rounded"/>
+
+            <Button
+                android:id="@+id/btn_clear"
+                android:layout_width="0dp"
+                android:layout_weight="1"
+                android:layout_height="wrap_content"
+                android:layout_margin="@dimen/indent_very_small"
+                android:text="@string/clear"
+                android:textColor="@color/colorPrimaryText"
+                android:backgroundTint="@color/colorPrimary"
+                android:background="@drawable/button_rounded"/>
+
+        </LinearLayout>
     </LinearLayout>
 
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        android:layout_marginBottom="@dimen/buttons_margin_bottom">
-
-        <Button
-            android:id="@+id/btn_convert"
-            android:layout_width="0dp"
-            android:layout_weight="1"
-            android:layout_height="wrap_content"
-            android:layout_margin="@dimen/indent_very_small"
-            android:text="@string/convert"
-            android:textColor="@color/colorPrimaryText"
-            android:backgroundTint="@color/colorPrimary"
-            android:background="@drawable/button_rounded"/>
-
-        <Button
-            android:id="@+id/btn_clear"
-            android:layout_width="0dp"
-            android:layout_weight="1"
-            android:layout_height="wrap_content"
-            android:layout_margin="@dimen/indent_very_small"
-            android:text="@string/clear"
-            android:textColor="@color/colorPrimaryText"
-            android:backgroundTint="@color/colorPrimary"
-            android:background="@drawable/button_rounded"/>
-
-    </LinearLayout>
 
     <ScrollView
         android:layout_width="match_parent"

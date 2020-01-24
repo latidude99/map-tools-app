@@ -16,26 +16,27 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import com.latidude99.maptools.R;
 import com.latidude99.maptools.model.scale.InsufficientParameterException;
-import com.latidude99.maptools.model.unit.LengthEntry;
+import com.latidude99.maptools.model.unit.AreaEntry;
 
 import java.text.DecimalFormat;
 import java.util.Locale;
 
 public class Unit_Area_Activity extends AppCompatActivity {
     Locale locale = Locale.getDefault();
-    EditText textInputLength;
-    Spinner spinnerInputLengthUnits;
-    TextView textLengthUM;
-    TextView textLengthMM;
-    TextView textLengthCM;
-    TextView textLengthIN;
-    TextView textLengthFT;
-    TextView textLengthYD;
-    TextView textLengthM;
-    TextView textLengthFTM;
-    TextView textLengthKM;
-    TextView textLengthMI;
-    TextView textLengthNM;
+    EditText textInputArea;
+    Spinner spinnerInputAreaUnits;
+    TextView textAreaUM;
+    TextView textAreaMM;
+    TextView textAreaCM;
+    TextView textAreaIN;
+    TextView textAreaFT;
+    TextView textAreaYD;
+    TextView textAreaM;
+    TextView textAreaARES;
+    TextView textAreaACRES;
+    TextView textAreaHECTARES;
+    TextView textAreaKM;
+    TextView textAreaMI;
 
     private String ERROR_INPUT_INT;
     private String ERROR_INPUT_EMPTY;
@@ -44,12 +45,12 @@ public class Unit_Area_Activity extends AppCompatActivity {
     private String ERROR_INPUT_TOO_BIG;
     private String ERROR_UNIT_CONVERSION;
 
-    LengthEntry lengthEntry;
+    AreaEntry areaEntry;
 
     // used to store info/calculation when orientation changes
     private boolean inputCleared;
     private boolean converted;
-    private String storedLengthOut;  //  length in micrometres
+    private String storedAreaOut;  //  area in sq micrometres
     private int storedUnit;
 
 
@@ -57,7 +58,7 @@ public class Unit_Area_Activity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_unit_length);
+        setContentView(R.layout.activity_unit_area);
 
         ERROR_INPUT_INT = getString(R.string.error_input_int);
         ERROR_INPUT_EMPTY = getString(R.string.error_input_empty);
@@ -66,27 +67,28 @@ public class Unit_Area_Activity extends AppCompatActivity {
         ERROR_INPUT_TOO_BIG = getString(R.string.error_input_too_big);
         ERROR_UNIT_CONVERSION = getString(R.string.error_unit_conversion);
 
-        textInputLength = (EditText) findViewById(R.id.unit_length_value);
-        spinnerInputLengthUnits = (Spinner) findViewById(R.id.unit_length_units);
-        textLengthUM = (TextView) findViewById(R.id.converted_length_um);
-        textLengthMM = (TextView) findViewById(R.id.converted_length_mm);
-        textLengthCM = (TextView) findViewById(R.id.converted_length_cm);
-        textLengthIN = (TextView) findViewById(R.id.converted_length_in);
-        textLengthFT = (TextView) findViewById(R.id.converted_length_ft);
-        textLengthYD = (TextView) findViewById(R.id.converted_length_yd);
-        textLengthM = (TextView) findViewById(R.id.converted_length_m);
-        textLengthFTM = (TextView) findViewById(R.id.converted_length_ftm);
-        textLengthKM = (TextView) findViewById(R.id.converted_length_km);
-        textLengthMI = (TextView) findViewById(R.id.converted_length_statue_mile);
-        textLengthNM = (TextView) findViewById(R.id.converted_length_nautical_mile);
+        textInputArea = (EditText) findViewById(R.id.unit_area_value);
+        spinnerInputAreaUnits = (Spinner) findViewById(R.id.unit_area_units);
+        textAreaUM = (TextView) findViewById(R.id.converted_area_um);
+        textAreaMM = (TextView) findViewById(R.id.converted_area_mm);
+        textAreaCM = (TextView) findViewById(R.id.converted_area_cm);
+        textAreaIN = (TextView) findViewById(R.id.converted_area_in);
+        textAreaFT = (TextView) findViewById(R.id.converted_area_ft);
+        textAreaYD = (TextView) findViewById(R.id.converted_area_yd);
+        textAreaM = (TextView) findViewById(R.id.converted_area_m);
+        textAreaARES = (TextView) findViewById(R.id.converted_area_ares);
+        textAreaACRES = (TextView) findViewById(R.id.converted_area_acres);
+        textAreaHECTARES = (TextView) findViewById(R.id.converted_area_hectares);
+        textAreaKM = (TextView) findViewById(R.id.converted_area_km);
+        textAreaMI = (TextView) findViewById(R.id.converted_area_statue_mile);
 
         restoreCalculations(savedInstanceState);
 
-        textInputLength.setOnEditorActionListener(new EditText.OnEditorActionListener() {
+        textInputArea.setOnEditorActionListener(new EditText.OnEditorActionListener() {
             @Override
             public boolean onEditorAction(TextView view, int actionId, KeyEvent event) {
                 if (actionId == EditorInfo.IME_ACTION_DONE) {
-                    processInputAndConvertLength(view);
+                    processInputAndConvertArea(view);
                     return true;
                 }
                 return false;
@@ -97,32 +99,32 @@ public class Unit_Area_Activity extends AppCompatActivity {
         btnConvert.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                String stringInput = textInputLength.getText().toString().trim();
-                processInputAndConvertLength(view);
+                String stringInput = textInputArea.getText().toString().trim();
+                processInputAndConvertArea(view);
             }
         });
 
-        // 1st click clears converted length fields
+        // 1st click clears converted area fields
         // 2nd click clears entered value
         Button btnClear = (Button) findViewById(R.id.btn_clear);
         btnClear.setOnClickListener(new View.OnClickListener() {;
             @Override
             public void onClick(View view) {
                 if(!inputCleared){
-                    textInputLength.requestFocus();
+                    textInputArea.requestFocus();
                     showKeyboard(view);
                     inputCleared = true;
 
                 }
                 else{
-                    textInputLength.setText("");
+                    textInputArea.setText("");
                     clearTextFields();
                     converted = false;
                 }
             }
         });
 
-        textInputLength.requestFocus();
+        textInputArea.requestFocus();
     }
 
     @Override
@@ -132,14 +134,14 @@ public class Unit_Area_Activity extends AppCompatActivity {
             System.out.println("save, if, computed: " + converted);
             outState.putBoolean("inputCleared", inputCleared);
             outState.putBoolean("converted", converted);
-            outState.putString("storedLengthOut", storedLengthOut);
+            outState.putString("storedAreaOut", storedAreaOut);
             outState.putInt("storedUnitOut", storedUnit);
         } else {
             System.out.println("save, else, converted: " + converted);
             outState.putBoolean("inputCleared", inputCleared);
             outState.putBoolean("converted", converted);
-            outState.putString("storedLengthOut", textInputLength.getText().toString());
-            outState.putInt("storedUnitOut", spinnerInputLengthUnits.getSelectedItemPosition());
+            outState.putString("storedAreaOut", textInputArea.getText().toString());
+            outState.putInt("storedUnitOut", spinnerInputAreaUnits.getSelectedItemPosition());
         }
     }
 
@@ -151,103 +153,108 @@ public class Unit_Area_Activity extends AppCompatActivity {
             converted = savedInstanceState.getBoolean("converted");
             inputCleared = savedInstanceState.getBoolean("inputCleared");
             if(converted){ // && !inputCleared){
-                storedLengthOut = savedInstanceState.getString("storedLengthOut");
+                storedAreaOut = savedInstanceState.getString("storedAreaOut");
                 storedUnit = savedInstanceState.getInt("storedUnitOut");
                 System.out.println("restore, if, computed: " + converted);
-                spinnerInputLengthUnits.setSelection(storedUnit);
-                convertLengthAndDisplay(storedLengthOut, storedUnit);
+                spinnerInputAreaUnits.setSelection(storedUnit);
+                convertAreaAndDisplay(storedAreaOut, storedUnit);
             }else{
                 System.out.println("restore, else, computed: " + converted);
-                textInputLength.setText(savedInstanceState.getString("storedLengthOut"));
-                spinnerInputLengthUnits.setSelection(savedInstanceState.getInt("storedUnitOut"));
+                textInputArea.setText(savedInstanceState.getString("storedAreaOut"));
+                spinnerInputAreaUnits.setSelection(savedInstanceState.getInt("storedUnitOut"));
             }
         }
     }
 
 
-    private void processInputAndConvertLength(View view){
-        String stringInputLength = textInputLength.getText().toString();
+    private void processInputAndConvertArea(View view){
+        String stringInputArea = textInputArea.getText().toString();
 
-        System.out.println("stringInputLength: " + stringInputLength);
+        System.out.println("stringInputArea: " + stringInputArea);
 
-        if("".equals(stringInputLength)){
+        if("".equals(stringInputArea)){
             Toast.makeText(this, ERROR_INPUT_EMPTY,Toast.LENGTH_SHORT).show();
-        }else if ("0".equals(stringInputLength)){
+        }else if ("0".equals(stringInputArea)){
             Toast.makeText(this, ERROR_INPUT_0,Toast.LENGTH_SHORT).show();
         }else {
-            int positionInputLengthUnit = spinnerInputLengthUnits.getSelectedItemPosition();
+            int positionInputAreaUnit = spinnerInputAreaUnits.getSelectedItemPosition();
 
-            convertLengthAndDisplay(stringInputLength, positionInputLengthUnit);
+            convertAreaAndDisplay(stringInputArea, positionInputAreaUnit);
             hideKeyboard(view);
             converted = true;
             inputCleared = false;
-            storedLengthOut = stringInputLength;
-            storedUnit = positionInputLengthUnit;
+            storedAreaOut = stringInputArea;
+            storedUnit = positionInputAreaUnit;
         }
     }
 
-    private void convertLengthAndDisplay(String stringInput, int unit){
+    private void convertAreaAndDisplay(String stringInput, int unit){
         double value = convertStringToDoubleInput(stringInput);
         try{
             switch(unit){
-                case 0: // um
-                    lengthEntry = new LengthEntry.Builder()
-                            .setMicrometresAndConvertAll(value)
+                case 0: // um2
+                    areaEntry = new AreaEntry.Builder()
+                            .setMicrometres2AndConvertAll(value)
                             .build();
                     break;
-                case 1: // mm
-                    lengthEntry = new LengthEntry.Builder()
-                            .setMillimetresAndConvertAll(value)
+                case 1: // mm2
+                    areaEntry = new AreaEntry.Builder()
+                            .setMillimetres2AndConvertAll(value)
                             .build();
                     break;
-                case 2: // cm
-                    lengthEntry = new LengthEntry.Builder()
-                            .setCentimetresAndConvertAll(value)
+                case 2: // cm2
+                    areaEntry = new AreaEntry.Builder()
+                            .setCentimetres2AndConvertAll(value)
                             .build();
                     break;
-                case 3: // in
-                    lengthEntry = new LengthEntry.Builder()
-                            .setInchesAndConvertAll(value)
+                case 3: // in2
+                    areaEntry = new AreaEntry.Builder()
+                            .setInches2AndConvertAll(value)
                             .build();
                     break;
-                case 4: // ft
-                    lengthEntry = new LengthEntry.Builder()
-                            .setFeetAndConvertAll(value)
+                case 4: // ft2
+                    areaEntry = new AreaEntry.Builder()
+                            .setFeet2AndConvertAll(value)
                             .build();
                     break;
-                case 5: // yd
-                    lengthEntry = new LengthEntry.Builder()
-                            .setYardsAndConvertAll(value)
+                case 5: // yd2
+                    areaEntry = new AreaEntry.Builder()
+                            .setYards2AndConvertAll(value)
                             .build();
                     break;
-                case 6: // m
-                    lengthEntry = new LengthEntry.Builder()
-                            .setMetresAndConvertAll(value)
+                case 6: // m2
+                    areaEntry = new AreaEntry.Builder()
+                            .setMetres2AndConvertAll(value)
                             .build();
                     break;
-                case 7: // ftm
-                    lengthEntry = new LengthEntry.Builder()
-                            .setFathomsAndConvertAll(value)
+                case 7: // are
+                    areaEntry = new AreaEntry.Builder()
+                            .setAresAndConvertAll(value)
                             .build();
                     break;
-                case 8: // km
-                    lengthEntry = new LengthEntry.Builder()
-                            .setKilometresAndConvertAll(value)
+                case 8: // acre
+                    areaEntry = new AreaEntry.Builder()
+                            .setAcresAndConvertAll(value)
                             .build();
                     break;
-                case 9: // mi
-                    lengthEntry = new LengthEntry.Builder()
-                            .setMilesAndConvertAll(value)
+                case 9: // ha
+                    areaEntry = new AreaEntry.Builder()
+                            .setHectaresAndConvertAll(value)
                             .build();
                     break;
-                case 10: // nm
-                    lengthEntry = new LengthEntry.Builder()
-                            .setNauticalMilesAndConvertAll(value)
+                case 10: // km2
+                    areaEntry = new AreaEntry.Builder()
+                            .setKilometres2AndConvertAll(value)
+                            .build();
+                    break;
+                case 11: // mi2
+                    areaEntry = new AreaEntry.Builder()
+                            .setMiles2AndConvertAll(value)
                             .build();
                     break;
             }
-            if(lengthEntry != null)
-                displayConvertedValues(lengthEntry);
+            if(areaEntry != null)
+                displayConvertedValues(areaEntry);
             else
                 clearTextFields();
         }catch (InsufficientParameterException e){
@@ -256,18 +263,19 @@ public class Unit_Area_Activity extends AppCompatActivity {
         }
     }
 
-    private void displayConvertedValues(LengthEntry lengthEntry){
-        textLengthUM.setText(new DecimalFormat("#,##0.###").format(lengthEntry.getUm()));
-        textLengthMM.setText(new DecimalFormat("#,##0.0#####").format(lengthEntry.getMm()));
-        textLengthCM.setText(new DecimalFormat("#,##0.0######").format(lengthEntry.getCm()));
-        textLengthIN.setText(new DecimalFormat("#,##0.0#########").format(lengthEntry.getIn()));
-        textLengthFT.setText(new DecimalFormat("#,##0.0##########").format(lengthEntry.getFt()));
-        textLengthYD.setText(new DecimalFormat("#,##0.0###########").format(lengthEntry.getYd()));
-        textLengthM.setText(new DecimalFormat("#,##0.0#############").format(lengthEntry.getM()));
-        textLengthFTM.setText(new DecimalFormat("#,##0.0###########").format(lengthEntry.getFtm()));
-        textLengthKM.setText(new DecimalFormat("#,##0.0###############").format(lengthEntry.getKm()));
-        textLengthMI.setText(new DecimalFormat("#,##0.0################").format(lengthEntry.getMi()));
-        textLengthNM.setText(new DecimalFormat("#,##0.0################").format(lengthEntry.getNm()));
+    private void displayConvertedValues(AreaEntry areaEntry){
+        textAreaUM.setText(new DecimalFormat("#,##0.###").format(areaEntry.getUm2()));
+        textAreaMM.setText(new DecimalFormat("#,##0.0#####").format(areaEntry.getMm2()));
+        textAreaCM.setText(new DecimalFormat("#,##0.0######").format(areaEntry.getCm2()));
+        textAreaIN.setText(new DecimalFormat("#,##0.0#########").format(areaEntry.getIn2()));
+        textAreaFT.setText(new DecimalFormat("#,##0.0##########").format(areaEntry.getFt2()));
+        textAreaYD.setText(new DecimalFormat("#,##0.0###########").format(areaEntry.getYd2()));
+        textAreaM.setText(new DecimalFormat("#,##0.0#############").format(areaEntry.getM2()));
+        textAreaARES.setText(new DecimalFormat("#,##0.0#############").format(areaEntry.getAre()));
+        textAreaACRES.setText(new DecimalFormat("#,##0.0#############").format(areaEntry.getAcre()));
+        textAreaHECTARES.setText(new DecimalFormat("#,##0.0#############").format(areaEntry.getHa()));
+        textAreaKM.setText(new DecimalFormat("#,##0.0###############").format(areaEntry.getKm2()));
+        textAreaMI.setText(new DecimalFormat("#,##0.0################").format(areaEntry.getMi2()));
     }
 
     private double convertStringToDoubleInput(String input){
@@ -288,18 +296,19 @@ public class Unit_Area_Activity extends AppCompatActivity {
     }
 
     private void clearTextFields(){
-        textLengthUM.setText("");
-        textLengthMM.setText("");
-        textLengthCM.setText("");
-        textLengthIN.setText("");
-        textLengthFT.setText("");
-        textLengthYD.setText("");
-        textLengthM.setText("");
-        textLengthFTM.setText("");
-        textLengthKM.setText("");
-        textLengthMI.setText("");
-        textLengthNM.setText("");
-        lengthEntry = null;
+        textAreaUM.setText("");
+        textAreaMM.setText("");
+        textAreaCM.setText("");
+        textAreaIN.setText("");
+        textAreaFT.setText("");
+        textAreaYD.setText("");
+        textAreaM.setText("");
+        textAreaARES.setText("");
+        textAreaACRES.setText("");
+        textAreaHECTARES.setText("");
+        textAreaKM.setText("");
+        textAreaMI.setText("");
+        areaEntry = null;
         inputCleared = true;
     }
 
