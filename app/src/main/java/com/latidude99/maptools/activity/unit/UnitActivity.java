@@ -30,12 +30,12 @@ public class UnitActivity extends AppCompatActivity {
         });
 
         Button btnArea = findViewById(R.id.btn_area);
-       // final Intent areaActivityIntent = new Intent(getApplicationContext(), Unit_Area_Activity.class);
+        final Intent areaActivityIntent = new Intent(getApplicationContext(), Unit_Area_Activity.class);
         btnArea.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View view) {
-                //startActivity(areaActivityIntent);
-                Toast.makeText(getApplicationContext(), COMING_SOON, Toast.LENGTH_SHORT).show();
+                startActivity(areaActivityIntent);
+                //Toast.makeText(getApplicationContext(), COMING_SOON, Toast.LENGTH_SHORT).show();
             }
         });
 

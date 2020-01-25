@@ -81,6 +81,11 @@ public class Unit_Length_Activity extends AppCompatActivity {
         textLengthMI = (TextView) findViewById(R.id.converted_length_statue_mile);
         textLengthNM = (TextView) findViewById(R.id.converted_length_nautical_mile);
 
+        if("en_US".equals(locale.toString()) || "en_UK".equals(locale.toString()))
+            spinnerInputLengthUnits.setSelection(9);
+        else
+            spinnerInputLengthUnits.setSelection(8);
+
         restoreCalculations(savedInstanceState);
 
         textInputLength.setOnEditorActionListener(new EditText.OnEditorActionListener() {
@@ -155,6 +160,7 @@ public class Unit_Length_Activity extends AppCompatActivity {
                 storedLengthOut = savedInstanceState.getString("storedLengthOut");
                 storedUnit = savedInstanceState.getInt("storedUnitOut");
                 System.out.println("restore, if, computed: " + converted);
+                spinnerInputLengthUnits.setSelection(storedUnit);
                 convertLengthAndDisplay(storedLengthOut, storedUnit);
             }else{
                 System.out.println("restore, else, computed: " + converted);
