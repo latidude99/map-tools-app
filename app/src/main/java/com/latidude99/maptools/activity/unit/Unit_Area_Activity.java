@@ -1,6 +1,8 @@
 package com.latidude99.maptools.activity.unit;
 
 import android.content.Context;
+import android.graphics.Color;
+import android.graphics.Typeface;
 import android.os.Bundle;
 import android.view.KeyEvent;
 import android.view.View;
@@ -19,6 +21,8 @@ import com.latidude99.maptools.model.scale.InsufficientParameterException;
 import com.latidude99.maptools.model.unit.AreaEntry;
 
 import java.text.DecimalFormat;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Locale;
 
 public class Unit_Area_Activity extends AppCompatActivity {
@@ -37,6 +41,8 @@ public class Unit_Area_Activity extends AppCompatActivity {
     TextView textAreaHECTARES;
     TextView textAreaKM;
     TextView textAreaMI;
+
+    List<TextView> resultList;
 
     private String ERROR_INPUT_INT;
     private String ERROR_INPUT_EMPTY;
@@ -82,6 +88,8 @@ public class Unit_Area_Activity extends AppCompatActivity {
         textAreaKM = (TextView) findViewById(R.id.converted_area_km);
         textAreaMI = (TextView) findViewById(R.id.converted_area_statue_mile);
 
+        createResultList(); // to manipulate display results visuals easier
+
         if("en_US".equals(locale.toString()) || "en_UK".equals(locale.toString()))
             spinnerInputAreaUnits.setSelection(8);
         else
@@ -96,6 +104,7 @@ public class Unit_Area_Activity extends AppCompatActivity {
             @Override
             public boolean onEditorAction(TextView view, int actionId, KeyEvent event) {
                 if (actionId == EditorInfo.IME_ACTION_DONE) {
+                    clearAllTextResultStyle();
                     processInputAndConvertArea(view);
                     return true;
                 }
@@ -108,6 +117,7 @@ public class Unit_Area_Activity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 String stringInput = textInputArea.getText().toString().trim();
+                clearAllTextResultStyle();
                 processInputAndConvertArea(view);
             }
         });
@@ -204,61 +214,73 @@ public class Unit_Area_Activity extends AppCompatActivity {
                     areaEntry = new AreaEntry.Builder()
                             .setMicrometres2AndConvertAll(value)
                             .build();
+                    changeTextStyle(textAreaUM);
                     break;
                 case 1: // mm2
                     areaEntry = new AreaEntry.Builder()
                             .setMillimetres2AndConvertAll(value)
                             .build();
+                    changeTextStyle(textAreaMM);
                     break;
                 case 2: // cm2
                     areaEntry = new AreaEntry.Builder()
                             .setCentimetres2AndConvertAll(value)
                             .build();
+                    changeTextStyle(textAreaCM);
                     break;
                 case 3: // in2
                     areaEntry = new AreaEntry.Builder()
                             .setInches2AndConvertAll(value)
                             .build();
+                    changeTextStyle(textAreaIN);
                     break;
                 case 4: // ft2
                     areaEntry = new AreaEntry.Builder()
                             .setFeet2AndConvertAll(value)
                             .build();
+                    changeTextStyle(textAreaFT);
                     break;
                 case 5: // yd2
                     areaEntry = new AreaEntry.Builder()
                             .setYards2AndConvertAll(value)
                             .build();
+                    changeTextStyle(textAreaYD);
                     break;
                 case 6: // m2
                     areaEntry = new AreaEntry.Builder()
                             .setMetres2AndConvertAll(value)
                             .build();
+                    changeTextStyle(textAreaM);
                     break;
                 case 7: // are
                     areaEntry = new AreaEntry.Builder()
                             .setAresAndConvertAll(value)
                             .build();
+                    changeTextStyle(textAreaARES);
                     break;
                 case 8: // acre
                     areaEntry = new AreaEntry.Builder()
                             .setAcresAndConvertAll(value)
                             .build();
+                    changeTextStyle(textAreaACRES);
                     break;
                 case 9: // ha
                     areaEntry = new AreaEntry.Builder()
                             .setHectaresAndConvertAll(value)
                             .build();
+                    changeTextStyle(textAreaHECTARES);
                     break;
                 case 10: // km2
                     areaEntry = new AreaEntry.Builder()
                             .setKilometres2AndConvertAll(value)
                             .build();
+                    changeTextStyle(textAreaKM);
                     break;
                 case 11: // mi2
                     areaEntry = new AreaEntry.Builder()
                             .setMiles2AndConvertAll(value)
                             .build();
+                    changeTextStyle(textAreaMI);
                     break;
             }
             if(areaEntry != null)
@@ -304,20 +326,45 @@ public class Unit_Area_Activity extends AppCompatActivity {
     }
 
     private void clearTextFields(){
-        textAreaUM.setText("");
-        textAreaMM.setText("");
-        textAreaCM.setText("");
-        textAreaIN.setText("");
-        textAreaFT.setText("");
-        textAreaYD.setText("");
-        textAreaM.setText("");
-        textAreaARES.setText("");
-        textAreaACRES.setText("");
-        textAreaHECTARES.setText("");
-        textAreaKM.setText("");
-        textAreaMI.setText("");
+     //   resultList.forEach(v -> v.setText(""));  // needs API >24
+        for(TextView view : resultList)
+            view.setText("");
         areaEntry = null;
         inputCleared = true;
+    }
+
+    private void clearAllTextResultStyle(){
+        for(TextView view : resultList)
+            clearTextStyle(view);
+    }
+
+    private void changeTextStyle(TextView view){
+        view.setTypeface(null, Typeface.BOLD);
+        view.setTextColor(Color.RED);
+        view.setBackgroundColor(Color.LTGRAY);
+    }
+
+
+    private void clearTextStyle(TextView view){
+        view.setTypeface(null, Typeface.NORMAL);
+        view.setTextColor(getResources().getColor(R.color.tab1_result));
+        view.setBackgroundColor(getResources().getColor(android.R.color.transparent));
+    }
+
+    private void createResultList() {
+        resultList = new ArrayList<>();
+        resultList.add(textAreaUM);
+        resultList.add(textAreaMM);
+        resultList.add(textAreaCM);
+        resultList.add(textAreaIN);
+        resultList.add(textAreaFT);
+        resultList.add(textAreaYD);
+        resultList.add(textAreaM);
+        resultList.add(textAreaARES);
+        resultList.add(textAreaACRES);
+        resultList.add(textAreaHECTARES);
+        resultList.add(textAreaKM);
+        resultList.add(textAreaMI);
     }
 
     private void hideKeyboard(View view) {

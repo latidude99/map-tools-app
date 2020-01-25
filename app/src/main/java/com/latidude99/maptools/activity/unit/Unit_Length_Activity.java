@@ -3,6 +3,7 @@ package com.latidude99.maptools.activity.unit;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Context;
+import android.graphics.Typeface;
 import android.os.Bundle;
 import android.view.KeyEvent;
 import android.view.View;
@@ -92,6 +93,7 @@ public class Unit_Length_Activity extends AppCompatActivity {
             @Override
             public boolean onEditorAction(TextView view, int actionId, KeyEvent event) {
                 if (actionId == EditorInfo.IME_ACTION_DONE) {
+                    clearTextFieldsFaces();
                     processInputAndConvertLength(view);
                     return true;
                 }
@@ -104,6 +106,7 @@ public class Unit_Length_Activity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 String stringInput = textInputLength.getText().toString().trim();
+                clearTextFieldsFaces();
                 processInputAndConvertLength(view);
             }
         });
@@ -200,56 +203,67 @@ public class Unit_Length_Activity extends AppCompatActivity {
                     lengthEntry = new LengthEntry.Builder()
                             .setMicrometresAndConvertAll(value)
                             .build();
+                    textLengthUM.setTypeface(null, Typeface.BOLD);
                     break;
                 case 1: // mm
                     lengthEntry = new LengthEntry.Builder()
                             .setMillimetresAndConvertAll(value)
                             .build();
+                    textLengthMM.setTypeface(null, Typeface.BOLD);
                     break;
                 case 2: // cm
                     lengthEntry = new LengthEntry.Builder()
                             .setCentimetresAndConvertAll(value)
                             .build();
+                    textLengthCM.setTypeface(null, Typeface.BOLD);
                     break;
                 case 3: // in
                     lengthEntry = new LengthEntry.Builder()
                             .setInchesAndConvertAll(value)
                             .build();
+                    textLengthIN.setTypeface(null, Typeface.BOLD);
                     break;
                 case 4: // ft
                     lengthEntry = new LengthEntry.Builder()
                             .setFeetAndConvertAll(value)
                             .build();
+                    textLengthFT.setTypeface(null, Typeface.BOLD);
                     break;
                 case 5: // yd
                     lengthEntry = new LengthEntry.Builder()
                             .setYardsAndConvertAll(value)
                             .build();
+                    textLengthYD.setTypeface(null, Typeface.BOLD);
                     break;
                 case 6: // m
                     lengthEntry = new LengthEntry.Builder()
                             .setMetresAndConvertAll(value)
                             .build();
+                    textLengthM.setTypeface(null, Typeface.BOLD);
                     break;
                 case 7: // ftm
                     lengthEntry = new LengthEntry.Builder()
                             .setFathomsAndConvertAll(value)
                             .build();
+                    textLengthFTM.setTypeface(null, Typeface.BOLD);
                     break;
                 case 8: // km
                     lengthEntry = new LengthEntry.Builder()
                             .setKilometresAndConvertAll(value)
                             .build();
+                    textLengthKM.setTypeface(null, Typeface.BOLD);
                     break;
                 case 9: // mi
                     lengthEntry = new LengthEntry.Builder()
                             .setMilesAndConvertAll(value)
                             .build();
+                    textLengthMI.setTypeface(null, Typeface.BOLD);
                     break;
                 case 10: // nm
                     lengthEntry = new LengthEntry.Builder()
                             .setNauticalMilesAndConvertAll(value)
                             .build();
+                    textLengthNM.setTypeface(null, Typeface.BOLD);
                     break;
             }
             if(lengthEntry != null)
@@ -294,6 +308,7 @@ public class Unit_Length_Activity extends AppCompatActivity {
     }
 
     private void clearTextFields(){
+        clearTextFieldsFaces();
         textLengthUM.setText("");
         textLengthMM.setText("");
         textLengthCM.setText("");
@@ -307,6 +322,20 @@ public class Unit_Length_Activity extends AppCompatActivity {
         textLengthNM.setText("");
         lengthEntry = null;
         inputCleared = true;
+    }
+
+    private void clearTextFieldsFaces(){
+        textLengthUM.setTypeface(null, Typeface.NORMAL);
+        textLengthMM.setTypeface(null, Typeface.NORMAL);
+        textLengthCM.setTypeface(null, Typeface.NORMAL);
+        textLengthIN.setTypeface(null, Typeface.NORMAL);
+        textLengthFT.setTypeface(null, Typeface.NORMAL);
+        textLengthYD.setTypeface(null, Typeface.NORMAL);
+        textLengthM.setTypeface(null, Typeface.NORMAL);
+        textLengthFTM.setTypeface(null, Typeface.NORMAL);
+        textLengthKM.setTypeface(null, Typeface.NORMAL);
+        textLengthMI.setTypeface(null, Typeface.NORMAL);
+        textLengthNM.setTypeface(null, Typeface.NORMAL);
     }
 
     private void hideKeyboard(View view) {
