@@ -81,6 +81,11 @@ public class Unit_Length_Activity extends AppCompatActivity {
         textLengthMI = (TextView) findViewById(R.id.converted_length_statue_mile);
         textLengthNM = (TextView) findViewById(R.id.converted_length_nautical_mile);
 
+        if("en_US".equals(locale.toString()) || "en_UK".equals(locale.toString()))
+            spinnerInputLengthUnits.setSelection(9);
+        else
+            spinnerInputLengthUnits.setSelection(8);
+
         restoreCalculations(savedInstanceState);
 
         textInputLength.setOnEditorActionListener(new EditText.OnEditorActionListener() {

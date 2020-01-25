@@ -82,6 +82,14 @@ public class Unit_Area_Activity extends AppCompatActivity {
         textAreaKM = (TextView) findViewById(R.id.converted_area_km);
         textAreaMI = (TextView) findViewById(R.id.converted_area_statue_mile);
 
+        if("en_US".equals(locale.toString()) || "en_UK".equals(locale.toString()))
+            spinnerInputAreaUnits.setSelection(8);
+        else
+            spinnerInputAreaUnits.setSelection(9);
+
+        System.out.println(locale);
+        System.out.println(spinnerInputAreaUnits.getSelectedItemPosition());
+
         restoreCalculations(savedInstanceState);
 
         textInputArea.setOnEditorActionListener(new EditText.OnEditorActionListener() {
@@ -264,18 +272,18 @@ public class Unit_Area_Activity extends AppCompatActivity {
     }
 
     private void displayConvertedValues(AreaEntry areaEntry){
-        textAreaUM.setText(new DecimalFormat("#,##0.###").format(areaEntry.getUm2()));
-        textAreaMM.setText(new DecimalFormat("#,##0.0#####").format(areaEntry.getMm2()));
-        textAreaCM.setText(new DecimalFormat("#,##0.0######").format(areaEntry.getCm2()));
-        textAreaIN.setText(new DecimalFormat("#,##0.0#########").format(areaEntry.getIn2()));
-        textAreaFT.setText(new DecimalFormat("#,##0.0##########").format(areaEntry.getFt2()));
-        textAreaYD.setText(new DecimalFormat("#,##0.0###########").format(areaEntry.getYd2()));
-        textAreaM.setText(new DecimalFormat("#,##0.0#############").format(areaEntry.getM2()));
-        textAreaARES.setText(new DecimalFormat("#,##0.0#############").format(areaEntry.getAre()));
-        textAreaACRES.setText(new DecimalFormat("#,##0.0#############").format(areaEntry.getAcre()));
-        textAreaHECTARES.setText(new DecimalFormat("#,##0.0#############").format(areaEntry.getHa()));
-        textAreaKM.setText(new DecimalFormat("#,##0.0###############").format(areaEntry.getKm2()));
-        textAreaMI.setText(new DecimalFormat("#,##0.0################").format(areaEntry.getMi2()));
+        textAreaUM.setText(new DecimalFormat("#,##0.########################").format(areaEntry.getUm2()));
+        textAreaMM.setText(new DecimalFormat("#,##0.0#######################").format(areaEntry.getMm2()));
+        textAreaCM.setText(new DecimalFormat("#,##0.0#######################").format(areaEntry.getCm2()));
+        textAreaIN.setText(new DecimalFormat("#,##0.0#######################").format(areaEntry.getIn2()));
+        textAreaFT.setText(new DecimalFormat("#,##0.0#######################").format(areaEntry.getFt2()));
+        textAreaYD.setText(new DecimalFormat("#,##0.0#######################").format(areaEntry.getYd2()));
+        textAreaM.setText(new DecimalFormat("#,##0.0#######################").format(areaEntry.getM2()));
+        textAreaARES.setText(new DecimalFormat("#,##0.0#######################").format(areaEntry.getAre()));
+        textAreaACRES.setText(new DecimalFormat("#,##0.0#######################").format(areaEntry.getAcre()));
+        textAreaHECTARES.setText(new DecimalFormat("#,##0.0#######################").format(areaEntry.getHa()));
+        textAreaKM.setText(new DecimalFormat("#,##0.0#######################").format(areaEntry.getKm2()));
+        textAreaMI.setText(new DecimalFormat("#,##0.0#######################").format(areaEntry.getMi2()));
     }
 
     private double convertStringToDoubleInput(String input){

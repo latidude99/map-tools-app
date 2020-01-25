@@ -295,18 +295,18 @@ MAP"</string>
     <string name="length_nautical_mile_symbol">[NM]</string>
 
     <string-array name="unit_area_units_type">
-        <item>square micrometres</item>
-        <item>square millimetres</item>
-        <item>square centimetres</item>
-        <item>square inches</item>
-        <item>square feet</item>
-        <item>square yards</item>
-        <item>square metres</item>
+        <item>sq micrometres</item>
+        <item>sq millimetres</item>
+        <item>sq centimetres</item>
+        <item>sq inches</item>
+        <item>sq feet</item>
+        <item>sq yards</item>
+        <item>sq metres</item>
         <item>ares</item>
         <item>acres</item>
         <item>hectares</item>
-        <item>square kilometres</item>
-        <item>square statue miles</item>
+        <item>sq kilometres</item>
+        <item>sq statue miles</item>
     </string-array>
 
     <string name="unit_area_hint">Enter area value</string>
