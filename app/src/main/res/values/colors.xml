@@ -17,5 +17,9 @@
     <color name="tab1_result">#0000ff</color>
     <color name="tab2_result">#0000ff</color>
 
+    <color name="result_text_regular">#0000ff</color>
+    <color name="result_background">#bfbfbf</color>
+    <color name="result_text_active">#b30000</color>
+
 
 </resources>

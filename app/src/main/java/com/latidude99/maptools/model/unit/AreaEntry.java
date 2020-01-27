@@ -396,18 +396,18 @@ public class AreaEntry {
 
         private boolean convertAllFromKM2(double input) {
             try {
-                this.um2 = input * 1_000_000_000;
-                this.mm2 = input * 1_000_000;
-                this.cm2 = input * 100_000;
-                this.in2 = input * 39_370.078740;
-                this.ft2 = input * 3_280.839895;
-                this.yd2 = input * 1_093.613298;
-                this.m2 = input * 1_000;
-                this.are = input * 10_000;
-                this.acre = input * 247.10538147;
-                this.ha = input * 100;
+                this.um2 = input * Math.pow(1_000_000_000, 2);
+                this.mm2 = input * Math.pow(1_000_000, 2);
+                this.cm2 = input * Math.pow(100_000, 2);
+                this.in2 = input * Math.pow(39_370.078740, 2);
+                this.ft2 = input * Math.pow(3_280.839895, 2);
+                this.yd2 = input * Math.pow(1_093.613298, 2);
+                this.m2 = input * Math.pow(1_000, 2);
+                this.are = input * Math.pow(10_000, 2);
+                this.acre = input * Math.pow(247.10538147, 2);
+                this.ha = input * Math.pow(100, 2);
                 this.km2 = input;
-                this.mi2 = input / 1.609344;
+                this.mi2 = input / Math.pow(1.609344, 2);
                 return true;
             } catch (Exception e) {
                 e.printStackTrace();
@@ -418,17 +418,17 @@ public class AreaEntry {
 
         private boolean convertAllFromMI2(double input) {
             try {
-                this.um2 = input * 1_609_344_000;
-                this.mm2 = input * 1_609_344;
-                this.cm2 = input * 160_934.4;
-                this.in2 = input * 63_360;
-                this.ft2 = input * 5_280;
-                this.yd2 = input * 1_760;
-                this.m2 = input * 1_609.344;
-                this.are = input * 25_899.881103;
-                this.acre = input * 639.99999999;
-                this.ha = input * 258.99881103;
-                this.km2 = input * 1.609344;
+                this.um2 = input * Math.pow(1_609_344_000, 2);
+                this.mm2 = input * Math.pow(1_609_344, 2);
+                this.cm2 = input * Math.pow(160_934.4, 2);
+                this.in2 = input * Math.pow(63_360, 2);
+                this.ft2 = input * Math.pow(5_280, 2);
+                this.yd2 = input * Math.pow(1_760, 2);
+                this.m2 = input * Math.pow(1_609.344, 2);
+                this.are = input * Math.pow(25_899.881103, 2);
+                this.acre = input * Math.pow(639.99999999, 2);
+                this.ha = input * Math.pow(258.99881103, 2);
+                this.km2 = input * Math.pow(1.609344, 2);
                 this.mi2 = input;
                 return true;
             } catch (Exception e) {

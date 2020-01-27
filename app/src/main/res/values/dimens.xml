@@ -56,6 +56,8 @@
     <dimen name="unit_upper_symbol_text_size">8sp</dimen>
     <dimen name="unit_scroll_margin">30dp</dimen>
 
+    <dimen name="result_padding_right">10dp</dimen>
+
 
 
 

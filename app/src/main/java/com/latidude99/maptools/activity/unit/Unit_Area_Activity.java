@@ -8,6 +8,7 @@ import android.view.KeyEvent;
 import android.view.View;
 import android.view.inputmethod.EditorInfo;
 import android.view.inputmethod.InputMethodManager;
+import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Spinner;
@@ -90,7 +91,13 @@ public class Unit_Area_Activity extends AppCompatActivity {
 
         createResultList(); // to manipulate display results visuals easier
 
-        if("en_US".equals(locale.toString()) || "en_UK".equals(locale.toString()))
+        System.out.println("locale.getCountry(): " + locale.getCountry());
+        System.out.println("locale.getDisplayCountry(): " + locale.getDisplayCountry());
+        System.out.println("locale.getDisplayName(): " + locale.getDisplayName());
+        System.out.println("locale.getDisplayLanguage(): " + locale.getDisplayLanguage());
+
+        if("en_US".equals(locale.toString()) || "en_UK".equals(locale.toString())
+            || "US".equals(locale.getCountry()) || "UK".equals(locale.getCountry()))
             spinnerInputAreaUnits.setSelection(8);
         else
             spinnerInputAreaUnits.setSelection(9);
@@ -109,6 +116,18 @@ public class Unit_Area_Activity extends AppCompatActivity {
                     return true;
                 }
                 return false;
+            }
+        });
+
+        spinnerInputAreaUnits.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+                clearAllTextResultStyle();
+                processInputAndConvertArea(view);
+            }
+            @Override
+            public void onNothingSelected(AdapterView<?> parent) {
+                // do nothing
             }
         });
 
@@ -339,15 +358,17 @@ public class Unit_Area_Activity extends AppCompatActivity {
     }
 
     private void changeTextStyle(TextView view){
+        view.setPaddingRelative(0, 0, 10, 0);
         view.setTypeface(null, Typeface.BOLD);
-        view.setTextColor(Color.RED);
-        view.setBackgroundColor(Color.LTGRAY);
+        view.setTextColor(getResources().getColor(R.color.result_text_active));
+        view.setBackgroundColor(getResources().getColor(R.color.result_background));
     }
 
 
     private void clearTextStyle(TextView view){
+        view.setPaddingRelative(0, 0, 0, 0);
         view.setTypeface(null, Typeface.NORMAL);
-        view.setTextColor(getResources().getColor(R.color.tab1_result));
+        view.setTextColor(getResources().getColor(R.color.result_text_regular));
         view.setBackgroundColor(getResources().getColor(android.R.color.transparent));
     }
 
@@ -371,9 +392,9 @@ public class Unit_Area_Activity extends AppCompatActivity {
         // Check if no view has focus:
         if (view != null) {
             InputMethodManager imm = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
-            imm.hideSoftInputFromWindow(view.getWindowToken(),0);
+            imm.hideSoftInputFromWindow(view.getWindowToken(), 0);
+            view.clearFocus();
         }
-        view.clearFocus();
     }
 
     private void showKeyboard(View view) {

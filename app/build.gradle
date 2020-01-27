@@ -8,8 +8,8 @@ android {
         applicationId "com.latidude99.maptools"
         minSdkVersion 21
         targetSdkVersion 28
-        versionCode 6
-        versionName "0.24 beta"
+        versionCode 7
+        versionName "0.25 beta"
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
     }
     buildTypes {

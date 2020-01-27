@@ -5,10 +5,12 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.content.Context;
 import android.graphics.Typeface;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.KeyEvent;
 import android.view.View;
 import android.view.inputmethod.EditorInfo;
 import android.view.inputmethod.InputMethodManager;
+import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Spinner;
@@ -21,6 +23,8 @@ import com.latidude99.maptools.model.scale.Scale;
 import com.latidude99.maptools.model.unit.LengthEntry;
 
 import java.text.DecimalFormat;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Locale;
 
 public class Unit_Length_Activity extends AppCompatActivity {
@@ -47,6 +51,7 @@ public class Unit_Length_Activity extends AppCompatActivity {
     private String ERROR_UNIT_CONVERSION;
 
     LengthEntry lengthEntry;
+    List<TextView> resultList;
 
     // used to store info/calculation when orientation changes
     private boolean inputCleared;
@@ -82,7 +87,10 @@ public class Unit_Length_Activity extends AppCompatActivity {
         textLengthMI = (TextView) findViewById(R.id.converted_length_statue_mile);
         textLengthNM = (TextView) findViewById(R.id.converted_length_nautical_mile);
 
-        if("en_US".equals(locale.toString()) || "en_UK".equals(locale.toString()))
+        createResultList();
+
+        if("en_US".equals(locale.toString()) || "en_UK".equals(locale.toString())
+                || "US".equals(locale.getCountry()) || "UK".equals(locale.getCountry()))
             spinnerInputLengthUnits.setSelection(9);
         else
             spinnerInputLengthUnits.setSelection(8);
@@ -93,11 +101,23 @@ public class Unit_Length_Activity extends AppCompatActivity {
             @Override
             public boolean onEditorAction(TextView view, int actionId, KeyEvent event) {
                 if (actionId == EditorInfo.IME_ACTION_DONE) {
-                    clearTextFieldsFaces();
+                    clearAllTextResultStyle();
                     processInputAndConvertLength(view);
                     return true;
                 }
                 return false;
+            }
+        });
+
+        spinnerInputLengthUnits.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+                clearAllTextResultStyle();
+                processInputAndConvertLength(view);
+            }
+            @Override
+            public void onNothingSelected(AdapterView<?> parent) {
+                // do nothing
             }
         });
 
@@ -106,7 +126,7 @@ public class Unit_Length_Activity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 String stringInput = textInputLength.getText().toString().trim();
-                clearTextFieldsFaces();
+                clearAllTextResultStyle();
                 processInputAndConvertLength(view);
             }
         });
@@ -203,67 +223,67 @@ public class Unit_Length_Activity extends AppCompatActivity {
                     lengthEntry = new LengthEntry.Builder()
                             .setMicrometresAndConvertAll(value)
                             .build();
-                    textLengthUM.setTypeface(null, Typeface.BOLD);
+                    changeTextStyle(textLengthUM);
                     break;
                 case 1: // mm
                     lengthEntry = new LengthEntry.Builder()
                             .setMillimetresAndConvertAll(value)
                             .build();
-                    textLengthMM.setTypeface(null, Typeface.BOLD);
+                    changeTextStyle(textLengthMM);
                     break;
                 case 2: // cm
                     lengthEntry = new LengthEntry.Builder()
                             .setCentimetresAndConvertAll(value)
                             .build();
-                    textLengthCM.setTypeface(null, Typeface.BOLD);
+                    changeTextStyle(textLengthCM);
                     break;
                 case 3: // in
                     lengthEntry = new LengthEntry.Builder()
                             .setInchesAndConvertAll(value)
                             .build();
-                    textLengthIN.setTypeface(null, Typeface.BOLD);
+                    changeTextStyle(textLengthIN);
                     break;
                 case 4: // ft
                     lengthEntry = new LengthEntry.Builder()
                             .setFeetAndConvertAll(value)
                             .build();
-                    textLengthFT.setTypeface(null, Typeface.BOLD);
+                    changeTextStyle(textLengthFT);
                     break;
                 case 5: // yd
                     lengthEntry = new LengthEntry.Builder()
                             .setYardsAndConvertAll(value)
                             .build();
-                    textLengthYD.setTypeface(null, Typeface.BOLD);
+                    changeTextStyle(textLengthYD);
                     break;
                 case 6: // m
                     lengthEntry = new LengthEntry.Builder()
                             .setMetresAndConvertAll(value)
                             .build();
-                    textLengthM.setTypeface(null, Typeface.BOLD);
+                    changeTextStyle(textLengthM);
                     break;
                 case 7: // ftm
                     lengthEntry = new LengthEntry.Builder()
                             .setFathomsAndConvertAll(value)
                             .build();
-                    textLengthFTM.setTypeface(null, Typeface.BOLD);
+                    changeTextStyle(textLengthFTM);
                     break;
                 case 8: // km
                     lengthEntry = new LengthEntry.Builder()
                             .setKilometresAndConvertAll(value)
                             .build();
-                    textLengthKM.setTypeface(null, Typeface.BOLD);
+                    changeTextStyle(textLengthKM);
                     break;
                 case 9: // mi
                     lengthEntry = new LengthEntry.Builder()
                             .setMilesAndConvertAll(value)
                             .build();
-                    textLengthMI.setTypeface(null, Typeface.BOLD);
+                    changeTextStyle(textLengthMI);
                     break;
                 case 10: // nm
                     lengthEntry = new LengthEntry.Builder()
                             .setNauticalMilesAndConvertAll(value)
                             .build();
-                    textLengthNM.setTypeface(null, Typeface.BOLD);
+                    changeTextStyle(textLengthNM);
                     break;
             }
             if(lengthEntry != null)
@@ -308,43 +328,56 @@ public class Unit_Length_Activity extends AppCompatActivity {
     }
 
     private void clearTextFields(){
-        clearTextFieldsFaces();
-        textLengthUM.setText("");
-        textLengthMM.setText("");
-        textLengthCM.setText("");
-        textLengthIN.setText("");
-        textLengthFT.setText("");
-        textLengthYD.setText("");
-        textLengthM.setText("");
-        textLengthFTM.setText("");
-        textLengthKM.setText("");
-        textLengthMI.setText("");
-        textLengthNM.setText("");
+        //   resultList.forEach(v -> v.setText(""));  // needs API >24
+        for(TextView view : resultList)
+            view.setText("");
         lengthEntry = null;
         inputCleared = true;
     }
 
-    private void clearTextFieldsFaces(){
-        textLengthUM.setTypeface(null, Typeface.NORMAL);
-        textLengthMM.setTypeface(null, Typeface.NORMAL);
-        textLengthCM.setTypeface(null, Typeface.NORMAL);
-        textLengthIN.setTypeface(null, Typeface.NORMAL);
-        textLengthFT.setTypeface(null, Typeface.NORMAL);
-        textLengthYD.setTypeface(null, Typeface.NORMAL);
-        textLengthM.setTypeface(null, Typeface.NORMAL);
-        textLengthFTM.setTypeface(null, Typeface.NORMAL);
-        textLengthKM.setTypeface(null, Typeface.NORMAL);
-        textLengthMI.setTypeface(null, Typeface.NORMAL);
-        textLengthNM.setTypeface(null, Typeface.NORMAL);
+    private void clearAllTextResultStyle(){
+        for(TextView view : resultList)
+            clearTextStyle(view);
     }
+
+    private void changeTextStyle(TextView view){
+        view.setPaddingRelative(0, 0, 10, 0);
+        view.setTypeface(null, Typeface.BOLD);
+        view.setTextColor(getResources().getColor(R.color.result_text_active));
+        view.setBackgroundColor(getResources().getColor(R.color.result_background));
+    }
+
+
+    private void clearTextStyle(TextView view){
+        view.setPaddingRelative(0, 0, 0, 0);
+        view.setTypeface(null, Typeface.NORMAL);
+        view.setTextColor(getResources().getColor(R.color.result_text_regular));
+        view.setBackgroundColor(getResources().getColor(android.R.color.transparent));
+    }
+
+    private void createResultList() {
+        resultList = new ArrayList<>();
+        resultList.add(textLengthUM);
+        resultList.add(textLengthMM);
+        resultList.add(textLengthCM);
+        resultList.add(textLengthIN);
+        resultList.add(textLengthFT);
+        resultList.add(textLengthYD);
+        resultList.add(textLengthM);
+        resultList.add(textLengthFTM);
+        resultList.add(textLengthKM);
+        resultList.add(textLengthMI);
+        resultList.add(textLengthNM);
+    }
+
 
     private void hideKeyboard(View view) {
         // Check if no view has focus:
         if (view != null) {
             InputMethodManager imm = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
-            imm.hideSoftInputFromWindow(view.getWindowToken(),0);
+            imm.hideSoftInputFromWindow(view.getWindowToken(), 0);
+            view.clearFocus();
         }
-        view.clearFocus();
     }
 
     private void showKeyboard(View view) {
