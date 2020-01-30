@@ -23,49 +23,52 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:hint="@string/unit_length_hint"
-            android:paddingRight="@dimen/entry_padding_right"
+            android:paddingRight="@dimen/entry_padding_right_land"
             android:inputType="numberDecimal"
             android:selectAllOnFocus="true"
-            android:textAppearance="@style/TextAppearance.AppCompat.Medium" />
+            android:textAppearance="@style/TextAppearance.AppCompat.Medium"
+            android:imeOptions="flagNoExtractUi" />
 
         <Spinner
             android:id="@+id/unit_length_units"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:gravity="end"
+            android:layout_marginLeft="@dimen/layout_entry_padding_top"
             android:entries="@array/unit_length_units_type"
-            android:textAlignment="center"/>
+            android:gravity="end"
+            android:textAlignment="center" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_marginBottom="@dimen/buttons_margin_bottom">
+
+            <Button
+                android:id="@+id/btn_convert"
+                android:layout_width="0dp"
+                android:layout_weight="1"
+                android:layout_height="wrap_content"
+                android:layout_margin="@dimen/indent_very_small"
+                android:text="@string/convert"
+                android:textColor="@color/colorPrimaryText"
+                android:backgroundTint="@color/colorPrimary"
+                android:background="@drawable/button_rounded"/>
+
+            <Button
+                android:id="@+id/btn_clear"
+                android:layout_width="0dp"
+                android:layout_weight="1"
+                android:layout_height="wrap_content"
+                android:layout_margin="@dimen/indent_very_small"
+                android:text="@string/clear"
+                android:textColor="@color/colorPrimaryText"
+                android:backgroundTint="@color/colorPrimary"
+                android:background="@drawable/button_rounded"/>
+
+        </LinearLayout>
     </LinearLayout>
 
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        android:layout_marginBottom="@dimen/buttons_margin_bottom">
-
-        <Button
-            android:id="@+id/btn_convert"
-            android:layout_width="0dp"
-            android:layout_weight="1"
-            android:layout_height="wrap_content"
-            android:layout_margin="@dimen/indent_very_small"
-            android:text="@string/convert"
-            android:textColor="@color/colorPrimaryText"
-            android:backgroundTint="@color/colorPrimary"
-            android:background="@drawable/button_rounded"/>
-
-        <Button
-            android:id="@+id/btn_clear"
-            android:layout_width="0dp"
-            android:layout_weight="1"
-            android:layout_height="wrap_content"
-            android:layout_margin="@dimen/indent_very_small"
-            android:text="@string/clear"
-            android:textColor="@color/colorPrimaryText"
-            android:backgroundTint="@color/colorPrimary"
-            android:background="@drawable/button_rounded"/>
-
-    </LinearLayout>
 
     <ScrollView
         android:layout_width="match_parent"
@@ -74,7 +77,9 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="vertical">
+            android:orientation="vertical"
+            android:layout_marginLeft="@dimen/unit_scroll_margin"
+            android:layout_marginRight="@dimen/unit_scroll_margin">
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -100,7 +105,7 @@
                     android:layout_marginTop="@dimen/unit_value_margin_top"
                     android:gravity="right"
                     android:layout_gravity="bottom"
-                    
+
                     android:textSize="@dimen/unit_value_text_size"
                     android:textColor="@color/tab1_result"
                     android:textStyle="normal"/>
@@ -138,7 +143,7 @@
                     android:layout_marginTop="@dimen/unit_value_margin_top"
                     android:gravity="right"
                     android:layout_gravity="bottom"
-                    
+
                     android:textSize="@dimen/unit_value_text_size"
                     android:textColor="@color/tab1_result"
                     android:textStyle="normal"/>
@@ -176,7 +181,7 @@
                     android:layout_marginTop="@dimen/unit_value_margin_top"
                     android:gravity="right"
                     android:layout_gravity="bottom"
-                    
+
                     android:textSize="@dimen/unit_value_text_size"
                     android:textColor="@color/tab1_result"
                     android:textStyle="normal"/>
@@ -215,7 +220,7 @@
                     android:layout_marginTop="@dimen/unit_value_margin_top"
                     android:gravity="right"
                     android:layout_gravity="bottom"
-                    
+
                     android:textSize="@dimen/unit_value_text_size"
                     android:textColor="@color/tab1_result"
                     android:textStyle="normal"/>
@@ -253,7 +258,7 @@
                     android:layout_marginTop="@dimen/unit_value_margin_top"
                     android:gravity="right"
                     android:layout_gravity="bottom"
-                    
+
                     android:textSize="@dimen/unit_value_text_size"
                     android:textColor="@color/tab1_result"
                     android:textStyle="normal"/>
@@ -291,7 +296,7 @@
                     android:layout_marginTop="@dimen/unit_value_margin_top"
                     android:gravity="right"
                     android:layout_gravity="bottom"
-                    
+
                     android:textSize="@dimen/unit_value_text_size"
                     android:textColor="@color/tab1_result"
                     android:textStyle="normal"/>
@@ -329,7 +334,7 @@
                     android:layout_marginTop="@dimen/unit_value_margin_top"
                     android:gravity="right"
                     android:layout_gravity="bottom"
-                    
+
                     android:textSize="@dimen/unit_value_text_size"
                     android:textColor="@color/tab1_result"
                     android:textStyle="normal"/>
@@ -367,7 +372,7 @@
                     android:layout_marginTop="@dimen/unit_value_margin_top"
                     android:gravity="right"
                     android:layout_gravity="bottom"
-                    
+
                     android:textSize="@dimen/unit_value_text_size"
                     android:textColor="@color/tab1_result"
                     android:textStyle="normal"/>
@@ -405,7 +410,7 @@
                     android:layout_marginTop="@dimen/unit_value_margin_top"
                     android:gravity="right"
                     android:layout_gravity="bottom"
-                    
+
                     android:textSize="@dimen/unit_value_text_size"
                     android:textColor="@color/tab1_result"
                     android:textStyle="normal"/>
@@ -443,7 +448,7 @@
                     android:layout_marginTop="@dimen/unit_value_margin_top"
                     android:gravity="right"
                     android:layout_gravity="bottom"
-                    
+
                     android:textSize="@dimen/unit_value_text_size"
                     android:textColor="@color/tab1_result"
                     android:textStyle="normal"/>
@@ -482,7 +487,7 @@
                     android:layout_marginTop="@dimen/unit_value_margin_top"
                     android:gravity="right"
                     android:layout_gravity="bottom"
-                    
+
                     android:textSize="@dimen/unit_value_text_size"
                     android:textColor="@color/tab1_result"
                     android:textStyle="normal"/>

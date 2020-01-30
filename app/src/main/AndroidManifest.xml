@@ -70,9 +70,13 @@
             android:label="Unit Converter"
             android:parentActivityName=".activity.MapToolsActivity" />
         <activity android:name=".activity.unit.Unit_Length_Activity"
+            android:windowSoftInputMode="stateVisible|adjustPan"
             android:label="Unit Converter - Length"
-            android:parentActivityName=".activity.unit.UnitActivity"
-            android:windowSoftInputMode="stateVisible|adjustPan" />
+            android:parentActivityName=".activity.unit.UnitActivity" />
+        <activity android:name=".activity.unit.Unit_Area_Activity"
+            android:windowSoftInputMode="stateVisible|adjustPan"
+            android:label="Unit Converter - Area"
+            android:parentActivityName=".activity.unit.UnitActivity" />
     </application>
 
 </manifest>

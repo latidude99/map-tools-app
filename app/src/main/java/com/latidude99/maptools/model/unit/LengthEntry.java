@@ -100,9 +100,9 @@ public class LengthEntry {
             return this;
         }
 
-        public Builder setInchesAndConvertAll(double cm) {
-            this.cm = cm;
-            convertAllFromCM(cm);
+        public Builder setInchesAndConvertAll(double in) {
+            this.in = in;
+            convertAllFromIN(in);
             return this;
         }
 
