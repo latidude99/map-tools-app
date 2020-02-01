@@ -74,7 +74,7 @@ Converts units in 8 categories:
 	<img src="images/length3.jpg" width=24%>
 </p>
 <p align="center">
-	<img src="images/length_land.jpg" width=40%>
+	<img src="images/length_land.jpg" width=60%>
 </p>
 
 ### Option 2 - Scale Converter
@@ -89,7 +89,11 @@ A value entered in one of the formats gets converted into the remaining four.
  - Metric/kilometres to a centimetre (eg. 2km to a cm)
 
 <p align="center">
-	<img src="images/2222.JPG" width=100%>
+	<img src="images/fractional.jpg" width=24%>
+	<img src="images/intomile.jpg" width=24%>
+</p>
+<p align="center">
+	<img src="images/fractional_land.jpg" width=60%>
 </p>
 
 ### Option 3 - Distance Calculator
