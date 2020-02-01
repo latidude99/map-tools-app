@@ -112,11 +112,12 @@ There are three types of calculations that can be done here - knowing any two of
 Once calculation is done you can freely switch between available units converting the values to the system (metric, imperial) most digestable to you.
 
 <p align="center">
-<img src="images/33333.png" width=100%>
+	<img src="images/scale0.jpg" width=24%>
+	<img src="images/scale1.jpg" width=24%>
+	<img src="images/ground.jpg" width=24%>
 </p>
-
 <p align="center">
-<img src="images/44444.JPG" width=100%>
+<img src="images/scale_land.jpg" width=60%>
 </p>
 
 
