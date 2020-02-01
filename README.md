@@ -34,7 +34,6 @@ A set of map tools consisting of:
 	<img src="images/units.jpg" width=24%>
 	<img src="images/scales.jpg" width=24%>
 	<img src="images/distance.jpg" width=24%>
-    
 </p>
 
 
@@ -69,7 +68,13 @@ Converts units in 8 categories:
  - pressure(coming soon)
 
 <p align="center">
-	<img src="images/2222.JPG" width=100%>
+	<img src="images/area1.jpg" width=24%>
+	<img src="images/area2.jpg" width=24%>
+	<img src="images/length2.jpg" width=24%>
+	<img src="images/length3.jpg" width=24%>
+</p>
+<p align="center">
+	<img src="images/length_land.jpg" width=40%>
 </p>
 
 ### Option 2 - Scale Converter
