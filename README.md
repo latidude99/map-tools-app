@@ -44,7 +44,7 @@ A set of map tools consisting of:
 - Gradle
 
 **Plugins and libraries**
-- JCoord version 1.0 (by Jonathan Stott)
+- JCoord version 1.0 by Jonathan Stott (coordinate conversions only)
 
 # Setup
 
