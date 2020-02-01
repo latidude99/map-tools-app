@@ -29,10 +29,11 @@ A set of map tools consisting of:
  - coordinate converters (coming soon)
  - polygon area and perimeter calculators (coming soon)
 
- **Screenshots**
-
 <p align="center">
-	<img src="images/main.jpg" width=30%>
+	<img src="images/main.jpg" width=24%>
+	<img src="images/units.jpg" width=24%>
+	<img src="images/scales.jpg" width=24%>
+	<img src="images/distance.jpg" width=24%>
     
 </p>
 
